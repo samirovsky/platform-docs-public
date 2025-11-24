@@ -12,6 +12,10 @@ import { Metadata } from 'next';
 import { Prose } from '@/components/common/prose';
 import { SidebarItem } from '@/schema';
 import { DocsVariantProvider } from '@/contexts/docs-variant';
+import { LeChatProvider } from '@/contexts/lechat-context';
+import { LeChatTrigger } from '@/components/common/lechat-trigger';
+import { LeChatPanel } from '@/components/common/lechat-panel';
+import { PageContextInitializer } from '@/components/common/page-context-initializer';
 
 export const metadata: Metadata = {
   title: {
@@ -33,53 +37,58 @@ export default async function SidebarLayout({
     'hidden xl:flex w-[calc(var(--sidebar-width)-var(--sides))] ml-10 2xl:ml-14 pl-2';
 
   return (
-    <SidebarProvider className="max-lg:px-inner-sides">
-      <DocsVariantProvider variant="docs">
-        <Sidebar
-          className="h-fold sticky top-header overflow-y-auto scrollbar-none shrink-0"
-          collapsible="none"
-        >
-          <DocsSidebar
-            sidebar={sidebarTree}
-            expandedCategoriesOptions={{
-              overridedExpandedCategories: {
-                '/': [['getting-started', 'introduction']],
-              },
-            }}
-          />
-        </Sidebar>
-        <div className="flex flex-1 gap-8 min-w-0 lg:pr-sides">
-          <div className="flex flex-col flex-1 min-w-0">
-            <PageContent as="main" className="max-lg:contents lg:px-inner-sides">
-              <div className="flex-1 min-w-0 w-full flex justify-center lg:py-6 relative">
-                <div
-                  className={cn(
-                    'flex flex-col gap-8 lg:gap-4 flex-1 w-full min-w-0',
-                    'lg:max-w-4xl lg:[&:has(~_[data-table-of-contents])]:max-w-2xl 2xl:[&:has(~_[data-table-of-contents])]:max-w-3xl'
-                  )}
-                >
-                  <DocsBreadcrumb sidebar={sidebar} />
+    <LeChatProvider>
+      <SidebarProvider className="max-lg:px-inner-sides">
+        <DocsVariantProvider variant="docs">
+          <Sidebar
+            className="h-fold sticky top-header overflow-y-auto scrollbar-none shrink-0"
+            collapsible="none"
+          >
+            <DocsSidebar
+              sidebar={sidebarTree}
+              expandedCategoriesOptions={{
+                overridedExpandedCategories: {
+                  '/': [['getting-started', 'introduction']],
+                },
+              }}
+            />
+          </Sidebar>
+          <div className="flex flex-1 gap-8 min-w-0 lg:pr-sides">
+            <div className="flex flex-col flex-1 min-w-0">
+              <PageContent as="main" className="max-lg:contents lg:px-inner-sides">
+                <div className="flex-1 min-w-0 w-full flex justify-center lg:py-6 relative">
+                  <div
+                    className={cn(
+                      'flex flex-col gap-8 lg:gap-4 flex-1 w-full min-w-0',
+                      'lg:max-w-4xl lg:[&:has(~_[data-table-of-contents])]:max-w-2xl 2xl:[&:has(~_[data-table-of-contents])]:max-w-3xl'
+                    )}
+                  >
+                    <DocsBreadcrumb sidebar={sidebar} />
 
-                  <Prose data-page-content className={cn('flex-1')}>
-                    {children}
-                    <Suspense>
-                      <DocsPagination sidebar={sidebar} />
-                    </Suspense>
-                  </Prose>
+                    <Prose data-page-content className={cn('flex-1')}>
+                      {children}
+                      <Suspense>
+                        <DocsPagination sidebar={sidebar} />
+                      </Suspense>
+                    </Prose>
+                  </div>
+
+                  <TableOfContents
+                    className={asideClassName}
+                    maxDepth={3}
+                    sidebar={sidebar}
+                  />
+                  <Timeline className={cn(asideClassName)} />
                 </div>
-
-                <TableOfContents
-                  className={asideClassName}
-                  maxDepth={3}
-                  sidebar={sidebar}
-                />
-                <Timeline className={cn(asideClassName)} />
-              </div>
-            </PageContent>
+              </PageContent>
+            </div>
           </div>
-        </div>
-      </DocsVariantProvider>
-    </SidebarProvider>
+        </DocsVariantProvider>
+      </SidebarProvider>
+      <PageContextInitializer />
+      <LeChatTrigger />
+      <LeChatPanel />
+    </LeChatProvider>
   );
 }
 

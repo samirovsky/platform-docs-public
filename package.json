@@ -107,6 +107,14 @@
     "typescript": "^5.5.4",
     "unist-util-visit-parents": "^6.0.1"
   },
+  "pnpm": {
+    "overrides": {
+      "estree-walker": "^3.0.3"
+    },
+    "patchedDependencies": {
+      "estree-walker@3.0.3": "patches/estree-walker.patch"
+    }
+  },
   "engines": {
     "node": ">=18.0"
   },
