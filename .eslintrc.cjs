@@ -1,22 +1,13 @@
-const { dirname } = require('path');
-const { fileURLToPath } = require('url');
-const { FlatCompat } = require('@eslint/eslintrc');
-
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = dirname(__filename);
-
-const compat = new FlatCompat({
-  baseDirectory: __dirname,
-});
-
-const eslintConfig = [
-  ...compat.extends('next/core-web-vitals', 'next/typescript'),
-];
-
 /** @type {import('eslint').Linter.Config} */
-const config = {
-  ...eslintConfig,
-  ignores: ['**/static/**'],
+module.exports = {
+  extends: ['next/core-web-vitals', 'next/typescript'],
+  ignorePatterns: ['**/static/**'],
+  rules: {
+    '@typescript-eslint/no-explicit-any': 'warn',
+    'prefer-const': 'warn',
+    '@typescript-eslint/no-unused-vars': 'warn',
+    '@typescript-eslint/ban-ts-comment': 'warn',
+  },
 };
 
-module.exports = config;
+

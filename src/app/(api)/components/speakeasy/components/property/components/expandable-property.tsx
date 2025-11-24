@@ -85,7 +85,7 @@ export function ExpandablePropertyBreakouts({
   children,
   slot,
   ConnectingCell = DefaultConnectingCell,
-}: ExpandablePropertyBreakoutsProps) {
+}: ExpandablePropertyBreakoutsProps & { ConnectingCell?: React.ComponentType<any> }) {
   return (
     <div slot={slot} className="flex flex-col">
       {Children.map(children, (child, index) => {

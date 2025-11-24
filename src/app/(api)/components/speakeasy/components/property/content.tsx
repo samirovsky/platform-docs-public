@@ -35,7 +35,11 @@ export function PropertyContents({
   ExpandableCell = DefaultExpandableCell,
   NonExpandableCell = DefaultNonExpandableCell,
   ConnectingCell = DefaultConnectingCell,
-}: ExpandablePropertyProps) {
+}: ExpandablePropertyProps & {
+  ExpandableCell?: React.ComponentType<any>;
+  NonExpandableCell?: React.ComponentType<any>;
+  ConnectingCell?: React.ComponentType<any>;
+}) {
   const [highlight, setHighlight] = useState(false);
   const propCtx = usePropertyContext();
 

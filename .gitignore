@@ -161,4 +161,7 @@ public/_guides
 
 .DS_Store
 public/models
-public/mistral-vibe
+
+# Playwright
+playwright-report/
+test-results/

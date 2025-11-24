@@ -32,13 +32,13 @@ const nextConfig: NextConfig = {
       },
     ];
   },
-   async redirects() {
+  async redirects() {
     return redirects;
   },
 };
 
 const withMDX = createMDX({
-  extension: /\.(md|mdx)$/,
+
   options: {
     jsx: true,
     jsxImportSource: 'react',
