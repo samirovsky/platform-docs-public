@@ -2,6 +2,8 @@
 
 import { ThemeProvider } from 'next-themes';
 import { NuqsAdapter } from 'nuqs/adapters/next/app';
+import { LeChatProvider } from '@/contexts/lechat-context';
+
 import { SearchProvider } from './context/search-provider';
 import { TabSyncProvider } from '@/contexts/tab-sync-context';
 
@@ -17,9 +19,11 @@ export function Providers({ children }: ProvidersProps) {
       enableSystem
       disableTransitionOnChange
     >
-      <SearchProvider>
-        <TabSyncProvider>{children}</TabSyncProvider>
-      </SearchProvider>
+      <LeChatProvider>
+        <SearchProvider>
+          <TabSyncProvider>{children}</TabSyncProvider>
+        </SearchProvider>
+      </LeChatProvider>
     </ThemeProvider>
   );
 }

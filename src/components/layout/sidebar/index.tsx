@@ -226,8 +226,8 @@ const SidebarSubCategory = <T extends SideBarTreeNode>({
 
   const [isExpanded, setIsExpanded] = React.useState(
     expandedCategories.has(item.href!) ||
-      isCategoryActive ||
-      hasActiveDescendant
+    isCategoryActive ||
+    hasActiveDescendant
   );
 
   React.useEffect(() => {
@@ -360,7 +360,7 @@ const DocsSidebarContent = <T extends SideBarTreeNode>({
   return (
     <>
       <SidebarHeader className="max-lg:hidden">
-        <SearchInput />
+        {/* Search moved to Hero */}
       </SidebarHeader>
       <SidebarContent>
         {sidebar.map((item, index) => {

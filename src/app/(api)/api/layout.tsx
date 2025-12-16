@@ -7,6 +7,11 @@ import { ApiBreadcrumb } from '@/components/layout/api-breadcrumb';
 import { ActiveElementHashProvider } from '../components/hash-auto-change';
 import { DocsVariantProvider } from '@/contexts/docs-variant';
 import { ApiPagination } from '../components/pagination';
+import { LeChatProvider } from '@/contexts/lechat-context';
+import { LeChatTrigger } from '@/components/common/lechat-trigger';
+import { LeChatPanel } from '@/components/common/lechat-panel';
+import { PageContextInitializer } from '@/components/common/page-context-initializer';
+import { TextSelectionMenu } from '@/components/common/text-selection-menu';
 
 export default function DocsLayout({
   children,
@@ -15,40 +20,46 @@ export default function DocsLayout({
 }) {
   const flattenedSidebar = flattenSidebar(sidebarMetadata);
   return (
-    <ActiveElementHashProvider>
-      <SidebarProvider>
-        <DocsVariantProvider variant="api">
-          <Sidebar
-            className="h-fold sticky top-header overflow-y-auto scrollbar-none shrink-0"
-            collapsible="none"
-          >
-            <div>
-              <ApiDocsSidebar sidebar={flattenedSidebar} />
+    <LeChatProvider>
+      <ActiveElementHashProvider>
+        <SidebarProvider>
+          <DocsVariantProvider variant="api">
+            <Sidebar
+              className="h-fold sticky top-header overflow-y-auto scrollbar-none shrink-0"
+              collapsible="none"
+            >
+              <div>
+                <ApiDocsSidebar sidebar={flattenedSidebar} />
+              </div>
+            </Sidebar>
+            <div className="flex flex-1 gap-8 min-w-0 lg:pr-sides">
+              <div className="flex flex-col flex-1 min-w-0">
+                <ApiBreadcrumb sidebar={flattenedSidebar} />
+                <PageContent
+                  as="main"
+                  className="max-lg:contents group/mdx-wrapper !px-0 items-start"
+                  data-wrapper-type="api-content"
+                >
+                  {children}
+                  <ApiPagination
+                    items={flattenedSidebar}
+                    overrides={{
+                      pathSlugMap: {
+                        '/api': ['api', 'endpoint', 'chat'],
+                      },
+                    }}
+                  />
+                </PageContent>
+              </div>
             </div>
-          </Sidebar>
-          <div className="flex flex-1 gap-8 min-w-0 lg:pr-sides">
-            <div className="flex flex-col flex-1 min-w-0">
-              <ApiBreadcrumb sidebar={flattenedSidebar} />
-              <PageContent
-                as="main"
-                className="max-lg:contents group/mdx-wrapper !px-0 items-start"
-                data-wrapper-type="api-content"
-              >
-                {children}
-                <ApiPagination
-                  items={flattenedSidebar}
-                  overrides={{
-                    pathSlugMap: {
-                      '/api': ['api', 'endpoint', 'chat'],
-                    },
-                  }}
-                />
-              </PageContent>
-            </div>
-          </div>
-        </DocsVariantProvider>
-      </SidebarProvider>
-    </ActiveElementHashProvider>
+          </DocsVariantProvider>
+        </SidebarProvider>
+      </ActiveElementHashProvider>
+      <PageContextInitializer />
+      <LeChatTrigger />
+      <LeChatPanel />
+      <TextSelectionMenu />
+    </LeChatProvider>
   );
 }
 

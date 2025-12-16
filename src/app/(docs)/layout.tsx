@@ -16,6 +16,8 @@ import { LeChatProvider } from '@/contexts/lechat-context';
 import { LeChatTrigger } from '@/components/common/lechat-trigger';
 import { LeChatPanel } from '@/components/common/lechat-panel';
 import { PageContextInitializer } from '@/components/common/page-context-initializer';
+import { TextSelectionMenu } from '@/components/common/text-selection-menu';
+import { HeroSearch } from '@/components/layout/hero-search';
 
 export const metadata: Metadata = {
   title: {
@@ -63,6 +65,10 @@ export default async function SidebarLayout({
                       'lg:max-w-4xl lg:[&:has(~_[data-table-of-contents])]:max-w-2xl 2xl:[&:has(~_[data-table-of-contents])]:max-w-3xl'
                     )}
                   >
+
+                    <div className="sticky top-header z-20 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60 py-4 -mx-4 px-4 mb-4">
+                      <HeroSearch />
+                    </div>
                     <DocsBreadcrumb sidebar={sidebar} />
 
                     <Prose data-page-content className={cn('flex-1')}>
@@ -88,6 +94,7 @@ export default async function SidebarLayout({
       <PageContextInitializer />
       <LeChatTrigger />
       <LeChatPanel />
+      <TextSelectionMenu />
     </LeChatProvider>
   );
 }

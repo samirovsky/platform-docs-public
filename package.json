@@ -4,19 +4,20 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "dev": " pnpm cookbook:build && pnpm rawmdx:export && next dev",
+    "dev": "NODE_OPTIONS='--max-old-space-size=4096' pnpm cookbook:build && pnpm rawmdx:export && next dev -p 3002",
     "build": "pnpm prebuild && next build",
     "start": "next start",
     "lint": "next lint",
     "type-check": "tsc --noEmit",
     "cf:build": "pnpm dlx @cloudflare/next-on-pages@1",
     "search:build": "tsx src/scripts/build-search-index.ts",
+    "lechat:routes": "tsx src/scripts/generate-lechat-routes.ts",
     "cookbook:build": "tsx src/scripts/build-complete-cookbook.ts",
     "rawmdx:export": "tsx src/scripts/export-raw-mdx.ts",
     "cf:dev": "pnpm cf:build && npx wrangler pages dev --port 3000 --log-level=debug",
     "postinstall": "git submodule update --init --recursive && pnpm -s build-api-docs",
     "copy-assets-file": "tsx src/scripts/copy-assets-file.ts",
-    "prebuild": "pnpm -s cookbook:build && pnpm -s rawmdx:export && pnpm search:build && pnpm -s copy-assets-file",
+    "prebuild": "pnpm -s cookbook:build && pnpm -s rawmdx:export && pnpm search:build && pnpm -s copy-assets-file && pnpm -s lechat:routes",
     "build-api-docs": "docs-md"
   },
   "dependencies": {
@@ -63,6 +64,7 @@
     "nuqs": "^2.4.3",
     "react": "^19.1.1",
     "react-dom": "^19.1.1",
+    "react-markdown": "^10.1.0",
     "react-syntax-highlighter": "^15.6.1",
     "react-use-measure": "^2.1.7",
     "remark-directive": "^4.0.0",
@@ -82,6 +84,7 @@
   },
   "devDependencies": {
     "@cloudflare/next-on-pages": "^1.13.14",
+    "@playwright/test": "^1.56.1",
     "@tailwindcss/postcss": "^4.1.11",
     "@tailwindcss/typography": "^0.5.16",
     "@types/fs-extra": "^11.0.4",
