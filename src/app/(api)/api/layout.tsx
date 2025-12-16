@@ -10,6 +10,11 @@ import { ApiPagination } from '../components/pagination';
 import { Button } from '@/components/ui/button';
 import { DownloadIcon } from '@/components/icons/pixel';
 import Link from 'next/link';
+import { LeChatProvider } from '@/contexts/lechat-context';
+import { LeChatTrigger } from '@/components/common/lechat-trigger';
+import { LeChatPanel } from '@/components/common/lechat-panel';
+import { PageContextInitializer } from '@/components/common/page-context-initializer';
+import { TextSelectionMenu } from '@/components/common/text-selection-menu';
 
 export default function DocsLayout({
   children,
@@ -18,47 +23,54 @@ export default function DocsLayout({
 }) {
   const flattenedSidebar = flattenSidebar(sidebarMetadata);
   return (
-    <ActiveElementHashProvider>
-      <SidebarProvider>
-        <DocsVariantProvider variant="api">
-          <Sidebar
-            className="h-fold sticky top-header overflow-y-auto scrollbar-none shrink-0"
-            collapsible="none"
-          >
-            <div>
-              <ApiDocsSidebar sidebar={flattenedSidebar}>
-                <Button variant="outline" className="w-full" asChild>
-                  <Link href="/openapi.yaml" download="mistral-openapi.yaml">
-                    <DownloadIcon className="size-4" />
-                    Download OpenAPI Spec
-                  </Link>
-                </Button>
-              </ApiDocsSidebar>
+    <LeChatProvider>
+      <ActiveElementHashProvider>
+        <SidebarProvider>
+          <DocsVariantProvider variant="api">
+            <Sidebar
+              className="h-fold sticky top-header overflow-y-auto scrollbar-none shrink-0"
+              collapsible="none"
+            >
+              <div>
+                <ApiDocsSidebar sidebar={flattenedSidebar}>
+                  <Button variant="outline" className="w-full" asChild>
+                    <Link href="/openapi.yaml" download="mistral-openapi.yaml">
+                      <DownloadIcon className="size-4" />
+                      Download OpenAPI Spec
+                    </Link>
+                  </Button>
+                </ApiDocsSidebar>
+              </div>
+            </Sidebar>
+            <div className="flex flex-1 gap-8 min-w-0 lg:pr-sides">
+              <div className="flex flex-col flex-1 min-w-0">
+                <ApiBreadcrumb sidebar={flattenedSidebar} />
+                <PageContent
+                  as="main"
+                  className="max-lg:contents group/mdx-wrapper !px-0 items-start"
+                  data-wrapper-type="api-content"
+                >
+                  {children}
+                  <ApiPagination
+                    items={flattenedSidebar}
+                    overrides={{
+                      pathSlugMap: {
+                        '/api': ['api', 'endpoint', 'chat'],
+                      },
+                    }}
+                  />
+                </PageContent>
+              </div>
+
             </div>
-          </Sidebar>
-          <div className="flex flex-1 gap-8 min-w-0 lg:pr-sides">
-            <div className="flex flex-col flex-1 min-w-0">
-              <ApiBreadcrumb sidebar={flattenedSidebar} />
-              <PageContent
-                as="main"
-                className="max-lg:contents group/mdx-wrapper !px-0 items-start"
-                data-wrapper-type="api-content"
-              >
-                {children}
-                <ApiPagination
-                  items={flattenedSidebar}
-                  overrides={{
-                    pathSlugMap: {
-                      '/api': ['api', 'endpoint', 'chat'],
-                    },
-                  }}
-                />
-              </PageContent>
-            </div>
-          </div>
-        </DocsVariantProvider>
-      </SidebarProvider>
-    </ActiveElementHashProvider>
+          </DocsVariantProvider>
+        </SidebarProvider>
+      </ActiveElementHashProvider>
+      <PageContextInitializer />
+      <LeChatTrigger />
+      <LeChatPanel />
+      <TextSelectionMenu />
+    </LeChatProvider>
   );
 }
 

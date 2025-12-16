@@ -1,0 +1,589 @@
+# Page snapshot
+
+```yaml
+- generic [active] [ref=e1]:
+  - generic [ref=e2]:
+    - banner:
+      - generic:
+        - generic:
+          - link [ref=e4] [cursor=pointer]:
+            - /url: /
+            - img [ref=e7]
+          - button "Docs & API" [ref=e9]:
+            - generic [ref=e10]:
+              - generic [ref=e11]: Docs & API
+              - img [ref=e12]
+      - generic:
+        - navigation [ref=e14]:
+          - link "Docs" [ref=e15] [cursor=pointer]:
+            - /url: /
+            - generic [ref=e17]: Docs
+          - link "API" [ref=e18] [cursor=pointer]:
+            - /url: /api
+            - generic [ref=e20]: API
+          - link "Cookbooks" [ref=e21] [cursor=pointer]:
+            - /url: /cookbooks
+            - generic [ref=e23]: Cookbooks
+          - link "Ambassadors" [ref=e24] [cursor=pointer]:
+            - /url: /ambassadors
+            - generic [ref=e26]: Ambassadors
+        - generic:
+          - button "Toggle theme" [ref=e27]:
+            - generic [ref=e28]:
+              - img
+            - generic [ref=e29]:
+              - img
+            - generic [ref=e30]: Toggle theme
+          - link "Reach out" [ref=e31] [cursor=pointer]:
+            - /url: "https://mistral.ai//contact "
+            - text: Reach out
+            - img
+    - generic [ref=e32]:
+      - generic [ref=e33]:
+        - generic [ref=e34]:
+          - generic [ref=e35]:
+            - generic [ref=e37]:
+              - generic [ref=e38]:
+                - generic [ref=e39]: Getting Started
+                - list [ref=e42]:
+                  - listitem [ref=e43]:
+                    - link "Introduction" [ref=e44] [cursor=pointer]:
+                      - /url: /getting-started/introduction
+                      - text: Introduction
+                  - listitem [ref=e47]:
+                    - link "Models" [ref=e48] [cursor=pointer]:
+                      - /url: /getting-started/models
+                  - listitem [ref=e49]:
+                    - link "Quickstart" [ref=e50] [cursor=pointer]:
+                      - /url: /getting-started/quickstart
+                  - listitem [ref=e51]:
+                    - link "SDK Clients" [ref=e52] [cursor=pointer]:
+                      - /url: /getting-started/clients
+                  - listitem [ref=e53]:
+                    - link "Model Customization" [ref=e54] [cursor=pointer]:
+                      - /url: /getting-started/customization
+                  - listitem [ref=e55]:
+                    - link "Glossary" [ref=e56] [cursor=pointer]:
+                      - /url: /getting-started/glossary
+                  - listitem [ref=e57]:
+                    - link "Changelog" [ref=e58] [cursor=pointer]:
+                      - /url: /getting-started/changelog
+              - generic [ref=e59]:
+                - generic [ref=e60]: Capabilities
+                - list [ref=e63]:
+                  - listitem [ref=e65]:
+                    - generic [ref=e67]:
+                      - link "Chat Completions" [ref=e68] [cursor=pointer]:
+                        - /url: /capabilities/completion
+                      - button [ref=e69]:
+                        - img [ref=e70]
+                  - listitem [ref=e72]:
+                    - link "Vision" [ref=e73] [cursor=pointer]:
+                      - /url: /capabilities/vision
+                  - listitem [ref=e74]:
+                    - link "Audio & Transcription" [ref=e75] [cursor=pointer]:
+                      - /url: /capabilities/audio_transcription
+                  - listitem [ref=e76]:
+                    - link "Reasoning" [ref=e77] [cursor=pointer]:
+                      - /url: /capabilities/reasoning
+                  - listitem [ref=e79]:
+                    - generic [ref=e81]:
+                      - link "Document AI" [ref=e82] [cursor=pointer]:
+                        - /url: /capabilities/document_ai
+                      - button [ref=e83]:
+                        - img [ref=e84]
+                  - listitem [ref=e86]:
+                    - link "Coding" [ref=e87] [cursor=pointer]:
+                      - /url: /capabilities/code_generation
+                  - listitem [ref=e89]:
+                    - generic [ref=e91]:
+                      - link "Embeddings" [ref=e92] [cursor=pointer]:
+                        - /url: /capabilities/embeddings
+                      - button [ref=e93]:
+                        - img [ref=e94]
+                  - listitem [ref=e96]:
+                    - link "Function calling" [ref=e97] [cursor=pointer]:
+                      - /url: /capabilities/function_calling
+                  - listitem [ref=e98]:
+                    - link "Citations & References" [ref=e99] [cursor=pointer]:
+                      - /url: /capabilities/citations
+                  - listitem [ref=e101]:
+                    - generic [ref=e103]:
+                      - link "Structured Outputs" [ref=e104] [cursor=pointer]:
+                        - /url: /capabilities/structured_output
+                      - button [ref=e105]:
+                        - img [ref=e106]
+                  - listitem [ref=e108]:
+                    - link "Moderation & Guardrailing" [ref=e109] [cursor=pointer]:
+                      - /url: /capabilities/guardrailing
+                  - listitem [ref=e111]:
+                    - generic [ref=e113]:
+                      - link "Fine-Tuning" [ref=e114] [cursor=pointer]:
+                        - /url: /capabilities/finetuning
+                      - button [ref=e115]:
+                        - img [ref=e116]
+                  - listitem [ref=e118]:
+                    - link "Batch Inference" [ref=e119] [cursor=pointer]:
+                      - /url: /capabilities/batch
+                  - listitem [ref=e120]:
+                    - link "Predicted outputs" [ref=e121] [cursor=pointer]:
+                      - /url: /capabilities/predicted_outputs
+              - generic [ref=e122]:
+                - generic [ref=e123]: Agents
+                - list [ref=e126]:
+                  - listitem [ref=e127]:
+                    - link "Agents Introduction" [ref=e128] [cursor=pointer]:
+                      - /url: /agents/introduction
+                  - listitem [ref=e129]:
+                    - link "Agents & Conversations" [ref=e130] [cursor=pointer]:
+                      - /url: /agents/agents
+                  - listitem [ref=e132]:
+                    - generic [ref=e134]:
+                      - link "Tools" [ref=e135] [cursor=pointer]:
+                        - /url: /agents/tools
+                      - button [ref=e136]:
+                        - img [ref=e137]
+                  - listitem [ref=e139]:
+                    - link "Handoffs" [ref=e140] [cursor=pointer]:
+                      - /url: /agents/handoffs
+              - generic [ref=e141]:
+                - generic [ref=e142]: Deployment
+                - list [ref=e145]:
+                  - listitem [ref=e147]:
+                    - generic [ref=e149]:
+                      - link "AI Studio" [ref=e150] [cursor=pointer]:
+                        - /url: /deployment/ai-studio
+                      - button [ref=e151]:
+                        - img [ref=e152]
+                  - listitem [ref=e155]:
+                    - generic [ref=e157]:
+                      - link "Cloud" [ref=e158] [cursor=pointer]:
+                        - /url: /deployment/cloud
+                      - button [ref=e159]:
+                        - img [ref=e160]
+                  - listitem [ref=e163]:
+                    - generic [ref=e165]:
+                      - link "Self-deployment" [ref=e166] [cursor=pointer]:
+                        - /url: /deployment/self-deployment
+                      - button [ref=e167]:
+                        - img [ref=e168]
+              - list [ref=e172]:
+                - listitem [ref=e173]:
+                  - link "Cookbook" [ref=e174] [cursor=pointer]:
+                    - /url: /cookbooks
+              - list [ref=e177]:
+                - listitem [ref=e178]:
+                  - link "Mistral AI Crawlers" [ref=e179] [cursor=pointer]:
+                    - /url: /robots
+            - generic:
+              - generic:
+                - img
+          - main [ref=e182]:
+            - generic [ref=e184]:
+              - generic [ref=e186]:
+                - button "Search docs..." [ref=e187]:
+                  - img [ref=e188]
+                  - generic [ref=e190]: Search docs...
+                - generic [ref=e191]:
+                  - button "Ask LeChat" [ref=e192]:
+                    - img
+                  - generic:
+                    - generic: ⌘K
+              - generic [ref=e193]:
+                - navigation "breadcrumb" [ref=e194]:
+                  - list [ref=e195]:
+                    - listitem [ref=e196]:
+                      - link [ref=e197] [cursor=pointer]:
+                        - /url: /
+                        - img [ref=e198]
+                    - listitem [ref=e203]:
+                      - img [ref=e204]
+                    - listitem [ref=e206]:
+                      - link "Getting Started" [ref=e207] [cursor=pointer]:
+                        - /url: /
+                    - listitem [ref=e208]:
+                      - img [ref=e209]
+                    - listitem [ref=e211]:
+                      - link "Introduction" [disabled] [ref=e212]
+                - paragraph [ref=e215]: "[Getting Started]"
+              - article [ref=e216]:
+                - generic [ref=e217]:
+                  - generic [ref=e218]:
+                    - heading "Bienvenue to Mistral AI Documentation" [level=1] [ref=e220]
+                    - generic [ref=e221]:
+                      - button "Mistral Medium 3.1 icon" [ref=e223]:
+                        - link "Mistral Medium 3.1 icon" [ref=e224] [cursor=pointer]:
+                          - /url: /models/mistral-medium-3-1-25-08
+                          - img "Mistral Medium 3.1 icon" [ref=e226]
+                      - button "Devstral Medium 1.0 icon" [ref=e228]:
+                        - link "Devstral Medium 1.0 icon" [ref=e229] [cursor=pointer]:
+                          - /url: /models/devstral-medium-1-0-25-07
+                          - img "Devstral Medium 1.0 icon" [ref=e231]
+                      - button "Magistral Medium 1.2 icon" [ref=e233]:
+                        - link "Magistral Medium 1.2 icon" [ref=e234] [cursor=pointer]:
+                          - /url: /models/magistral-medium-1-2-25-09
+                          - img "Magistral Medium 1.2 icon" [ref=e236]
+                  - generic [ref=e237]:
+                    - generic [ref=e238]:
+                      - generic [ref=e239]:
+                        - img [ref=e241]
+                        - generic [ref=e244]: Featured models
+                      - button "Copy link to Featured models section" [ref=e245] [cursor=pointer]:
+                        - text: Copy section link
+                        - img
+                      - heading "Featured models" [level=2] [ref=e246]
+                    - generic [ref=e247]:
+                      - link "Codestral icon Codestral Our cutting-edge language model for coding released end of July 2025." [ref=e248] [cursor=pointer]:
+                        - /url: /models/codestral-25-08
+                        - img "Codestral icon" [ref=e250]
+                        - generic [ref=e251]:
+                          - heading "Codestral" [level=3] [ref=e252]:
+                            - generic [ref=e253]: Codestral
+                          - paragraph [ref=e254]: Our cutting-edge language model for coding released end of July 2025.
+                      - link "Mistral Medium 3.1 icon Mistral Medium 3.1 Our frontier-class multimodal model released August 2025." [ref=e255] [cursor=pointer]:
+                        - /url: /models/mistral-medium-3-1-25-08
+                        - img "Mistral Medium 3.1 icon" [ref=e257]
+                        - generic [ref=e258]:
+                          - heading "Mistral Medium 3.1" [level=3] [ref=e259]:
+                            - generic [ref=e260]: Mistral Medium 3.1
+                          - paragraph [ref=e261]: Our frontier-class multimodal model released August 2025.
+                      - link "Mistral Small 3.2 icon Mistral Small 3.2 An update to our previous small model, released June 2025." [ref=e262] [cursor=pointer]:
+                        - /url: /models/mistral-small-3-2-25-06
+                        - img "Mistral Small 3.2 icon" [ref=e264]
+                        - generic [ref=e265]:
+                          - heading "Mistral Small 3.2" [level=3] [ref=e266]:
+                            - generic [ref=e267]: Mistral Small 3.2
+                          - paragraph [ref=e268]: An update to our previous small model, released June 2025.
+                  - generic [ref=e269]:
+                    - generic [ref=e270]:
+                      - generic [ref=e271]:
+                        - img [ref=e273]
+                        - generic [ref=e276]: Latest models
+                      - button "Copy link to Latest models section" [ref=e277] [cursor=pointer]:
+                        - text: Copy section link
+                        - img
+                      - heading "Latest models" [level=2] [ref=e278]
+                    - generic [ref=e279]:
+                      - link "Magistral Medium 1.2 icon Magistral Medium 1.2 Premier Our frontier-class multimodal reasoning model. v25.09" [ref=e280] [cursor=pointer]:
+                        - /url: /models/magistral-medium-1-2-25-09
+                        - img "Magistral Medium 1.2 icon" [ref=e282]
+                        - generic [ref=e283]:
+                          - generic [ref=e284]:
+                            - heading "Magistral Medium 1.2" [level=3] [ref=e285]
+                            - button "Premier" [ref=e286]:
+                              - generic [ref=e287]: Premier
+                          - generic [ref=e288]:
+                            - paragraph [ref=e289]: Our frontier-class multimodal reasoning model.
+                            - generic [ref=e290]: v25.09
+                      - link "Mistral Small 3.2 icon Mistral Small 3.2 Open An update to our previous small model, released June 2025. v25.06" [ref=e291] [cursor=pointer]:
+                        - /url: /models/mistral-small-3-2-25-06
+                        - img "Mistral Small 3.2 icon" [ref=e293]
+                        - generic [ref=e294]:
+                          - generic [ref=e295]:
+                            - heading "Mistral Small 3.2" [level=3] [ref=e296]
+                            - button "Open" [ref=e297]:
+                              - generic [ref=e298]: Open
+                          - generic [ref=e299]:
+                            - paragraph [ref=e300]: An update to our previous small model, released June 2025.
+                            - generic [ref=e301]: v25.06
+                      - link "Codestral icon Codestral Premier Our cutting-edge language model for coding released end of July 2025. v25.08" [ref=e302] [cursor=pointer]:
+                        - /url: /models/codestral-25-08
+                        - img "Codestral icon" [ref=e304]
+                        - generic [ref=e305]:
+                          - generic [ref=e306]:
+                            - heading "Codestral" [level=3] [ref=e307]
+                            - button "Premier" [ref=e308]:
+                              - generic [ref=e309]: Premier
+                          - generic [ref=e310]:
+                            - paragraph [ref=e311]: Our cutting-edge language model for coding released end of July 2025.
+                            - generic [ref=e312]: v25.08
+                      - link "Voxtral Small icon Voxtral Small Open Our first model with audio input capabilities for instruct use cases. v25.07" [ref=e313] [cursor=pointer]:
+                        - /url: /models/voxtral-small-25-07
+                        - img "Voxtral Small icon" [ref=e315]
+                        - generic [ref=e316]:
+                          - generic [ref=e317]:
+                            - heading "Voxtral Small" [level=3] [ref=e318]
+                            - button "Open" [ref=e319]:
+                              - generic [ref=e320]: Open
+                          - generic [ref=e321]:
+                            - paragraph [ref=e322]: Our first model with audio input capabilities for instruct use cases.
+                            - generic [ref=e323]: v25.07
+                    - link "View all models" [ref=e325] [cursor=pointer]:
+                      - /url: /getting-started/models
+                      - text: View all models
+                      - img
+                  - generic [ref=e326]:
+                    - generic [ref=e327]:
+                      - generic [ref=e328]:
+                        - img [ref=e330]
+                        - generic [ref=e333]: Start building
+                      - button "Copy link to Start building section" [ref=e334] [cursor=pointer]:
+                        - text: Copy section link
+                        - img
+                      - heading "Start building" [level=2] [ref=e335]
+                    - generic [ref=e336]:
+                      - link "Text and Chat Completions Generate smart responses from natural language prompts." [ref=e337] [cursor=pointer]:
+                        - /url: /capabilities/completion
+                        - img [ref=e339]
+                        - generic [ref=e342]:
+                          - heading "Text and Chat Completions" [level=3] [ref=e343]
+                          - paragraph [ref=e344]: Generate smart responses from natural language prompts.
+                      - link "Vision Visual and textual intelligence, combined." [ref=e345] [cursor=pointer]:
+                        - /url: /capabilities/vision
+                        - img [ref=e347]
+                        - generic [ref=e351]:
+                          - heading "Vision" [level=3] [ref=e352]
+                          - paragraph [ref=e353]: Visual and textual intelligence, combined.
+                      - link "Agents Use agents to optimize your chat workflows." [ref=e354] [cursor=pointer]:
+                        - /url: /agents/introduction
+                        - img [ref=e356]
+                        - generic [ref=e359]:
+                          - heading "Agents" [level=3] [ref=e360]
+                          - paragraph [ref=e361]: Use agents to optimize your chat workflows.
+                      - link "Reasoning Stronger answers through step-by-step thinking." [ref=e362] [cursor=pointer]:
+                        - /url: /capabilities/reasoning
+                        - img [ref=e364]
+                        - generic [ref=e367]:
+                          - heading "Reasoning" [level=3] [ref=e368]
+                          - paragraph [ref=e369]: Stronger answers through step-by-step thinking.
+                      - link "Document AI Fast, accurate, and scalable document automation." [ref=e370] [cursor=pointer]:
+                        - /url: /capabilities/document_ai/basic_ocr
+                        - img [ref=e372]
+                        - generic [ref=e375]:
+                          - heading "Document AI" [level=3] [ref=e376]
+                          - paragraph [ref=e377]: Fast, accurate, and scalable document automation.
+                      - link "Audio Speech-to-text and interactive audio capabilities." [ref=e378] [cursor=pointer]:
+                        - /url: /capabilities/audio_transcription
+                        - img [ref=e380]
+                        - generic [ref=e384]:
+                          - heading "Audio" [level=3] [ref=e385]
+                          - paragraph [ref=e386]: Speech-to-text and interactive audio capabilities.
+                  - generic [ref=e387]:
+                    - generic [ref=e388]:
+                      - generic [ref=e389]:
+                        - img [ref=e391]
+                        - generic [ref=e394]: Useful Links
+                      - button "Copy link to Useful Links section" [ref=e395] [cursor=pointer]:
+                        - text: Copy section link
+                        - img
+                      - heading "Useful Links" [level=2] [ref=e396]
+                    - generic [ref=e397]:
+                      - link "Help Center" [ref=e398] [cursor=pointer]:
+                        - /url: https://help.mistral.ai/
+                        - generic [ref=e399]:
+                          - img [ref=e401]
+                          - heading "Help Center" [level=3] [ref=e404]
+                      - link "Cookbooks" [ref=e405] [cursor=pointer]:
+                        - /url: /cookbooks
+                        - generic [ref=e406]:
+                          - img [ref=e408]
+                          - heading "Cookbooks" [level=3] [ref=e411]
+                      - link "AI Studio" [ref=e412] [cursor=pointer]:
+                        - /url: https://mistral.ai//products/la-plateforme
+                        - generic [ref=e413]:
+                          - img [ref=e415]
+                          - heading "AI Studio" [level=3] [ref=e419]
+                      - link "Discord" [ref=e420] [cursor=pointer]:
+                        - /url: https://discord.gg/mistralai
+                        - generic [ref=e421]:
+                          - img [ref=e423]
+                          - heading "Discord" [level=3] [ref=e426]
+                - navigation "pagination" [ref=e427]:
+                  - list
+        - button "Ask LeChat" [ref=e430] [cursor=pointer]:
+          - img
+          - generic [ref=e431]: Ask LeChat
+      - contentinfo [ref=e432]:
+        - generic [ref=e433]:
+          - img [ref=e434]
+          - generic [ref=e450]:
+            - img [ref=e452]
+            - generic [ref=e454]:
+              - generic [ref=e455]:
+                - heading "WHY MISTRAL" [level=3] [ref=e456]
+                - generic [ref=e457]:
+                  - link "About us" [ref=e458] [cursor=pointer]:
+                    - /url: https://mistral.ai//about
+                  - link "Our customers" [ref=e459] [cursor=pointer]:
+                    - /url: https://mistral.ai//customers
+                  - link "Careers" [ref=e460] [cursor=pointer]:
+                    - /url: https://mistral.ai//careers
+                  - link "Contact us" [ref=e461] [cursor=pointer]:
+                    - /url: https://mistral.ai//contact
+              - generic [ref=e462]:
+                - heading "EXPLORE" [level=3] [ref=e463]
+                - generic [ref=e464]:
+                  - link "AI Solutions" [ref=e465] [cursor=pointer]:
+                    - /url: https://mistral.ai//solutions
+                  - link "Partners" [ref=e466] [cursor=pointer]:
+                    - /url: https://mistral.ai//partners
+                  - link "Research" [ref=e467] [cursor=pointer]:
+                    - /url: https://mistral.ai//news?category=Research
+              - generic [ref=e468]:
+                - heading "DOCUMENTATION" [level=3] [ref=e469]
+                - generic [ref=e470]:
+                  - link "Documentation" [ref=e471] [cursor=pointer]:
+                    - /url: /
+                  - link "Contributing" [ref=e472] [cursor=pointer]:
+                    - /url: /ambassadors
+                  - link "Cookbooks" [ref=e473] [cursor=pointer]:
+                    - /url: /cookbooks
+              - generic [ref=e474]:
+                - heading "BUILD" [level=3] [ref=e475]
+                - generic [ref=e476]:
+                  - link "AI Studio" [ref=e477] [cursor=pointer]:
+                    - /url: https://mistral.ai//products/la-plateforme
+                  - link "Le Chat" [ref=e478] [cursor=pointer]:
+                    - /url: https://mistral.ai//products/le-chat
+                  - link "Mistral Code" [ref=e479] [cursor=pointer]:
+                    - /url: https://mistral.ai//products/mistral-code
+                  - link "Mistral Compute" [ref=e480] [cursor=pointer]:
+                    - /url: https://mistral.ai//products/mistral-compute
+                  - link "Try the API" [ref=e481] [cursor=pointer]:
+                    - /url: https://docs.mistral.ai/api
+              - generic [ref=e482]:
+                - heading "LEGAL" [level=3] [ref=e483]
+                - generic [ref=e484]:
+                  - link "Terms of service" [ref=e485] [cursor=pointer]:
+                    - /url: https://mistral.ai//terms
+                  - link "Privacy policy" [ref=e486] [cursor=pointer]:
+                    - /url: https://mistral.ai//terms#privacy-policy
+                  - link "Legal notice" [ref=e487] [cursor=pointer]:
+                    - /url: https://mistral.ai//legal
+                  - button "Privacy Choices" [ref=e488]
+                  - link "Brand" [ref=e489] [cursor=pointer]:
+                    - /url: https://mistral.ai//brand
+              - generic [ref=e490]:
+                - heading "COMMUNITY" [level=3] [ref=e491]
+                - generic [ref=e492]:
+                  - link "Discord ↗" [ref=e493] [cursor=pointer]:
+                    - /url: https://discord.gg/mistralai
+                    - text: Discord
+                    - generic [ref=e494]: ↗
+                  - link "X ↗" [ref=e495] [cursor=pointer]:
+                    - /url: https://x.com/mistralai
+                    - text: X
+                    - generic [ref=e496]: ↗
+                  - link "Github ↗" [ref=e497] [cursor=pointer]:
+                    - /url: https://github.com/mistralai
+                    - text: Github
+                    - generic [ref=e498]: ↗
+                  - link "LinkedIn ↗" [ref=e499] [cursor=pointer]:
+                    - /url: https://linkedin.com/company/mistralai
+                    - text: LinkedIn
+                    - generic [ref=e500]: ↗
+                  - link "Ambassador" [ref=e501] [cursor=pointer]:
+                    - /url: /ambassadors
+            - generic [ref=e503]:
+              - link "Download on the App Store" [ref=e504] [cursor=pointer]:
+                - /url: "#"
+                - img "Download on the App Store" [ref=e505]
+              - link "Get it on Google Play" [ref=e506] [cursor=pointer]:
+                - /url: "#"
+                - img "Get it on Google Play" [ref=e507]
+            - paragraph [ref=e509]: COPYRIGHT © 2025 MISTRAL AI
+          - generic [ref=e510]:
+            - img "Sun" [ref=e512]
+            - generic [ref=e514]:
+              - generic [ref=e516]:
+                - generic [ref=e518]:
+                  - generic [ref=e519]:
+                    - generic [ref=e520]:
+                      - img [ref=e521]
+                      - img [ref=e528]
+                      - img [ref=e535]
+                    - img "Grass" [ref=e542]
+                  - img "Grass" [ref=e543]
+                - generic [ref=e545]:
+                  - img [ref=e546]
+                  - generic [ref=e553]:
+                    - img "Grass" [ref=e554]
+                    - img "Grass" [ref=e555]
+                    - img "Grass" [ref=e556]
+                  - img [ref=e557]
+                  - img "Grass" [ref=e564]
+                - generic [ref=e566]:
+                  - generic [ref=e567]:
+                    - img [ref=e568]
+                    - img [ref=e575]
+                    - img [ref=e582]
+                  - generic [ref=e589]:
+                    - img "Grass" [ref=e590]
+                    - img [ref=e591]
+                - generic [ref=e599]:
+                  - img "Grass" [ref=e600]
+                  - img [ref=e601]
+                  - generic [ref=e608]:
+                    - img "Grass" [ref=e609]
+                    - img "Grass" [ref=e610]
+                    - img "Grass" [ref=e611]
+                  - img [ref=e612]
+                  - img "Grass" [ref=e619]
+                - generic [ref=e621]:
+                  - generic [ref=e622]:
+                    - img [ref=e623]
+                    - img [ref=e630]
+                    - img [ref=e637]
+                  - generic [ref=e644]:
+                    - img "Grass" [ref=e645]
+                    - img "Grass" [ref=e646]
+                    - img "Grass" [ref=e647]
+                  - img [ref=e648]
+              - generic [ref=e656]:
+                - generic [ref=e658]:
+                  - generic [ref=e659]:
+                    - generic [ref=e660]:
+                      - img [ref=e661]
+                      - img [ref=e668]
+                      - img [ref=e675]
+                    - img "Grass" [ref=e682]
+                  - img "Grass" [ref=e683]
+                - generic [ref=e685]:
+                  - img [ref=e686]
+                  - generic [ref=e693]:
+                    - img "Grass" [ref=e694]
+                    - img "Grass" [ref=e695]
+                    - img "Grass" [ref=e696]
+                  - img [ref=e697]
+                  - img "Grass" [ref=e704]
+                - generic [ref=e706]:
+                  - generic [ref=e707]:
+                    - img [ref=e708]
+                    - img [ref=e715]
+                    - img [ref=e722]
+                  - generic [ref=e729]:
+                    - img "Grass" [ref=e730]
+                    - img [ref=e731]
+                - generic [ref=e739]:
+                  - img "Grass" [ref=e740]
+                  - img [ref=e741]
+                  - generic [ref=e748]:
+                    - img "Grass" [ref=e749]
+                    - img "Grass" [ref=e750]
+                    - img "Grass" [ref=e751]
+                  - img [ref=e752]
+                  - img "Grass" [ref=e759]
+                - generic [ref=e761]:
+                  - generic [ref=e762]:
+                    - img [ref=e763]
+                    - img [ref=e770]
+                    - img [ref=e777]
+                  - generic [ref=e784]:
+                    - img "Grass" [ref=e785]
+                    - img "Grass" [ref=e786]
+                    - img "Grass" [ref=e787]
+                  - img [ref=e788]
+            - img "Cat" [ref=e797]
+  - generic [ref=e802] [cursor=pointer]:
+    - button "Open Next.js Dev Tools" [ref=e803]:
+      - img [ref=e804]
+    - generic [ref=e807]:
+      - button "Open issues overlay" [ref=e808]:
+        - generic [ref=e809]:
+          - generic [ref=e810]: "0"
+          - generic [ref=e811]: "1"
+        - generic [ref=e812]: Issue
+      - button "Collapse issues badge" [ref=e813]:
+        - img [ref=e814]
+  - alert [ref=e816]
+```

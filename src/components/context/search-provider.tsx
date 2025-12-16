@@ -30,7 +30,7 @@ type SearchContextType = {
 
 export const SearchContext = createContext<SearchContextType>({
   open: false,
-  setOpen: () => {},
+  setOpen: () => { },
 });
 
 export const useSearch = () => {
@@ -346,7 +346,7 @@ const SearchSuggestions = ({
         'flex flex-col items-start gap-1 relative group p-0',
         !isMobile && 'data-[selected=true]:bg-muted',
         !isMobile &&
-          'data-[selected=true]:after:absolute data-[selected=true]:after:content-[""] data-[selected=true]:after:left-0 data-[selected=true]:after:top-0 data-[selected=true]:after:bg-primary data-[selected=true]:after:w-0.5 data-[selected=true]:after:h-full'
+        'data-[selected=true]:after:absolute data-[selected=true]:after:content-[""] data-[selected=true]:after:left-0 data-[selected=true]:after:top-0 data-[selected=true]:after:bg-primary data-[selected=true]:after:w-0.5 data-[selected=true]:after:h-full'
       )}
     >
       <div className="flex items-center gap-2 max-w-[400px]">
@@ -384,7 +384,7 @@ const SearchResult = ({
         'flex flex-col items-start gap-1 relative group p-0',
         !isMobile && 'data-[selected=true]:bg-muted',
         !isMobile &&
-          'data-[selected=true]:after:absolute data-[selected=true]:after:content-[""] data-[selected=true]:after:left-0 data-[selected=true]:after:top-0 data-[selected=true]:after:bg-primary data-[selected=true]:after:w-0.5 data-[selected=true]:after:h-full'
+        'data-[selected=true]:after:absolute data-[selected=true]:after:content-[""] data-[selected=true]:after:left-0 data-[selected=true]:after:top-0 data-[selected=true]:after:bg-primary data-[selected=true]:after:w-0.5 data-[selected=true]:after:h-full'
       )}
     >
       <div className="text-foreground/50 truncate font-semibold text-xs font-mono">
@@ -408,7 +408,7 @@ const SearchResult = ({
               size="xs"
               className={clsx(
                 Object.values(item.match).some(m => m.includes('method')) &&
-                  'outline outline-primary outline-offset-1',
+                'outline outline-primary outline-offset-1',
                 'bg-primary-soft/20 text-primary-soft'
               )}
             >
