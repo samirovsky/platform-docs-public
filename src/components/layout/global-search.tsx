@@ -8,12 +8,12 @@ import { useSearch } from '@/components/context/search-provider';
 import { useLeChat } from '@/contexts/lechat-context';
 import { cn } from '@/lib/utils';
 
-export function HeroSearch({ className }: { className?: string }) {
+export function GlobalSearch({ className }: { className?: string }) {
     const { setOpen } = useSearch();
     const { openPanel } = useLeChat();
 
     return (
-        <div className={cn("w-full max-w-2xl relative group", className)}>
+        <div className={cn("w-full relative group", className)}>
             <div
                 role="button"
                 onClick={() => setOpen(true)}

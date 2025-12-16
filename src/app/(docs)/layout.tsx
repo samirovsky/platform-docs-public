@@ -17,7 +17,7 @@ import { LeChatTrigger } from '@/components/common/lechat-trigger';
 import { LeChatPanel } from '@/components/common/lechat-panel';
 import { PageContextInitializer } from '@/components/common/page-context-initializer';
 import { TextSelectionMenu } from '@/components/common/text-selection-menu';
-import { HeroSearch } from '@/components/layout/hero-search';
+import { GlobalSearch } from '@/components/layout/global-search';
 
 export const metadata: Metadata = {
   title: {
@@ -67,7 +67,7 @@ export default async function SidebarLayout({
                   >
 
                     <div className="sticky top-header z-20 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60 py-4 -mx-4 px-4 mb-4">
-                      <HeroSearch />
+                      <GlobalSearch />
                     </div>
                     <DocsBreadcrumb sidebar={sidebar} />
 
