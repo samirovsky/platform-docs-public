@@ -157,11 +157,13 @@ public/robots.md
 public/cookbooks
 public/_guides
 
+# Test Results
+test-results/
+junit.xml
+playwright-report/
+blob-report/
+playwright/.cache/
 
 
 .DS_Store
 public/models
-
-# Playwright
-playwright-report/
-test-results/
