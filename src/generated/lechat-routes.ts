@@ -3,7 +3,7 @@
 
 export const LECHAT_INIT_MESSAGE = "I'm ready to help you with Mistral AI documentation. Ask me anything! 🚀";
 
-export const LECHAT_ROUTE_KNOWLEDGE = "\n\n**Available Documentation Routes:**\nAgents: \"Agents & Conversations\" (/agents/agents), \"Handoffs\" (/agents/handoffs), \"Agents Introduction\" (/agents/introduction), \"Agents Tools Overview\" (/agents/tools), \"Built-In Tools\" (/agents/tools/built-in), \"Code Interpreter\" (/agents/tools/built-in/code_interpreter), \"Document Library\" (/agents/tools/built-in/document_library), \"Image Generation\" (/agents/tools/built-in/image_generation), \"Websearch\" (/agents/tools/built-in/websearch), \"Function Calling\" (/agents/tools/function_calling), \"MCP\" (/agents/tools/mcp)\nApi: \"Api\" (/api), \"Agents\" (/api/endpoint/agents), \"Audio Transcriptions\" (/api/endpoint/audio/transcriptions), \"Batch\" (/api/endpoint/batch), \"Beta Agents\" (/api/endpoint/beta/agents), \"Beta Conversations\" (/api/endpoint/beta/conversations), \"Beta Libraries\" (/api/endpoint/beta/libraries), \"Beta Libraries Accesses\" (/api/endpoint/beta/libraries/accesses), \"Beta Libraries Documents\" (/api/endpoint/beta/libraries/documents), \"Chat\" (/api/endpoint/chat), \"Classifiers\" (/api/endpoint/classifiers), \"Embeddings\" (/api/endpoint/embeddings), \"Files\" (/api/endpoint/files), \"Fim\" (/api/endpoint/fim), \"Fine Tuning\" (/api/endpoint/fine-tuning), \"Models\" (/api/endpoint/models), \"Ocr\" (/api/endpoint/ocr)\nCapabilities: \"Audio & Transcription\" (/capabilities/audio_transcription), \"Batch Inference\" (/capabilities/batch), \"Citations & References\" (/capabilities/citations), \"Coding\" (/capabilities/code_generation), /capabilities/completion, \"Prompting\" (/capabilities/completion/prompting_capabilities), \"Sampling\" (/capabilities/completion/sampling), \"Usage\" (/capabilities/completion/usage), /capabilities/document_ai, \"Annotations\" (/capabilities/document_ai/annotations), \"OCR Processor\" (/capabilities/document_ai/basic_ocr), \"Document QnA\" (/capabilities/document_ai/document_qna), /capabilities/embeddings, \"Code Embeddings\" (/capabilities/embeddings/code_embeddings), \"RAG Quickstart\" (/capabilities/embeddings/rag_quickstart), \"Text Embeddings\" (/capabilities/embeddings/text_embeddings), /capabilities/finetuning, \"Classifier Factory\" (/capabilities/finetuning/classifier_factory), \"Text & Vision Fine-tuning\" (/capabilities/finetuning/text_vision_finetuning), \"Function calling\" (/capabilities/function_calling), \"Moderation & Guardrailing\" (/capabilities/guardrailing), \"Predicted outputs\" (/capabilities/predicted_outputs), \"Reasoning\" (/capabilities/reasoning), /capabilities/structured_output, \"Custom\" (/capabilities/structured_output/custom), \"JSON Mode\" (/capabilities/structured_output/json_mode), \"Vision\" (/capabilities/vision)\nCookbooks: \"Cookbooks\" (/cookbooks), /cookbooks/[slug], \"Mistral OCR Document Understanding\" (/cookbooks/mistral-ocr-document_understanding)\nDeployment: \"AI Studio\" (/deployment/ai-studio), \"Organizations & Workspaces\" (/deployment/ai-studio/organization), \"Pricing\" (/deployment/ai-studio/pricing), \"Rate Limits & Usage tiers\" (/deployment/ai-studio/tier), \"Cloud\" (/deployment/cloud), \"AWS Bedrock\" (/deployment/cloud/aws), \"Azure AI\" (/deployment/cloud/azure), \"IBM watsonx.ai\" (/deployment/cloud/ibm-watsonx), \"Outscale\" (/deployment/cloud/outscale), \"Snowflake Cortex\" (/deployment/cloud/sfcortex), \"Vertex AI\" (/deployment/cloud/vertex), \"Self-deployment\" (/deployment/self-deployment), \"Cerebrium\" (/deployment/self-deployment/cerebrium), \"Cloudflare Workers AI\" (/deployment/self-deployment/cloudflare), \"SkyPilot\" (/deployment/self-deployment/skypilot), \"TGI\" (/deployment/self-deployment/tgi), \"TensorRT\" (/deployment/self-deployment/trt), \"vLLM\" (/deployment/self-deployment/vllm)\nGetting Started: \"Changelog\" (/getting-started/changelog), \"SDK Clients\" (/getting-started/clients), \"Model Customization\" (/getting-started/customization), \"Glossary\" (/getting-started/glossary), \"Models\" (/getting-started/models), \"Quickstart\" (/getting-started/quickstart)\nModels: /models/[slug]\nRobots: \"Mistral AI Crawlers\" (/robots)\n\n**Navigation:**\n- If the user explicitly asks to \"navigate\", \"go to\", or \"open\" a page, end your response with: \"NAVIGATE: /exact-route\"\n- Match user requests to routes using either the page title or the URL path.\n- Otherwise, just use standard Markdown links like \"[Page Name](/exact-route)\" in your text. Do NOT use the NAVIGATE command unless explicitly requested.";
+export const LECHAT_ROUTE_KNOWLEDGE = "\n\n**Available Documentation Routes:**\nAgents: \"Agents & Conversations\" (/agents/agents), \"Handoffs\" (/agents/handoffs), \"Agents Introduction\" (/agents/introduction), \"Agents Tools Overview\" (/agents/tools), \"Built-In Tools\" (/agents/tools/built-in), \"Code Interpreter\" (/agents/tools/built-in/code_interpreter), \"Document Library\" (/agents/tools/built-in/document_library), \"Image Generation\" (/agents/tools/built-in/image_generation), \"Websearch\" (/agents/tools/built-in/websearch), \"Function Calling\" (/agents/tools/function_calling), \"MCP\" (/agents/tools/mcp)\nApi: \"Api\" (/api), \"Agents\" (/api/endpoint/agents), \"Audio Transcriptions\" (/api/endpoint/audio/transcriptions), \"Batch\" (/api/endpoint/batch), \"Beta Agents\" (/api/endpoint/beta/agents), \"Beta Conversations\" (/api/endpoint/beta/conversations), \"Beta Libraries\" (/api/endpoint/beta/libraries), \"Beta Libraries Accesses\" (/api/endpoint/beta/libraries/accesses), \"Beta Libraries Documents\" (/api/endpoint/beta/libraries/documents), \"Chat\" (/api/endpoint/chat), \"Classifiers\" (/api/endpoint/classifiers), \"Embeddings\" (/api/endpoint/embeddings), \"Files\" (/api/endpoint/files), \"Fim\" (/api/endpoint/fim), \"Fine Tuning\" (/api/endpoint/fine-tuning), \"Models\" (/api/endpoint/models), \"Ocr\" (/api/endpoint/ocr)\nCapabilities: \"Audio & Transcription\" (/capabilities/audio_transcription), \"Batch Inference\" (/capabilities/batch), \"Citations & References\" (/capabilities/citations), \"Coding\" (/capabilities/code_generation), /capabilities/completion, \"Prompting\" (/capabilities/completion/prompting_capabilities), \"Sampling\" (/capabilities/completion/sampling), \"Usage\" (/capabilities/completion/usage), /capabilities/document_ai, \"Annotations\" (/capabilities/document_ai/annotations), \"OCR Processor\" (/capabilities/document_ai/basic_ocr), \"Document QnA\" (/capabilities/document_ai/document_qna), /capabilities/embeddings, \"Code Embeddings\" (/capabilities/embeddings/code_embeddings), \"RAG Quickstart\" (/capabilities/embeddings/rag_quickstart), \"Text Embeddings\" (/capabilities/embeddings/text_embeddings), /capabilities/finetuning, \"Classifier Factory\" (/capabilities/finetuning/classifier_factory), \"Text & Vision Fine-tuning\" (/capabilities/finetuning/text_vision_finetuning), \"Function calling\" (/capabilities/function_calling), \"Moderation & Guardrailing\" (/capabilities/guardrailing), \"Predicted outputs\" (/capabilities/predicted_outputs), \"Reasoning\" (/capabilities/reasoning), /capabilities/structured_output, \"Custom\" (/capabilities/structured_output/custom), \"JSON Mode\" (/capabilities/structured_output/json_mode), \"Vision\" (/capabilities/vision)\nCookbooks: \"Cookbooks\" (/cookbooks)\nDeployment: \"AI Studio\" (/deployment/ai-studio), \"Organizations & Workspaces\" (/deployment/ai-studio/organization), \"Pricing\" (/deployment/ai-studio/pricing), \"Rate Limits & Usage tiers\" (/deployment/ai-studio/tier), \"Cloud\" (/deployment/cloud), \"AWS Bedrock\" (/deployment/cloud/aws), \"Azure AI\" (/deployment/cloud/azure), \"IBM watsonx.ai\" (/deployment/cloud/ibm-watsonx), \"Outscale\" (/deployment/cloud/outscale), \"Snowflake Cortex\" (/deployment/cloud/sfcortex), \"Vertex AI\" (/deployment/cloud/vertex), \"Self-deployment\" (/deployment/self-deployment), \"Cerebrium\" (/deployment/self-deployment/cerebrium), \"Cloudflare Workers AI\" (/deployment/self-deployment/cloudflare), \"SkyPilot\" (/deployment/self-deployment/skypilot), \"TGI\" (/deployment/self-deployment/tgi), \"TensorRT\" (/deployment/self-deployment/trt), \"vLLM\" (/deployment/self-deployment/vllm)\nGetting Started: \"Changelog\" (/getting-started/changelog), \"SDK Clients\" (/getting-started/clients), \"Model Customization\" (/getting-started/customization), \"Glossary\" (/getting-started/glossary), \"Models\" (/getting-started/models), \"Quickstart\" (/getting-started/quickstart)\nRobots: \"Mistral AI Crawlers\" (/robots)\n\n**Navigation:**\n- If the user explicitly asks to \"navigate\", \"go to\", or \"open\" a page, end your response with: \"NAVIGATE: /exact-route\"\n- Match user requests to routes using either the page title or the URL path.\n- Otherwise, just use standard Markdown links like \"[Page Name](/exact-route)\" in your text. Do NOT use the NAVIGATE command unless explicitly requested.";
 
 export const LECHAT_ROUTES = [
   "/",
@@ -63,8 +63,6 @@ export const LECHAT_ROUTES = [
   "/capabilities/structured_output/json_mode",
   "/capabilities/vision",
   "/cookbooks",
-  "/cookbooks/[slug]",
-  "/cookbooks/mistral-ocr-document_understanding",
   "/deployment/ai-studio",
   "/deployment/ai-studio/organization",
   "/deployment/ai-studio/pricing",
@@ -89,7 +87,6 @@ export const LECHAT_ROUTES = [
   "/getting-started/glossary",
   "/getting-started/models",
   "/getting-started/quickstart",
-  "/models/[slug]",
   "/robots"
 ];
 
@@ -330,14 +327,6 @@ export const LECHAT_CATEGORIES = [
       {
         "path": "/cookbooks",
         "title": "Cookbooks"
-      },
-      {
-        "path": "/cookbooks/[slug]",
-        "title": "[slug]"
-      },
-      {
-        "path": "/cookbooks/mistral-ocr-document_understanding",
-        "title": "Mistral OCR Document Understanding"
       }
     ]
   },
@@ -444,15 +433,6 @@ export const LECHAT_CATEGORIES = [
       {
         "path": "/getting-started/quickstart",
         "title": "Quickstart"
-      }
-    ]
-  },
-  {
-    "name": "Models",
-    "routes": [
-      {
-        "path": "/models/[slug]",
-        "title": "[slug]"
       }
     ]
   },

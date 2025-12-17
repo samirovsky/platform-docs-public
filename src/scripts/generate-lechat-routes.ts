@@ -66,6 +66,11 @@ function scanDirectory(dir: string, baseRoute: string = ''): RouteInfo[] {
                 continue;
             }
 
+            // Skip dynamic routes (templates) to avoid ambiguous navigation
+            if (item.name.includes('[') || item.name.includes(']')) {
+                continue;
+            }
+
             if (item.isDirectory()) {
                 const route = `${baseRoute}/${item.name}`;
                 // Recursively scan subdirectories
