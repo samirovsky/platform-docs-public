@@ -18,9 +18,9 @@ export default defineConfig({
         },
     ],
     webServer: {
-        command: 'pnpm dev',
+        command: 'NODE_OPTIONS="--max-old-space-size=4096" pnpm cookbook:build && pnpm rawmdx:export && npx next dev -p 3005 --webpack',
         url: 'http://localhost:3002',
-        reuseExistingServer: !process.env.CI,
+        reuseExistingServer: true,
         timeout: 120 * 1000,
     },
 });
