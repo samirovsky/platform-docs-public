@@ -3,7 +3,7 @@ import { NextRequest, NextResponse } from 'next/server';
 
 // High-level, hand-written guidance for the LLM.
 // This is stable even if the generated routes change.
-import { LECHAT_ROUTE_KNOWLEDGE, LECHAT_ROUTES } from '@/generated/lechat-routes';
+import { LECHAT_ROUTE_KNOWLEDGE, LECHAT_ROUTES, LECHAT_CATEGORIES } from '@/generated/lechat-routes';
 
 interface ChatMessage {
     role: 'user' | 'assistant' | 'system';
@@ -16,12 +16,16 @@ interface RequestBody {
         title: string;
         url: string;
     } | null;
+    preferences?: {
+        alwaysNavigate?: boolean;
+    };
 }
 
 export async function POST(request: NextRequest) {
     try {
         const body: RequestBody = await request.json();
-        const { messages: clientMessages, pageContext: rawPageContext } = body;
+        const { messages: clientMessages, pageContext: rawPageContext, preferences } = body;
+        const alwaysNavigate = preferences?.alwaysNavigate ?? false;
 
         if (!Array.isArray(clientMessages) || clientMessages.length === 0) {
             return NextResponse.json({ error: 'messages array is required' }, { status: 400 });
@@ -45,6 +49,16 @@ export async function POST(request: NextRequest) {
         const needsRouteKnowledge = isFirstTurn || isSecondTurn || hasExplicitNavIntent;
         const routeKnowledge = needsRouteKnowledge ? LECHAT_ROUTE_KNOWLEDGE : '';
 
+        // Conditional Prompt Logic
+        const navigationInstructions = alwaysNavigate
+            ? [
+                `- If you find a relevant page and the user asks about it (or explicitly asks to go there), output "NAVIGATE: /path/to/doc".`,
+            ]
+            : [
+                `- If the suggested page is different and the user didn't explicitly ask to navigate, DO NOT merely say "check the detailed guide". Instead, politely invite them: "For more details, would you like me to go to the [Page Title] page?"`,
+                `- ONLY output "NAVIGATE: /path/to/doc" if the user explicitly confirms (e.g. "yes", "please", "go there") or explicitly asked to navigate in the first place.`,
+            ];
+
         const systemPrompt = [
             `You are LeChat, a concise and precise assistant for Mistral AI documentation.`,
             `Current page: "${pageContext.title}" (${pageContext.url}).`,
@@ -55,12 +69,12 @@ export async function POST(request: NextRequest) {
             `- Answer in Markdown.`,
             `- Start every answer with: "Used 1 source: [${pageContext.title}](${pageContext.url})" on its own line.`,
             `- Be brief but technically correct. Use sections, bullet points, and code blocks where helpful.`,
+            `- Always prefer suggesting navigation over just linking. If a relevant page exists, your goal is to offer to take the user there.`,
             `- If the current page context is not relevant to the user's question, search your Route knowledge for better matches.`,
             `- You may suggest links to other relevant pages using standard Markdown links [Title](/path/to/doc).`,
-            `- If the suggested page is different and the user didn't explicitly ask to navigate, ask "Want me to go there?".`,
-            `- If the user asks to navigate AND asks a question (e.g., "go to vision and tell me how to..."), provide BOTH the answer and the navigation command.`,
-            `- When combining navigation with an answer: put "NAVIGATE: /path/to/doc" on its own line at the start, then provide your answer.`,
-            `- If the user confirms (e.g., says "yes", "please do") or explicitly asks to navigate, output the command "NAVIGATE: /path/to/doc".`,
+            ...navigationInstructions,
+            `- If the user says "always navigate" (or "yes and always navigate"), output "SET_PREFERENCE: ALWAYS_NAVIGATE" on its own line, and then perform the navigation if applicable (output NAVIGATE command as well).`,
+            `- When combining navigation/preference with an answer: put the commands on their own lines at the start.`,
             `- If the user asks to "use context" for a specific page, output "SET_CONTEXT: /path/to/doc" to update the reference context.`,
             `- Otherwise, just provide standard Markdown links [Title](/path/to/doc) in your response.`,
             routeKnowledge && `\nRoute knowledge:\n${routeKnowledge}`,
@@ -117,16 +131,29 @@ export async function POST(request: NextRequest) {
             // Detect navigation instruction
             let navigateTo: string | undefined;
             let setContext: string | undefined;
+            let setPreference: { alwaysNavigate: boolean } | undefined;
 
             const navMatch = assistantMessage.match(/^NAVIGATE:\s*(\/[^\s]+)/m);
             if (navMatch) {
-                const route = navMatch[1].trim();
+                let route = navMatch[1].trim();
                 // Validate that the route exists in our generated routes
                 if (route.startsWith('/') && LECHAT_ROUTES.includes(route)) {
                     navigateTo = route;
                 } else if (route.startsWith('/')) {
-                    console.warn(`Invalid navigation route suggested by LLM: ${route}`);
-                    // Don't set navigateTo, just continue with the message
+                    // Check if it's a category route and try to find the first child
+                    const categoryMatch = LECHAT_CATEGORIES.find(c =>
+                        '/' + c.name.toLowerCase().replace(/\s+/g, '-') === route ||
+                        '/' + c.name.toLowerCase() === route
+                    );
+
+                    if (categoryMatch && categoryMatch.routes.length > 0) {
+                        const firstChild = categoryMatch.routes[0].path;
+                        console.log(`Redirecting category route ${route} to first child ${firstChild}`);
+                        navigateTo = firstChild;
+                    } else {
+                        console.warn(`Invalid navigation route suggested by LLM: ${route}`);
+                        // Don't set navigateTo, just continue with the message
+                    }
                 }
                 // Strip the navigation command from the content shown to user
                 assistantMessage = assistantMessage.replace(/^NAVIGATE:\s*(\/[^\s]+)/m, '').trim();
@@ -142,7 +169,14 @@ export async function POST(request: NextRequest) {
                 assistantMessage = assistantMessage.replace(/^SET_CONTEXT:\s*(\/[^\s]+)/m, '').trim();
             }
 
-            return NextResponse.json({ content: assistantMessage, navigateTo, setContext });
+            const prefMatch = assistantMessage.match(/^SET_PREFERENCE:\s*ALWAYS_NAVIGATE/m);
+            if (prefMatch) {
+                setPreference = { alwaysNavigate: true };
+                // Strip the preference command
+                assistantMessage = assistantMessage.replace(/^SET_PREFERENCE:\s*ALWAYS_NAVIGATE/m, '').trim();
+            }
+
+            return NextResponse.json({ content: assistantMessage, navigateTo, setContext, setPreference });
         } catch (err) {
             clearTimeout(timeoutId);
             if (err instanceof Error && err.name === 'AbortError') {

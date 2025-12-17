@@ -17,10 +17,10 @@ export function GlobalSearch({ className }: { className?: string }) {
             <div
                 role="button"
                 onClick={() => setOpen(true)}
-                className="flex items-center w-full h-12 px-4 pr-24 bg-background/50 hover:bg-background/80 border border-border/50 hover:border-border transition-all duration-300 shadow-sm hover:shadow-md rounded-md cursor-text text-muted-foreground hover:text-foreground"
+                className="flex items-center w-full h-12 px-4 pr-24 bg-background/50 hover:bg-background/80 border border-border/50 hover:border-border transition-all duration-300 shadow-sm hover:shadow-md rounded-md cursor-text text-muted-foreground"
             >
                 <MagnifyingGlass className="w-5 h-5 mr-3" />
-                <span className="text-base font-medium">Search docs...</span>
+                <span className="text-base font-medium">Search documentation or ask a question</span>
             </div>
 
             <div className="absolute right-3 top-1/2 -translate-y-1/2 flex items-center gap-2">

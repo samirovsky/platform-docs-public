@@ -4,6 +4,7 @@ import React, { useEffect, useRef, useState } from 'react';
 import { useLeChat } from '@/contexts/lechat-context';
 import Link from 'next/link';
 import { XIcon, SendIcon, SquareIcon, Maximize2Icon, Minimize2Icon, ListIcon, PlusIcon, Trash2Icon, MessageSquareIcon, CopyIcon, CheckIcon, TerminalIcon } from 'lucide-react';
+import { ThunderIcon } from '@/components/icons/pixel';
 import { cn } from '@/lib/utils';
 import ReactMarkdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
@@ -150,7 +151,7 @@ export function LeChatPanel() {
         <>
             {/* Overlay */}
             <div
-                className="fixed inset-0 bg-black/20 z-[100] animate-in fade-in duration-200"
+                className="fixed inset-0 bg-black/20 z-[140] animate-in fade-in duration-200"
                 onClick={closePanel}
             />
 
@@ -158,7 +159,7 @@ export function LeChatPanel() {
             <div
                 id="lechat-panel-container"
                 className={cn(
-                    "fixed top-0 right-0 h-full bg-background dark:bg-neutral-950 border-l border-border z-[101] flex flex-col animate-in slide-in-from-right duration-300 shadow-2xl transition-[width] ease-in-out rounded-l-2xl overflow-hidden",
+                    "fixed top-0 right-0 h-full bg-background dark:bg-neutral-950 border-l border-border z-[150] flex flex-col animate-in slide-in-from-right duration-300 shadow-2xl transition-[width] ease-in-out rounded-l-2xl overflow-hidden",
                     isExpanded ? "w-full sm:w-[800px]" : "w-full sm:w-[480px]"
                 )}
             >
@@ -306,6 +307,22 @@ export function LeChatPanel() {
                                     <p className="text-sm text-muted-foreground max-w-xs mx-auto">
                                         I can answer questions about {pageContext?.title || 'this documentation'}.
                                     </p>
+                                    <div className="mt-8 flex flex-col gap-1 w-full max-w-sm mx-auto">
+                                        {[
+                                            "What models are available?",
+                                            "How do I use constraints?",
+                                            "Explain capabilities."
+                                        ].map((question) => (
+                                            <button
+                                                key={question}
+                                                onClick={() => sendMessage(question)}
+                                                className="w-full text-left p-2 rounded-md hover:bg-muted transition-colors flex items-center gap-3 group"
+                                            >
+                                                <ThunderIcon className="size-4 shrink-0 text-[#F04E23]" />
+                                                <span className="text-sm text-muted-foreground group-hover:text-foreground transition-colors">{question}</span>
+                                            </button>
+                                        ))}
+                                    </div>
                                 </div>
                             )}
 
@@ -331,73 +348,176 @@ export function LeChatPanel() {
                                         )}
                                     >
                                         <div className="text-sm prose prose-sm dark:prose-invert max-w-none break-words leading-relaxed">
-                                            <ReactMarkdown
-                                                remarkPlugins={[remarkGfm]}
-                                                components={{
-                                                    a: ({ node, href, ...props }: any) => {
-                                                        const isInternal = href && (href.startsWith('/') || href.startsWith('#'));
-                                                        if (isInternal) {
+                                            {message.role === 'assistant' && message.content.includes("I can only help with Mistral AI documentation.") ? (
+                                                <div className="flex flex-col gap-1">
+                                                    <div className="flex items-center gap-2">
+                                                        <div className="flex flex-col items-center gap-2 animate-in fade-in duration-500 shrink-0">
+                                                            <img
+                                                                src="/assets/sprites/cat_sleeping.gif"
+                                                                alt="Sleeping cat"
+                                                                className="h-8 w-auto object-contain opacity-80"
+                                                            />
+                                                        </div>
+                                                        <div>
+                                                            <ReactMarkdown
+                                                                remarkPlugins={[remarkGfm]}
+                                                                components={{
+                                                                    a: ({ node, href, ...props }: any) => {
+                                                                        const isInternal = href && (href.startsWith('/') || href.startsWith('#'));
+                                                                        if (isInternal) {
+                                                                            return (
+                                                                                <Link
+                                                                                    href={href}
+                                                                                    {...props}
+                                                                                    className="text-[var(--mistral-color-1)] hover:underline font-medium"
+                                                                                />
+                                                                            );
+                                                                        }
+                                                                        return (
+                                                                            <a
+                                                                                href={href}
+                                                                                {...props}
+                                                                                className="text-[var(--mistral-color-1)] hover:underline font-medium"
+                                                                            />
+                                                                        );
+                                                                    },
+                                                                    p: ({ node, ...props }: any) => (
+                                                                        <p {...props} className="mb-0 inline-block leading-normal" />
+                                                                    ),
+                                                                    ul: ({ node, ...props }: any) => (
+                                                                        <ul {...props} className="list-disc pl-4 mb-0 space-y-1" />
+                                                                    ),
+                                                                    ol: ({ node, ...props }: any) => (
+                                                                        <ol {...props} className="list-decimal pl-4 mb-0 space-y-1" />
+                                                                    ),
+                                                                    li: ({ node, ...props }: any) => (
+                                                                        <li {...props} className="mb-0" />
+                                                                    ),
+                                                                    h1: ({ node, ...props }: any) => (
+                                                                        <h1 {...props} className="text-lg font-bold mb-1 mt-2 first:mt-0" />
+                                                                    ),
+                                                                    h2: ({ node, ...props }: any) => (
+                                                                        <h2 {...props} className="text-base font-bold mb-1 mt-2 first:mt-0" />
+                                                                    ),
+                                                                    h3: ({ node, ...props }: any) => (
+                                                                        <h3 {...props} className="text-sm font-bold mb-1 mt-1 first:mt-0" />
+                                                                    ),
+                                                                    code: ({ node, inline, className, children, ...props }: any) => {
+                                                                        const match = /language-(\w+)/.exec(className || '');
+                                                                        return !inline && match ? (
+                                                                            <CodeBlock
+                                                                                language={match[1]}
+                                                                            >
+                                                                                {String(children).replace(/\n$/, '')}
+                                                                            </CodeBlock>
+                                                                        ) : (
+                                                                            <code
+                                                                                {...props}
+                                                                                className="bg-muted px-1.5 py-0.5 rounded text-xs font-mono text-foreground"
+                                                                            >
+                                                                                {children}
+                                                                            </code>
+                                                                        );
+                                                                    },
+                                                                    pre: ({ node, ...props }: any) => (
+                                                                        <div {...props} />
+                                                                    ),
+                                                                }}
+                                                            >
+                                                                {message.content}
+                                                            </ReactMarkdown>
+                                                        </div>
+                                                    </div>
+                                                    <div className="flex flex-col gap-1 w-full mt-2">
+                                                        <p className="text-xs font-medium text-muted-foreground uppercase tracking-wider mb-2">
+                                                            Suggestions
+                                                        </p>
+                                                        {[
+                                                            "What models are available?",
+                                                            "How do I use constraints?",
+                                                            "Explain capabilities."
+                                                        ].map((question) => (
+                                                            <button
+                                                                key={question}
+                                                                onClick={() => sendMessage(question)}
+                                                                className="w-full text-left p-2 rounded-md hover:bg-muted transition-colors flex items-center gap-3 group"
+                                                            >
+                                                                <ThunderIcon className="size-4 shrink-0 text-[#F04E23]" />
+                                                                <span className="text-sm text-muted-foreground group-hover:text-foreground transition-colors">{question}</span>
+                                                            </button>
+                                                        ))}
+                                                    </div>
+                                                </div>
+                                            ) : (
+                                                <ReactMarkdown
+                                                    remarkPlugins={[remarkGfm]}
+                                                    components={{
+                                                        a: ({ node, href, ...props }: any) => {
+                                                            const isInternal = href && (href.startsWith('/') || href.startsWith('#'));
+                                                            if (isInternal) {
+                                                                return (
+                                                                    <Link
+                                                                        href={href}
+                                                                        {...props}
+                                                                        className="text-[var(--mistral-color-1)] hover:underline font-medium"
+                                                                    />
+                                                                );
+                                                            }
                                                             return (
-                                                                <Link
+                                                                <a
                                                                     href={href}
                                                                     {...props}
                                                                     className="text-[var(--mistral-color-1)] hover:underline font-medium"
                                                                 />
                                                             );
-                                                        }
-                                                        return (
-                                                            <a
-                                                                href={href}
-                                                                {...props}
-                                                                className="text-[var(--mistral-color-1)] hover:underline font-medium"
-                                                            />
-                                                        );
-                                                    },
-                                                    p: ({ node, ...props }: any) => (
-                                                        <p {...props} className="mb-3 last:mb-0" />
-                                                    ),
-                                                    ul: ({ node, ...props }: any) => (
-                                                        <ul {...props} className="list-disc pl-4 mb-3 space-y-1" />
-                                                    ),
-                                                    ol: ({ node, ...props }: any) => (
-                                                        <ol {...props} className="list-decimal pl-4 mb-3 space-y-1" />
-                                                    ),
-                                                    li: ({ node, ...props }: any) => (
-                                                        <li {...props} className="mb-1" />
-                                                    ),
-                                                    h1: ({ node, ...props }: any) => (
-                                                        <h1 {...props} className="text-lg font-bold mb-3 mt-4 first:mt-0" />
-                                                    ),
-                                                    h2: ({ node, ...props }: any) => (
-                                                        <h2 {...props} className="text-base font-bold mb-2 mt-3 first:mt-0" />
-                                                    ),
-                                                    h3: ({ node, ...props }: any) => (
-                                                        <h3 {...props} className="text-sm font-bold mb-2 mt-2 first:mt-0" />
-                                                    ),
-                                                    code: ({ node, inline, className, children, ...props }: any) => {
-                                                        const match = /language-(\w+)/.exec(className || '');
-                                                        return !inline && match ? (
-                                                            <CodeBlock
-                                                                language={match[1]}
-                                                            >
-                                                                {String(children).replace(/\n$/, '')}
-                                                            </CodeBlock>
-                                                        ) : (
-                                                            <code
-                                                                {...props}
-                                                                className="bg-muted px-1.5 py-0.5 rounded text-xs font-mono text-foreground"
-                                                            >
-                                                                {children}
-                                                            </code>
-                                                        );
-                                                    },
-                                                    pre: ({ node, ...props }: any) => (
-                                                        <div {...props} />
-                                                    ),
-                                                }}
-                                            >
-                                                {message.content}
-                                            </ReactMarkdown>
+                                                        },
+                                                        p: ({ node, ...props }: any) => (
+                                                            <p {...props} className="mb-3 last:mb-0" />
+                                                        ),
+                                                        ul: ({ node, ...props }: any) => (
+                                                            <ul {...props} className="list-disc pl-4 mb-3 space-y-1" />
+                                                        ),
+                                                        ol: ({ node, ...props }: any) => (
+                                                            <ol {...props} className="list-decimal pl-4 mb-3 space-y-1" />
+                                                        ),
+                                                        li: ({ node, ...props }: any) => (
+                                                            <li {...props} className="mb-1" />
+                                                        ),
+                                                        h1: ({ node, ...props }: any) => (
+                                                            <h1 {...props} className="text-lg font-bold mb-3 mt-4 first:mt-0" />
+                                                        ),
+                                                        h2: ({ node, ...props }: any) => (
+                                                            <h2 {...props} className="text-base font-bold mb-2 mt-3 first:mt-0" />
+                                                        ),
+                                                        h3: ({ node, ...props }: any) => (
+                                                            <h3 {...props} className="text-sm font-bold mb-2 mt-2 first:mt-0" />
+                                                        ),
+                                                        code: ({ node, inline, className, children, ...props }: any) => {
+                                                            const match = /language-(\w+)/.exec(className || '');
+                                                            return !inline && match ? (
+                                                                <CodeBlock
+                                                                    language={match[1]}
+                                                                >
+                                                                    {String(children).replace(/\n$/, '')}
+                                                                </CodeBlock>
+                                                            ) : (
+                                                                <code
+                                                                    {...props}
+                                                                    className="bg-muted px-1.5 py-0.5 rounded text-xs font-mono text-foreground"
+                                                                >
+                                                                    {children}
+                                                                </code>
+                                                            );
+                                                        },
+                                                        pre: ({ node, ...props }: any) => (
+                                                            <div {...props} />
+                                                        ),
+                                                    }}
+                                                >
+                                                    {message.content}
+                                                </ReactMarkdown>
+                                            )
+                                            }
                                         </div>
                                     </div>
                                 </div>
