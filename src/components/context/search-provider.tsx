@@ -1,5 +1,5 @@
 'use client';
-import { createContext, useContext, useState } from 'react';
+import { createContext, useContext, useMemo, useState } from 'react';
 import {
   CommandDialog,
   CommandGroup,
@@ -13,6 +13,7 @@ import { cn } from '@/lib/utils';
 import Image from 'next/image';
 import React from 'react';
 import { ArrowRightIcon, PageIcon } from '../icons/pixel';
+import { ThunderIcon } from '@/components/icons/pixel';
 import { useRouter, usePathname } from 'next/navigation';
 import { useSearch as useSearchHook } from '@/hooks/use-search';
 import { KeyboardKey } from '../ui/keyboard-key';
@@ -22,6 +23,11 @@ import { Badge } from '../ui/badge';
 import { Checkbox } from '../ui/checkbox';
 import clsx from 'clsx';
 import useLocalStorageState from '@/hooks/use-local-storage-state';
+import { useLeChat } from '@/contexts/lechat-context';
+import { Button } from '../ui/button';
+import ChatIcon from '../icons/pixel/chat';
+import { MistralIcon } from '../icons/mistral';
+import { getSearchSuggestions } from '@/config/search-suggestions';
 
 type SearchContextType = {
   open: boolean;
@@ -164,6 +170,9 @@ const SearchShell = ({
   isMobile?: boolean;
 }) => {
   const listRef = React.useRef<HTMLDivElement>(null);
+  const { setOpen } = useSearch();
+  const { openPanel, sendMessage, pageContext } = useLeChat();
+
   React.useEffect(() => {
     let raf: number;
     if (listRef.current) {
@@ -174,11 +183,70 @@ const SearchShell = ({
     return () => cancelAnimationFrame(raf);
   }, [hits]);
 
+  const handleAiSearch = async (query: string) => {
+    openPanel();
+    // Small delay to allow click/select to register fully before unmounting
+    setTimeout(() => setOpen(false), 50);
+    await sendMessage(query);
+  };
+
+  const pathname = usePathname();
+
+  // Determine fallback suggestions (static/context-aware)
+  const fallbackSuggestions = useMemo(
+    () => getSearchSuggestions(pathname),
+    [pathname],
+  );
+
+  // State for LLM-generated dynamic suggestions
+  const [dynamicSuggestions, setDynamicSuggestions] = useState<string[]>([]);
+
+
+
+
+  // Debounced fetch for dynamic suggestions
+  React.useEffect(() => {
+    const query = q.trim();
+    if (!query || query.length < 3) {
+      setDynamicSuggestions([]);
+      return;
+    }
+
+    const timer = setTimeout(async () => {
+      try {
+        const res = await fetch('/api/lechat/suggestions', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ query })
+        });
+        if (res.ok) {
+          const data = await res.json();
+          if (Array.isArray(data.suggestions)) {
+            setDynamicSuggestions(data.suggestions);
+          }
+        } else {
+          console.error('Fetch failed:', res.status);
+        }
+      } catch (err) {
+        console.error('Failed to fetch suggestions', err);
+      }
+    }, 500); // 500ms debounce
+
+    return () => clearTimeout(timer);
+  }, [q]);
+
+  // Combine suggestions:
+  // If query is present, ONLY show dynamic suggestions (even if empty while loading).
+  // If query is empty, show fallback static suggestions.
+  const suggestions = q.trim().length > 0
+    ? dynamicSuggestions
+    : fallbackSuggestions;
+
   return (
     <>
       <CommandInput
         className="h-12"
-        placeholder="Search documentation..."
+        placeholder="Search documentation or ask a question"
         value={q}
         autoFocus={!isMobile}
         ref={inputRef}
@@ -188,34 +256,27 @@ const SearchShell = ({
         ref={listRef}
         className="min-h-[300px] h-full flex flex-col overflow-y-auto scrollbar-none scroll-py-6 scroll-m-0"
       >
-        <CommandEmpty className="flex flex-col items-center justify-center gap-4 md:h-[300px] h-full">
-          <div className="flex flex-col items-center gap-2 justify-center pb-12">
-            <Image
-              className="!size-20 relative ml-6"
-              src="/assets/sprites/cat_sleeping.gif"
-              alt="Cat"
-              width={76}
-              height={76}
-            />
-
-            <span className="text-lg text-muted-foreground font-bold">
-              No results found.
-            </span>
-          </div>
+        <CommandEmpty className="flex flex-col items-center justify-center gap-4 py-6">
+          <span className="text-sm text-muted-foreground">
+            No documents found. Ask LeChat below!
+          </span>
         </CommandEmpty>
+
         <CommandGroup
-          heading={q.length > 0 ? `${hits.length} results` : 'Recommended'}
-          className={cn('p-4', hits.length === 0 && 'hidden')}
+          heading={hits.length > 0 ? `${hits.length} results` : undefined}
+          className={cn('p-0', hits.length === 0 && 'hidden')}
         >
           {hits.map(item =>
             item.isSuggestion ? (
               <SearchSuggestions
+                key={item.url}
                 item={item}
                 handleSelect={handleSelect}
                 isMobile={isMobile}
               />
             ) : (
               <SearchResult
+                key={item.id}
                 item={item}
                 handleSelect={handleSelect}
                 isMobile={isMobile}
@@ -223,6 +284,43 @@ const SearchShell = ({
               />
             )
           )}
+        </CommandGroup>
+
+        <CommandGroup className="p-0">
+          {q.trim().length > 0 && (
+            <CommandItem
+              key="ai-query"
+              value={`ask-lechat-${q}`}
+              onSelect={() => handleAiSearch(q)}
+              className={cn(
+                'flex items-center gap-2',
+                !isMobile && 'data-[selected=true]:bg-muted'
+              )}
+            >
+              <ThunderIcon className="size-4 shrink-0 text-[#F04E23]" />
+              <span className="flex-1 truncate">
+                Ask LeChat: <span className="font-medium text-foreground">"{q}"</span>
+              </span>
+              <ArrowRightIcon className="size-4 text-muted-foreground ml-auto" />
+            </CommandItem>
+          )}
+
+          {suggestions.map((suggestion) => (
+            <CommandItem
+              key={suggestion}
+              value={suggestion}
+              onSelect={() => handleAiSearch(suggestion)}
+              className={cn(
+                'flex items-center gap-2',
+                !isMobile && 'data-[selected=true]:bg-muted'
+              )}
+            >
+              <ThunderIcon className="size-4 shrink-0 text-[#F04E23]" />
+              <span className="flex-1 truncate text-muted-foreground">
+                {suggestion}
+              </span>
+            </CommandItem>
+          ))}
         </CommandGroup>
       </CommandList>
     </>
