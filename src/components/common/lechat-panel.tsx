@@ -178,9 +178,6 @@ export function LeChatPanel() {
                             </h2>
                             {!showHistory && pageContext && (
                                 <div className="flex items-center gap-1.5 max-w-[200px]">
-                                    <p className="text-xs text-muted-foreground truncate">
-                                        {pageContext.title}
-                                    </p>
                                     <button
                                         onClick={() => setPageContext(null)}
                                         className="text-muted-foreground/50 hover:text-destructive transition-colors"
