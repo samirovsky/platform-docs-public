@@ -140,17 +140,18 @@ function main() {
 
     const docsDir = path.join(process.cwd(), 'src/app/(docs)');
     const apiDir = path.join(process.cwd(), 'src/app/(api)/api');
-    const cookbookDir = path.join(process.cwd(), 'src/app/(no-sidebar-pages)/cookbooks');
+    // Cookbooks are now part of (docs), so they are scanned within docsDir.
+    // const cookbookDir = path.join(process.cwd(), 'src/app/(no-sidebar-pages)/cookbooks'); 
 
     // Scan all directories
     const docsRoutes = scanDirectory(docsDir);
     const apiRoutes = scanDirectory(apiDir, '/api');
-    const cookbookRoutes = scanDirectory(cookbookDir, '/cookbooks');
+    // const cookbookRoutes = scanDirectory(cookbookDir, '/cookbooks');
 
     // Combine all routes
-    const routes = [...docsRoutes, ...apiRoutes, ...cookbookRoutes];
+    const routes = [...docsRoutes, ...apiRoutes];
 
-    console.log(`✅ Found ${routes.length} routes (docs: ${docsRoutes.length}, api: ${apiRoutes.length}, cookbooks: ${cookbookRoutes.length})`);
+    console.log(`✅ Found ${routes.length} routes (docs: ${docsRoutes.length}, api: ${apiRoutes.length})`);
 
     // Manually add specific cookbook routes that use dynamic slug
     const extraCookbookRoutes: RouteInfo[] = [

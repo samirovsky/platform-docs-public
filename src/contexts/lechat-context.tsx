@@ -58,6 +58,9 @@ export function LeChatProvider({ children }: { children: ReactNode }) {
   const [sessions, setSessions] = useState<Session[]>([]);
   const [currentSessionId, setCurrentSessionId] = useState<string | null>(null);
 
+  // Preferences State
+  const [alwaysNavigate, setAlwaysNavigate] = useState(false);
+
   // Stop generation function
   const stopGeneration = useCallback(() => {
     if (abortControllerRef.current) {
@@ -71,6 +74,8 @@ export function LeChatProvider({ children }: { children: ReactNode }) {
   const messages = currentSessionId
     ? sessions.find(s => s.id === currentSessionId)?.messages || []
     : [];
+
+  const [isInitialized, setIsInitialized] = useState(false);
 
   // Load sessions from localStorage on mount
   useEffect(() => {
@@ -90,10 +95,13 @@ export function LeChatProvider({ children }: { children: ReactNode }) {
         console.error('Failed to parse sessions', e);
       }
     }
+    setIsInitialized(true);
   }, []);
 
   // Save sessions to localStorage whenever they change
   useEffect(() => {
+    if (!isInitialized) return; // Don't save before initialization to avoid overwriting with empty
+
     if (sessions.length > 0) {
       localStorage.setItem('lechat_sessions', JSON.stringify(sessions));
     } else {
@@ -104,7 +112,27 @@ export function LeChatProvider({ children }: { children: ReactNode }) {
     } else {
       localStorage.removeItem('lechat_active_session'); // Clear if no active session
     }
-  }, [sessions, currentSessionId]);
+  }, [sessions, currentSessionId, isInitialized]);
+
+  // Load preferences
+  useEffect(() => {
+    const savedPrefs = localStorage.getItem('lechat_preferences');
+    if (savedPrefs) {
+      try {
+        const parsed = JSON.parse(savedPrefs);
+        if (typeof parsed.alwaysNavigate === 'boolean') {
+          setAlwaysNavigate(parsed.alwaysNavigate);
+        }
+      } catch (e) {
+        console.error('Failed to parse preferences', e);
+      }
+    }
+  }, []);
+
+  // Save preferences
+  useEffect(() => {
+    localStorage.setItem('lechat_preferences', JSON.stringify({ alwaysNavigate }));
+  }, [alwaysNavigate]);
 
   const createSession = useCallback(() => {
     const initMessage: ChatMessage = {
@@ -113,7 +141,7 @@ export function LeChatProvider({ children }: { children: ReactNode }) {
     };
 
     const newSession: Session = {
-      id: crypto.randomUUID(),
+      id: (typeof crypto !== 'undefined' && crypto.randomUUID) ? crypto.randomUUID() : Date.now().toString(36) + Math.random().toString(36).substr(2),
       title: 'New Chat',
       messages: [initMessage],
       createdAt: Date.now(),
@@ -151,11 +179,11 @@ export function LeChatProvider({ children }: { children: ReactNode }) {
 
   const openPanel = useCallback(() => {
     setIsOpen(true);
-    // Ensure a session exists when opening
-    if (sessions.length === 0) {
+    // Ensure a session exists when opening, but only if we've finished loading from storage
+    if (isInitialized && sessions.length === 0) {
       createSession();
     }
-  }, [sessions.length, createSession]);
+  }, [sessions.length, createSession, isInitialized]);
 
   const closePanel = useCallback(() => {
     setIsOpen(false);
@@ -211,6 +239,7 @@ export function LeChatProvider({ children }: { children: ReactNode }) {
         body: JSON.stringify({
           messages: [...history, userMessage], // Send the full history including the new user message
           pageContext,
+          preferences: { alwaysNavigate },
         }),
         signal: abortController.signal,
       });
@@ -230,13 +259,6 @@ export function LeChatProvider({ children }: { children: ReactNode }) {
 
       const data = await response.json();
 
-      // Debug: Log API response to help troubleshoot navigation issues
-      console.log('LeChat API response:', {
-        content: data.content?.substring(0, 100) + '...',
-        navigateTo: data.navigateTo,
-        setContext: data.setContext
-      });
-
       const assistantMessage: ChatMessage = {
         role: 'assistant',
         content: data.content,
@@ -248,6 +270,13 @@ export function LeChatProvider({ children }: { children: ReactNode }) {
           ? { ...s, messages: [...s.messages, assistantMessage] }
           : s
       ));
+
+      // Handle preference updates
+      if (data.setPreference) {
+        if (typeof data.setPreference.alwaysNavigate === 'boolean') {
+          setAlwaysNavigate(data.setPreference.alwaysNavigate);
+        }
+      }
 
       // Handle context update if the API returns setContext
       if (data.setContext) {

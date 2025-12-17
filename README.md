@@ -1,100 +1,73 @@
-# Mistral AI LLM documentation
+# Mistral Platform Docs
 
-This folder contains the documentation of the Mistral LLM setup and APIs.
+This repository contains the public-facing documentation for the Mistral AI platform. It is a Next.js application that renders MDX guides, API references, cookbooks, and the Ask LeChat assistant with a shared global search experience.
 
-Please follow the following steps to ensure your changes can be deployed
-successfully.
+## Requirements
 
-## Cloning the Project
+- Node.js 18+
+- pnpm 9+
+- A Mistral API key (`MISTRAL_API_KEY`) for Ask LeChat and AI-powered search suggestions
 
-To clone the Mistral AI LLM project, including all necessary submodules, follow these steps:
-
-1. **Clone the Repository**: Use the `--recurse-submodules` flag to ensure all submodules are cloned along with the main repository:
-
-   ```bash
-   git clone --recurse-submodules <repository-url>
-   ```
-
-2. **Navigate to the Project Directory**: After cloning, navigate into the project directory:
-
-   ```bash
-   cd <project-directory>
-   ```
-
-3. **Verify Submodules**: Ensure that all submodules are initialized and updated:
-   ```bash
-   git submodule update --init --recursive
-   ```
-
-Ensure that you commit any changes to submodules to keep the repository consistent.
-
-## Project Setup
-
-You will need to install `pnpm` and `node` first. For example, if you are using Mac, You can install [Homebrew](https://brew.sh/) and then install `pnpm` and `node`:
-
-```
-brew install pnpm
-brew install node
-```
-
-### Installation
+## Quick start
 
 ```bash
-pnpm install
+pnpm install          # installs dependencies and builds API docs (postinstall)
+make config           # creates/updates .env.local with required keys
+make run              # runs `pnpm dev` on http://localhost:3002
 ```
 
-### Local Development
+The development server rebuilds cookbook content, exports raw MDX, and launches Next.js with the webpack flag that matches production builds.
 
-```bash
-pnpm start
-```
+### Common tasks
 
-This command starts a local development server and opens up a browser window. Most changes are reflected live without having to restart the server.
+| Command | Description |
+| --- | --- |
+| `make run` | Runs `pnpm dev` (cookbook build + Next.js dev server). |
+| `make build` | Runs `pnpm build` (includes the full `prebuild` pipeline). |
+| `make config` | Interactive helper that writes `.env.local` with `MISTRAL_API_KEY`, `NEXT_PUBLIC_BASE_URL`, etc. |
+| `make lint` | Runs `pnpm lint`. |
+| `make type-check` | Runs `pnpm type-check`. |
+| `make test` | Runs the Playwright suite (`pnpm playwright test`). |
 
+> Tip: `pnpm search:build` regenerates `public/search-index.json` and `public/search-docs.json`. Run it any time you change docs content outside the normal `prebuild` flow.
 
-To build in autocompile mode, run the following command:
-```bash
-npm run dev
-```
+## Search & Ask LeChat
 
-### Build
+- The search modal is powered by `SearchProvider` (`src/lib/search`). It hydrates a MiniSearch index from `public/search-index.json` + `public/search-docs.json` and dispatches Ask LeChat queries directly from the command palette.
+- Ask LeChat lives in `src/lib/lechat`. The provider maintains chat sessions, handles navigation commands, and exposes `<LeChatTrigger />` plus `<LeChatPanel />`.
+- Dynamic AI suggestions hit `/api/lechat/suggestions`, which uses `src/lib/lechat/suggestions.ts` to build a structured prompt and parse Mistral responses.
 
-```bash
-pnpm build
-```
+Need to embed these features into another project? See [`docs/lechat-search.md`](docs/lechat-search.md) for a step-by-step integration guide.
 
-This command generates static content into the `build` directory and can be served using any static contents hosting service.
+## Cookbook content
 
-### Cookbooks
-
-You can add a cookbook in the docs by adding a cookbook object to the `cookbooks.config.json` file:
+Cookbooks are configured via `cookbooks.config.json`. Each entry points to a notebook under `static/cookbooks` and declares metadata such as:
 
 ```json
 {
-   "path": "your/path/your-file-name.ipynb",
-   "labels": {
-      "integrations": [],
-      "useCases": [
-         "Your use case"
-      ]
-   },
-   "availableInDocs": "True", 
-   "title": "",
-   "mainSection": {
-      "featured": "False",
-      "latest": "True"
-   }
+  "path": "path/to/notebook.ipynb",
+  "labels": {
+    "integrations": [],
+    "useCases": ["Your use case"]
+  },
+  "availableInDocs": true,
+  "title": "",
+  "mainSection": {
+    "featured": false,
+    "latest": true
+  }
 }
 ```
 
-If the title is empty, the title will be extracted from the cookbook.
+Run `pnpm cookbook:build` after adding or updating cookbooks to regenerate the compiled MDX.
 
-### Troubleshoot
+## Troubleshooting
 
-- Make sure URLs start with `https://` or `http://`, otherwise, it will look for the relative paths in the repo.
-- Images can be saved in the [img](https://github.com/mistralai/platform-docs-public/tree/main/static/img) folder. Please reference the images with `/img/your_added_image.svg`.
-This documentation is built using [Docusaurus](https://docusaurus.io/).
+- Always ensure URLs include `https://` or `http://` to avoid unintended relative links.
+- Static assets belong in `static/img/` (reference them as `/img/your-image.svg`).
+- Ask LeChat and AI suggestions silently disable themselves if `MISTRAL_API_KEY` is missing. Re-run `make config` to verify `.env.local`.
+- If Playwright cannot bind to a port during tests, re-run `make test` outside of containerized shells (the suite spins up a temporary Next.js server via `pnpm dev`).
 
-# How to contribute?
+## Contributing
 
-Mistral AI is committed to open source software development and welcomes external contributions. Please head on to our [contribution guideline](https://docs.mistral.ai/guides/contribute/). 
+Mistral AI welcomes external pull requests. Please review the [contribution guide](https://docs.mistral.ai/guides/contribute/) before submitting changes, and verify your work locally with the `make` commands listed above.

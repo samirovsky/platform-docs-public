@@ -41,6 +41,7 @@ export function LeChatTrigger() {
                 }}
             >
                 <Button
+                    data-testid="lechat-trigger-button"
                     onClick={(e) => {
                         if (isDragging.current) {
                             e.preventDefault();

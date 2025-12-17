@@ -11,13 +11,14 @@ import { MobileMenu, MobileMenuButton } from './menu';
 import { HeaderCta } from './cta';
 import { BrandProductDropdown } from './brand-dropdown';
 import MistralLogoSolid from '@/components/icons/assets/mistral-logo-solid';
+import { GlobalSearch } from '@/components/layout/global-search';
 
 export default function Header() {
   return (
     <MobileMenuProvider>
-      <header className="flex items-center sticky top-0 h-header z-100 max-w-[1920px] px-sides w-full mx-auto pointer-events-none gap-">
+      <header className="flex items-center sticky top-0 h-header z-100 max-w-[1920px] px-sides w-full mx-auto pointer-events-none gap-4">
         <div className="lg:w-[calc(var(--sidebar-width)-var(--sides))]">
-          <div className="flex items-center gap-2">
+          <div className="flex items-center gap-2 pointer-events-auto">
             <BrandProductDropdown>
               <span className="size-8 flex items-center justify-center bg-foreground/10 rounded-md hover:bg-foreground/20 transition-colors">
                 <MistralLogoSolid className="size-4 w-auto" />
@@ -37,8 +38,11 @@ export default function Header() {
           </MobileMenuTrigger>
         </div>
         {/* Desktop Header Content */}
-        <div className="hidden flex-1 px-2 lg:flex items-center justify-between">
+        <div className="hidden flex-1 px-2 lg:flex items-center gap-4 pointer-events-auto">
           <DesktopHeaderLinks />
+          <div className="flex-1 max-w-md mx-auto">
+            <GlobalSearch />
+          </div>
           <div className="flex items-center gap-4">
             <ThemeToggle />
             <HeaderCta className="pointer-events-auto" />

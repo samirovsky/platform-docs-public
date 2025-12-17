@@ -50,7 +50,7 @@ export default function DocsLayout({
                 data-wrapper-type="api-content"
               >
                 <div className="flex-1 min-w-0 w-full flex justify-center lg:py-6 relative">
-                  <div className="flex flex-col gap-8 lg:gap-4 flex-1 w-full min-w-0 max-w-4xl">
+                  <div className="flex flex-col gap-8 lg:gap-4 flex-1 w-full min-w-0 max-w-full">
                     <div className="sticky top-header z-20 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60 py-4 -mx-4 px-4 mb-4">
                       <GlobalSearch />
                     </div>
@@ -78,6 +78,8 @@ export default function DocsLayout({
       <LeChatPanel />
       <TextSelectionMenu />
     </LeChatProvider>
+  );
+}
   );
 }
 
