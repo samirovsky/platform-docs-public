@@ -43,6 +43,9 @@ jobs:
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
 
+      - name: Run configuration
+        run: make config
+
       - name: Cache Next.js build
         uses: actions/cache@v4
         with:
@@ -54,7 +57,7 @@ jobs:
             ${{ runner.os }}-nextjs-${{ hashFiles('**/pnpm-lock.yaml') }}-n
 
       - name: Build application
-        run: pnpm build
+        run: make build
         env:
           MISTRAL_API_KEY: ${{ secrets.MISTRAL_API_KEY }}
           NEXT_PUBLIC_BASE_URL: ${{ secrets.NEXT_PUBLIC_BASE_URL }}
