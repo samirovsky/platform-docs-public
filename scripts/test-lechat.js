@@ -5,7 +5,7 @@
 
 const axios = require('axios');
 
-const DEPLOY_URL = 'https://platform-docs-public.vercel.app';
+const DEPLOY_URL = 'https://platform-docs-public-iota.vercel.app';
 const LECHAT_API = `${DEPLOY_URL}/api/lechat`;
 
 async function testLeChat() {

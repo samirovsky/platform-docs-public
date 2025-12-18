@@ -45,7 +45,7 @@
 ### 🌐 Basic Functionality
 
 - [ ] **Homepage**
-  - [ ] Loads without errors
+  - [ ] Loads without errors (https://platform-docs-public-iota.vercel.app)
   - [ ] No console errors
   - [ ] Correct title and meta tags
   - [ ] Proper styling

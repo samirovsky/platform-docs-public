@@ -7,7 +7,7 @@ echo "🚀 Starting deployment verification..."
 echo "======================================"
 
 # Configuration
-DEPLOY_URL="https://platform-docs-public.vercel.app"
+DEPLOY_URL="https://platform-docs-public-iota.vercel.app"
 LECHAT_API="${DEPLOY_URL}/api/lechat"
 HEALTH_API="${DEPLOY_URL}/api/health"
 
