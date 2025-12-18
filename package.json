@@ -21,7 +21,8 @@
     "build-api-docs": "docs-md",
     "test:deployment": "bash scripts/verify-deployment.sh",
     "test:lechat": "node scripts/test-lechat.js",
-    "verify": "echo '📋 Deployment Checklist:' && cat scripts/deployment-checklist.md"
+    "verify": "echo '📋 Deployment Checklist:' && cat scripts/deployment-checklist.md",
+    "debug:mistral": "node scripts/debug-mistral-api.js"
   },
   "dependencies": {
     "@codesandbox/sandpack-client": "^2.19.8",
