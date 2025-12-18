@@ -1,38 +1,26 @@
 import { defineConfig, devices } from '@playwright/test';
 
 export default defineConfig({
-  testDir: './tests',
-  timeout: 30000,
-  expect: {
-    timeout: 5000
-  },
-  fullyParallel: true,
-  forbidOnly: !!process.env.CI,
-  retries: process.env.CI ? 2 : 0,
-  workers: process.env.CI ? 1 : undefined,
-  reporter: 'html',
-  use: {
-    actionTimeout: 0,
-    baseURL: 'http://localhost:3000',
-    trace: 'on-first-retry',
-  },
-  projects: [
-    {
-      name: 'chromium',
-      use: { ...devices['Desktop Chrome'] },
+    testDir: './tests',
+    fullyParallel: true,
+    forbidOnly: !!process.env.CI,
+    retries: process.env.CI ? 2 : 0,
+    workers: process.env.CI ? 1 : undefined,
+    reporter: 'html',
+    use: {
+        baseURL: 'http://localhost:3002',
+        trace: 'on-first-retry',
     },
-    {
-      name: 'firefox',
-      use: { ...devices['Desktop Firefox'] },
+    projects: [
+        {
+            name: 'chromium',
+            use: { ...devices['Desktop Chrome'] },
+        },
+    ],
+    webServer: {
+        command: 'NODE_OPTIONS="--max-old-space-size=4096" pnpm cookbook:build && pnpm rawmdx:export && npx next dev -p 3005 --webpack',
+        url: 'http://localhost:3002',
+        reuseExistingServer: true,
+        timeout: 120 * 1000,
     },
-    {
-      name: 'webkit',
-      use: { ...devices['Desktop Safari'] },
-    },
-  ],
-  webServer: {
-    command: 'pnpm start',
-    url: 'http://localhost:3000',
-    reuseExistingServer: !process.env.CI,
-  },
 });

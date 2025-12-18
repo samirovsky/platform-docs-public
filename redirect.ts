@@ -93,6 +93,11 @@ export const redirects = [
   },
   // Capabilities redirects
   {
+    source: "/capabilities",
+    destination: "/capabilities/completion",
+    permanent: true,
+  },
+  {
     source: "/capabilities/document_ai/document_ai_overview",
     destination: "/capabilities/document_ai/",
     permanent: true,
@@ -134,7 +139,7 @@ export const redirects = [
     source: "/cookbook/image.png",
     destination: "/cookbooks",
     permanent: true,
-  },  
+  },
   {
     source: "/cookbook/",
     destination: "/cookbooks",

@@ -39,7 +39,7 @@ export const ResponseTabbedSection = ({
                 size: 'sm',
                 className: cn(
                   tab.props.id?.includes('200') &&
-                    '[&>*]:text-green-600 dark:[&>*]:!text-green-700'
+                  '[&>*]:text-green-600 dark:[&>*]:!text-green-700'
                 ),
               }),
               'whitespace-nowrap'
@@ -63,7 +63,7 @@ export const ResponseTabbedSection = ({
             }}
             className={cn(
               'py-6 flex flex-col relative ',
-              '[&_[data-type="code"_pre]]:max-h-[400px] [&_[data-type="code"_pre]]:overflow-y-auto scrollbar-none'
+              '[&_[data-type="code"]_pre]:max-h-[400px] [&_[data-type="code"]_pre]:overflow-y-auto scrollbar-none'
             )}
           >
             {content.props.children}

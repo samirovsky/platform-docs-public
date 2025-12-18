@@ -25,6 +25,12 @@ import {
 import * as LinkedHoverSafeArea from '@/components/ui/linked-hover-safe-area';
 import { APICopyButton } from '../../copy-button';
 
+interface CustomExpandablePropertyProps extends ExpandablePropertyProps {
+  ExpandableCell?: React.ComponentType<any>;
+  NonExpandableCell?: React.ComponentType<any>;
+  ConnectingCell?: React.ComponentType<any>;
+}
+
 export function PropertyContents({
   headingId,
   slot,
@@ -35,7 +41,7 @@ export function PropertyContents({
   ExpandableCell = DefaultExpandableCell,
   NonExpandableCell = DefaultNonExpandableCell,
   ConnectingCell = DefaultConnectingCell,
-}: ExpandablePropertyProps) {
+}: CustomExpandablePropertyProps) {
   const [highlight, setHighlight] = useState(false);
   const propCtx = usePropertyContext();
 
