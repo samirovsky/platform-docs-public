@@ -84,26 +84,20 @@ jobs:
         with:
           script: |
             const deploymentUrl = '${{ steps.deploy.outputs.deployment_url }}';
-            const comment = `🚀 **Preview Deployment Ready!** 🎉
+            const comment = "🚀 **Preview Deployment Ready!** 🎉\n\n🔗 **Preview URL:** " + deploymentUrl + "\n\n✨ This preview will be automatically updated with new changes to this PR.\n\n💡 **Note:** Preview deployments are temporary and will be deleted when the PR is closed.";
 
-🔗 **Preview URL:** ${deploymentUrl}
-
-✨ This preview will be automatically updated with new changes to this PR.
-
-💡 **Note:** Preview deployments are temporary and will be deleted when the PR is closed.`;
-            
             // Check if comment already exists
             const { data: comments } = await github.rest.issues.listComments({
               owner: context.repo.owner,
               repo: context.repo.repo,
               issue_number: context.issue.number
             });
-            
-            const existingComment = comments.find(c => 
-              c.user.login === 'github-actions[bot]' && 
+
+            const existingComment = comments.find(c =>
+              c.user.login === 'github-actions[bot]' &&
               c.body.includes('Preview Deployment Ready')
             );
-            
+
             if (existingComment) {
               await github.rest.issues.updateComment({
                 owner: context.repo.owner,
