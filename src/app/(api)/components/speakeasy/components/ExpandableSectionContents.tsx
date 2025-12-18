@@ -4,7 +4,7 @@ import type { ExpandableSectionProps } from '@speakeasy-api/docs-md-react';
 import { InternalError } from '../util/internalError';
 import { ExpandableTreeTopper as DefaultExpandableTreeTopper } from './section/tree-topper';
 
-interface Props extends ExpandableSectionProps {
+interface Props extends Omit<ExpandableSectionProps, 'ExpandableTreeTopper' | 'ConnectingCell'> {
   ExpandableTreeTopper?: React.ComponentType<any>;
   ConnectingCell?: React.ComponentType<any>;
 }
