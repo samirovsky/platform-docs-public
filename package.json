@@ -18,7 +18,10 @@
     "copy-assets-file": "tsx src/scripts/copy-assets-file.ts",
     "copy-openapi": "tsx src/scripts/copy-openapi.ts",
     "prebuild": "pnpm -s cookbook:build && pnpm -s rawmdx:export && pnpm -s copy-openapi && pnpm search:build && pnpm -s copy-assets-file",
-    "build-api-docs": "docs-md"
+    "build-api-docs": "docs-md",
+    "test:deployment": "bash scripts/verify-deployment.sh",
+    "test:lechat": "node scripts/test-lechat.js",
+    "verify": "echo '📋 Deployment Checklist:' && cat scripts/deployment-checklist.md"
   },
   "dependencies": {
     "@codesandbox/sandpack-client": "^2.19.8",
