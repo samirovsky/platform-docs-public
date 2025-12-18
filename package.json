@@ -14,7 +14,7 @@
     "cookbook:build": "tsx src/scripts/build-complete-cookbook.ts",
     "rawmdx:export": "tsx src/scripts/export-raw-mdx.ts",
     "cf:dev": "pnpm cf:build && npx wrangler pages dev --port 3000 --log-level=debug",
-    "postinstall": "git submodule update --init --recursive && pnpm -s build-api-docs",
+    "postinstall": "git submodule update --init --recursive && node src/scripts/postinstall-wrapper.js",
     "copy-assets-file": "tsx src/scripts/copy-assets-file.ts",
     "copy-openapi": "tsx src/scripts/copy-openapi.ts",
     "prebuild": "pnpm -s cookbook:build && pnpm -s rawmdx:export && pnpm -s copy-openapi && pnpm search:build && pnpm -s copy-assets-file",
