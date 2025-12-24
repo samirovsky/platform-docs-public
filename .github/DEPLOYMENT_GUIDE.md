@@ -6,7 +6,6 @@ This guide explains how to deploy the Mistral Platform Docs to Vercel using GitH
 
 Before deploying, ensure these GitHub Secrets are set up in your repository:
 
-
 | Secret Name | Description | Required |
 |-------------|-------------|----------|
 | `VERCEL_ORG_ID` | Vercel Organization ID | ✅ Yes |
