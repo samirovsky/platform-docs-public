@@ -1,0 +1,11 @@
+{
+  "default": true,
+  "MD013": false,  // Disable line-length check
+  "MD033": false,  // Disable inline HTML
+  "MD041": false,  // Disable first line heading
+  "MD024": false,  // Disable multiple headings with same content
+  "MD036": false,  // Disable emphasis used instead of heading
+  "no-hard-tabs": true,
+  "no-trailing-spaces": true,
+  "no-multiple-blanks": true
+}

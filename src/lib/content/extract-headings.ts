@@ -245,7 +245,5 @@ function makeProcessor() {
   return unified()
     .use(remarkParse)
     .use(remarkFrontmatter, ['yaml'])
-    .use(remarkMdx, {
-      acornOptions: { ecmaVersion: 'latest', sourceType: 'module' },
-    });
+    .use(remarkMdx);
 }

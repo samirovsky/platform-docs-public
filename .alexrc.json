@@ -1,0 +1,12 @@
+{
+  "allow": [
+    "blacklist",
+    "whitelist",
+    "slave",
+    "master",
+    "grandfather",
+    "grandmother"
+  ],
+  "profanitySureness": 1,
+  "noBinary": true
+}

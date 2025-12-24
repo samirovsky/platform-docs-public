@@ -6,6 +6,10 @@ import { Providers } from '@/components/providers';
 import localFont from 'next/font/local';
 import PageContent from '@/components/layout/page-content';
 import { GoogleTagManager } from '@next/third-parties/google';
+import { LeChatTrigger } from '@/components/common/lechat-trigger';
+import { LeChatPanel } from '@/components/common/lechat-panel';
+import { PageContextInitializer } from '@/components/common/page-context-initializer';
+import { TextSelectionMenu } from '@/components/common/text-selection-menu';
 
 export const metadata: Metadata = {
   title: 'Mistral AI',
@@ -105,6 +109,13 @@ export default function RootLayout({
               <div className="max-w-[1920px] w-full mx-auto">{children}</div>
               <Footer />
             </PageContent>
+          </div>
+
+          <div data-testid="lechat-global-container">
+            <PageContextInitializer />
+            <LeChatTrigger />
+            <LeChatPanel />
+            <TextSelectionMenu />
           </div>
         </Providers>
       </body>

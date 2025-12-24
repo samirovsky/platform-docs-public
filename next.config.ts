@@ -1,17 +1,7 @@
 /** @type {import('next').NextConfig} */
 import createMDX from '@next/mdx';
-import { remarkDetailsClasses } from './src/lib/remark-prose-details';
+import path from 'path';
 import { NextConfig } from 'next';
-import {
-  admonitionDirective,
-  remarkHeadingId,
-  remarkOgFromPath,
-  remarkFrontmatter,
-  remarkGfm,
-  remarkDirective,
-  remarkAudioToComponent,
-} from './src/lib/frontmatter';
-import remarkMdxFrontmatter from 'remark-mdx-frontmatter';
 import { redirects } from './redirect';
 
 const nextConfig: NextConfig = {
@@ -20,6 +10,10 @@ const nextConfig: NextConfig = {
   typescript: {
     ignoreBuildErrors: false,
   },
+
+
+
+
   rewrites: async () => {
     return [
       {
@@ -32,7 +26,7 @@ const nextConfig: NextConfig = {
       },
     ];
   },
-   async redirects() {
+  async redirects() {
     return redirects;
   },
 };
@@ -43,15 +37,15 @@ const withMDX = createMDX({
     jsx: true,
     jsxImportSource: 'react',
     remarkPlugins: [
-      remarkAudioToComponent,
-      remarkDirective,
-      remarkFrontmatter,
-      [remarkMdxFrontmatter, { name: '_fm' }],
-      remarkGfm,
-      [remarkOgFromPath, { appDocsRoot: 'src/app/(docs)', apiBase: '/api/og' }],
-      remarkHeadingId,
-      [remarkDetailsClasses],
-      admonitionDirective,
+      path.join(process.cwd(), 'src/plugins/remark-audio.mjs'),
+      'remark-directive',
+      'remark-frontmatter',
+      ['remark-mdx-frontmatter', { name: '_fm' }],
+      'remark-gfm',
+      [path.join(process.cwd(), 'src/plugins/remark-og-metadata.mjs'), { appDocsRoot: 'src/app/(docs)', apiBase: '/api/og' }],
+      'remark-heading-id',
+      path.join(process.cwd(), 'src/plugins/remark-details.mjs'),
+      path.join(process.cwd(), 'src/plugins/remark-admonition.mjs'),
     ],
   },
 });

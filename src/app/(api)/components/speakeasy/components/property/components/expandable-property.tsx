@@ -81,11 +81,15 @@ export function ExpandablePropertyExamples({
   return <Prose slot={slot} className='prose-p:my-2 [&>[data-type=code]]:mt-0'>{children}</Prose>;
 }
 
+interface BreakoutsProps extends Omit<ExpandablePropertyBreakoutsProps, 'ConnectingCell'> {
+  ConnectingCell?: React.ComponentType<any>;
+}
+
 export function ExpandablePropertyBreakouts({
   children,
   slot,
   ConnectingCell = DefaultConnectingCell,
-}: ExpandablePropertyBreakoutsProps) {
+}: BreakoutsProps) {
   return (
     <div slot={slot} className="flex flex-col">
       {Children.map(children, (child, index) => {

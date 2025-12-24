@@ -1,0 +1,148 @@
+name: Documentation CI/CD Enhanced
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+permissions:
+  contents: read
+
+concurrency:
+  group: docs-ci-${{ github.ref }}
+  cancel-in-progress: true
+
+env:
+  VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
+  VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
+  NODE_VERSION: 20
+  PNPM_VERSION: 9.8.0
+
+jobs:
+  build-and-tests:
+    name: Build and E2E tests
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          submodules: recursive
+
+      - name: Setup PNPM
+        uses: pnpm/action-setup@v4
+        with:
+          version: ${{ env.PNPM_VERSION }}
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: pnpm
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Type check
+        run: pnpm -s type-check
+
+      - name: Lint (code)
+        run: pnpm -s lint
+
+      - name: Build site
+        run: make build
+
+      - name: Setup Playwright
+        uses: microsoft/playwright-github-action@v1
+
+      - name: Run Playwright tests
+        env:
+          CI: true
+        run: pnpm -s playwright test --config=playwright.config.ts --reporter=html
+
+      - name: Upload Playwright report
+        if: failure()
+        uses: actions/upload-artifact@v4
+        with:
+          name: playwright-report
+          path: playwright-report
+          if-no-files-found: ignore
+          retention-days: 7
+
+  docs-quality:
+    name: Documentation quality gates
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup PNPM
+        uses: pnpm/action-setup@v4
+        with:
+          version: ${{ env.PNPM_VERSION }}
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: pnpm
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Grammar/style check (alex)
+        run: npx --yes alex "src/**/*.md" "src/**/*.mdx"
+
+      - name: Markdown syntax check (markdownlint)
+        run: npx --yes markdownlint-cli "**/*.md" "**/*.mdx" --ignore node_modules
+
+      - name: Duplicate content check (jscpd)
+        run: npx --yes jscpd --pattern "src/**/*.{md,mdx,ts,tsx,js,jsx}" --reporters console --threshold 0
+
+      - name: Secret scan (gitleaks)
+        uses: gitleaks/gitleaks-action@v2
+        with:
+          args: --path . --no-git --verbose
+
+      - name: Build for link check
+        run: pnpm -s build
+
+      - name: Start server
+        run: |
+          PORT=4006 pnpm -s start -- -p 4006 &
+          echo $! > server.pid
+          sleep 20
+
+      - name: Wait for server readiness
+        run: |
+          for i in {1..30}; do
+            if curl -sf http://localhost:4006 >/dev/null; then
+              break
+            fi
+            sleep 2
+          done
+
+      - name: Broken links check (linkinator)
+        run: npx --yes linkinator http://localhost:4006 --silent --skip "^(?!http://localhost:4006)" | tee linkinator.log
+
+      - name: Upload link check report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: linkinator-report
+          path: linkinator.log
+          if-no-files-found: ignore
+          retention-days: 7
+
+      - name: Stop server
+        if: always()
+        run: |
+          kill $(cat server.pid) || true
+
+  all-green:
+    name: All gates pass
+    runs-on: ubuntu-latest
+    needs: [build-and-tests, docs-quality]
+    steps:
+      - run: echo "All checks passed"
