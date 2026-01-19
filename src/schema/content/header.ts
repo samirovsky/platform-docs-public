@@ -6,6 +6,10 @@ import {
 
 export const headerLinks = [
   {
+    label: 'Getting Started',
+    href: `/getting-started`,
+  },
+  {
     label: 'Products',
     href: `/products`,
   },

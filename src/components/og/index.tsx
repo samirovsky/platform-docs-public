@@ -1,3 +1,4 @@
+/* eslint-disable @next/next/no-img-element */
 import { BASE_URL } from "@/lib/constants";
 
 const RADIUS = '14px';
@@ -58,14 +59,14 @@ export const OG = ({
             width: '100%',
             backgroundColor: imageBackground ? imageBackground : 'transparent',
             borderRadius: imageBackground ? '6px' : '0px',
-            boxShadow: `inset 0px 0px 0px ${BORDER_WIDTH} ${
-              imageBackground ? '#0000001A' : '#00000000'
-            }`,
+            boxShadow: `inset 0px 0px 0px ${BORDER_WIDTH} ${imageBackground ? '#0000001A' : '#00000000'
+              }`,
           }}
         >
           {typeof image === 'string' ? (
             <img
               src={`${BASE_URL}${image}`}
+              alt={title}
               style={{
                 height: '100%',
                 width: '100%',

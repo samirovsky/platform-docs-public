@@ -82,7 +82,7 @@ export function PropertyContents({
     if (lastPropertyValue === headingId) {
       setHighlight(true);
     }
-  }, []);
+  }, [headingId]);
 
   const titleChild = useUniqueChild(children, 'title');
   const descriptionChildren = useChildren(children, 'description');

@@ -12,6 +12,7 @@ import { BreadcrumbHome } from '@/components/layout/breadcrumb';
 import { HeadingTitle } from '@/components/layout/heading';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
+/* eslint-disable @next/next/no-img-element */
 import { Separator } from '@/components/ui/separator';
 import { formateDateMonthYear } from '@/lib/date';
 import { Cookbook } from '@/schema/cookbook';

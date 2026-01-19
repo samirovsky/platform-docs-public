@@ -1,5 +1,7 @@
 ---
-title: Community
-sidebar_label: Community
 sidebar_position: 5
+sidebar_label: Community
+title: Community
 ---
+
+introduction: Introduction

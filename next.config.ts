@@ -26,10 +26,7 @@ const nextConfig: NextConfig = {
 	},
 	rewrites: async () => {
 		return [
-			{
-				source: "/getting-started/introduction",
-				destination: "/",
-			},
+
 			{
 				source: "/api",
 				destination: "/api/endpoint/chat",

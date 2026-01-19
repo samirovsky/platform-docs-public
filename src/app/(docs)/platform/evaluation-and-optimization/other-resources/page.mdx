@@ -1,7 +1,5 @@
 ---
-id: other_resources
-title: Other resources
-slug: resources
+
 sidebar_position: 1.9
 ---
 

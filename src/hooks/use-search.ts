@@ -111,7 +111,7 @@ export function useSearch({
     return () => {
       mounted = false;
     };
-  }, []);
+  }, [open, mini]);
 
   const suggestions = useMemo<Hit[]>(() => {
     const all = Object.values(docs).filter(
@@ -275,7 +275,6 @@ function getHighlightedSnippet(
   const match = text.slice(idx, idx + matchLength);
   const after = text.slice(idx + matchLength, end);
 
-  return `${start > 0 ? ELLIPSIS : ''}${before}<mark>${match}</mark>${after}${
-    end < text.length ? ELLIPSIS : ''
-  }`;
+  return `${start > 0 ? ELLIPSIS : ''}${before}<mark>${match}</mark>${after}${end < text.length ? ELLIPSIS : ''
+    }`;
 }

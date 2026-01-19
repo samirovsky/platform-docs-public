@@ -1,5 +1,5 @@
 ---
-title: Ambassadors
-sidebar_label: Ambassadors
 sidebar_position: 4
+sidebar_label: Ambassadors
+title: Ambassadors
 ---

@@ -8,17 +8,39 @@ export type NavigationNode = {
 export const NAVIGATION_TREE: Record<string, NavigationNode[]> = {
     products: [
         {
-            title: 'AI Models',
+            title: 'Introduction',
             items: [
-                { title: 'Mistral Large 2', href: '/wip?title=Mistral%20Large%202' },
-                { title: 'Mixtral-8x22B', href: '/wip?title=Mixtral-8x22B' },
-                { title: 'Codestral', href: '/wip?title=Codestral' },
+                { title: 'Introduction', href: '/products/introduction' },
+            ],
+        },
+        {
+            title: 'Language Models',
+            items: [
+                {
+                    title: 'Frontier models',
+                    items: [
+                        { title: 'Mistral Large family', href: '/products/language-models/frontier-models/mistral-large-2' },
+                    ],
+                },
+                {
+                    title: 'Open-weight models',
+                    items: [
+                        { title: 'Mistral 7B', href: '/products/language-models/open-weight-models/mistral-7b-0-3' },
+                        { title: 'Ministral series', href: '/products/language-models/open-weight-models/ministral-8b-24-1' },
+                    ],
+                },
+                {
+                    title: 'Specialized models',
+                    items: [
+                        { title: 'Coding models', href: '/products/language-models/specialized-models/codestral-25-01' },
+                        { title: 'Small & efficient models', href: '/products/language-models/specialized-models/mistral-small-3-0-25-01' },
+                    ],
+                },
             ],
         },
         {
             title: 'Developer Tools',
             items: [
-                { title: 'Mistral Code Enterprise', href: '/wip?title=Mistral%20Code%20Enterprise' },
                 { title: 'Mistral Vibe', href: '/mistral-vibe/introduction' },
                 { title: 'Mistral API', href: '/api' },
             ],
@@ -26,26 +48,60 @@ export const NAVIGATION_TREE: Record<string, NavigationNode[]> = {
         {
             title: 'AI Tools',
             items: [
-                { title: 'Le Chat Pro', href: '/products/chat-and-assistants/le-chat' },
-                { title: 'Le Chat Enterprise', href: '/products/chat-and-assistants/le-chat-enterprise' },
-                { title: 'Mistral AI Studio', href: '/products/enterprise-platform-and-tools/ai-studio' },
+                {
+                    title: 'Le Chat Pro',
+                    items: [
+                        { title: 'Quick Start: Log in at chat.mistral.ai', href: 'https://chat.mistral.ai' },
+                        {
+                            title: "How To's",
+                            items: [
+                                { title: 'Document analysis (upload files)', href: '/wip?title=Doc%20Analysis' },
+                                { title: 'Plugin marketplace', href: '/wip?title=Plugins' },
+                                { title: 'Advanced prompting', href: '/wip?title=Advanced%20Prompting' },
+                            ],
+                        },
+                        { title: 'Support: Pro-tier assistance', href: '/wip?title=Pro%20Support' },
+                    ],
+                },
+                {
+                    title: 'Mistral AI Studio',
+                    items: [
+                        { title: 'Quick Start: Create account at studio.mistral.ai', href: 'https://studio.mistral.ai' },
+                        { title: "How To's: Build agents without code", href: '/wip?title=Build%20Agents' },
+                    ],
+                },
             ],
         },
         {
-            title: 'Enterprise Infrastructure',
+            title: 'Enterprise Solutions',
             items: [
-                { title: 'Mistral Compute', href: '/wip?title=Mistral%20Compute' },
-                { title: 'On-Premises Solutions', href: '/wip?title=On-Premises' },
-                { title: 'Hybrid Deployment', href: '/wip?title=Hybrid%20Deployment' },
+                {
+                    title: 'Mistral AI Platform',
+                    items: [
+                        { title: 'Deployment Options', href: '/wip?title=Platform%20Deployment' },
+                    ],
+                },
+                {
+                    title: 'Le Chat Entreprise',
+                    items: [
+                        { title: 'Deployment Options', href: '/wip?title=Le%20Chat%20Enterprise%20Deployment' },
+                    ],
+                },
             ],
         },
     ],
     platform: [
         {
+            title: 'Introduction',
+            items: [
+                { title: 'Introduction', href: '/platform/introduction' },
+            ],
+        },
+        {
             title: 'Developer Platform',
             items: [
                 { title: 'Setup', href: '/wip?title=Setup&section=platform' },
-                { title: 'Chat & Conversations', href: '/platform/developer-platform/completion' }, // Closest match
+                { title: 'Chat & Conversations', href: '/platform/developer-platform/completion' },
                 { title: 'Agentic Workflows', href: '/wip?title=Agentic%20Workflows&section=platform' },
                 { title: 'Document Intelligence', href: '/platform/developer-platform/document_ai' },
                 { title: 'RAG & Semantic Search', href: '/platform/developer-platform/embeddings' },
@@ -66,6 +122,12 @@ export const NAVIGATION_TREE: Record<string, NavigationNode[]> = {
     ],
     operations: [
         {
+            title: 'Introduction',
+            items: [
+                { title: 'Introduction', href: '/operations/introduction' },
+            ],
+        },
+        {
             title: 'Deployment & Operations',
             items: [
                 { title: 'Identity & Access', href: '/wip?title=IAM&section=operations' },
@@ -84,6 +146,12 @@ export const NAVIGATION_TREE: Record<string, NavigationNode[]> = {
         },
     ],
     resources: [
+        {
+            title: 'Introduction',
+            items: [
+                { title: 'Introduction', href: '/resources/introduction' },
+            ],
+        },
         {
             title: 'Technical Reference',
             items: [
@@ -107,6 +175,12 @@ export const NAVIGATION_TREE: Record<string, NavigationNode[]> = {
         },
     ],
     community: [
+        {
+            title: 'Introduction',
+            items: [
+                { title: 'Introduction', href: '/community/introduction' },
+            ],
+        },
         {
             title: 'Connect',
             items: [

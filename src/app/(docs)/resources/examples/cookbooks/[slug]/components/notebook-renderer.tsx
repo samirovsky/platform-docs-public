@@ -293,7 +293,7 @@ function MarkdownCell({
       // Restored image handling
       // If it's a base64 attachment, return the img directly
       if (src.startsWith('data:image/')) {
-        return <img {...props} src={src} />;
+        return <img {...props} src={src} alt="notebook image" />;
       }
       // Handle attachment images
       if (src.startsWith('attachment:')) {
@@ -314,12 +314,12 @@ function MarkdownCell({
       }
       // Handle regular image paths
       if (!src || src.startsWith('http') || src.startsWith('/')) {
-        return <img {...props} src={src} />;
+        return <img {...props} src={src} alt="notebook image" />;
       }
       // Remove filename from path to get directory
       const cookbookDir = cookbookPath.replace(/\/[^/]+$/, '');
       const imagePath = `/cookbooks/${cookbookDir}/${src.replace(/^\.\//, '')}`;
-      return <img {...props} src={imagePath} />;
+      return <img {...props} src={imagePath} alt="notebook-image" />;
     },
   };
 

@@ -55,23 +55,25 @@ export function CodeBlock({
   const codeRefLight = useRef<HTMLPreElement>(null);
   const stopScrollTimeout = useRef<NodeJS.Timeout | null>(null);
   useEffect(() => {
-    // when scroll set data-scrolling to true
-    if (codeRef.current) {
-      codeRef.current.addEventListener('scroll', () => {
-        if (stopScrollTimeout.current) {
-          clearTimeout(stopScrollTimeout.current);
-        }
-        codeRef.current?.setAttribute('data-scrolling', 'true');
-        stopScrollTimeout.current = setTimeout(() => {
-          codeRef.current?.setAttribute('data-scrolling', 'false');
-        }, 1000);
-      });
-      // and then set a timeout to set data-scrolling to false that clears the timeout
+    const currentCodeRef = codeRef.current;
+
+    const handleScroll = () => {
+      if (stopScrollTimeout.current) {
+        clearTimeout(stopScrollTimeout.current);
+      }
+      currentCodeRef?.setAttribute('data-scrolling', 'true');
+      stopScrollTimeout.current = setTimeout(() => {
+        currentCodeRef?.setAttribute('data-scrolling', 'false');
+      }, 1000);
+    };
+
+    if (currentCodeRef) {
+      currentCodeRef.addEventListener('scroll', handleScroll);
     }
 
     return () => {
-      if (codeRef.current) {
-        codeRef.current.removeEventListener('scroll', () => {});
+      if (currentCodeRef) {
+        currentCodeRef.removeEventListener('scroll', handleScroll);
       }
       if (stopScrollTimeout.current) {
         clearTimeout(stopScrollTimeout.current);

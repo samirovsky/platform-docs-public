@@ -107,7 +107,7 @@ const _FiltersChangelogEntry = (props: ChangelogEntryProps) => {
       const isLast =
         visibleEntries.length > 0 &&
         visibleEntries[visibleEntries.length - 1] ===
-          document.getElementById(`date-${props.date}`);
+        document.getElementById(`date-${props.date}`);
 
       setIsLastVisible(isLast);
     };
@@ -131,7 +131,7 @@ const _FiltersChangelogEntry = (props: ChangelogEntryProps) => {
       clearTimeout(timeoutId);
       observer.disconnect();
     };
-  }, [params]);
+  }, [params, props.date]);
 
   return null;
 };

@@ -1,0 +1,297 @@
+# Page snapshot
+
+```yaml
+- generic [active] [ref=e1]:
+  - generic [ref=e2]:
+    - banner:
+      - generic:
+        - generic:
+          - link [ref=e4] [cursor=pointer]:
+            - /url: /
+            - img [ref=e7]
+          - button "Docs & API" [ref=e9]:
+            - generic [ref=e10]:
+              - generic [ref=e11]: Docs & API
+              - img [ref=e12]
+      - generic:
+        - navigation [ref=e14]:
+          - link "Getting Started" [ref=e15] [cursor=pointer]:
+            - /url: /getting-started
+            - generic [ref=e17]: Getting Started
+          - link "Products" [ref=e18] [cursor=pointer]:
+            - /url: /products
+            - generic [ref=e20]: Products
+          - link "Platform" [ref=e21] [cursor=pointer]:
+            - /url: /platform
+            - generic [ref=e23]: Platform
+          - link "Operations" [ref=e24] [cursor=pointer]:
+            - /url: /operations
+            - generic [ref=e26]: Operations
+          - link "Resources" [ref=e27] [cursor=pointer]:
+            - /url: /resources
+            - generic [ref=e29]: Resources
+          - link "Community" [ref=e30] [cursor=pointer]:
+            - /url: /community
+            - generic [ref=e32]: Community
+        - generic:
+          - button "Toggle theme" [ref=e33]:
+            - generic [ref=e34]:
+              - img
+            - generic [ref=e35]:
+              - img
+            - generic [ref=e36]: Toggle theme
+          - link "Reach out" [ref=e37] [cursor=pointer]:
+            - /url: "https://mistral.ai/contact "
+            - text: Reach out
+            - img
+    - generic [ref=e38]:
+      - generic [ref=e41]:
+        - generic [ref=e42]:
+          - img "Not Found" [ref=e43]
+          - generic [ref=e44]:
+            - heading "¿Meow? Page not found." [level=1] [ref=e45]
+            - paragraph [ref=e46]: The page you’re looking for was either moved or doesn’t exist.
+          - link "Go back to Introduction" [ref=e47] [cursor=pointer]:
+            - /url: /
+            - generic [ref=e48]: Go back to Introduction
+            - img
+        - generic [ref=e50]:
+          - link "Help Center" [ref=e51] [cursor=pointer]:
+            - /url: https://help.mistral.ai/
+            - generic [ref=e52]:
+              - img [ref=e54]
+              - heading "Help Center" [level=3] [ref=e57]
+          - link "Cookbooks" [ref=e58] [cursor=pointer]:
+            - /url: /cookbooks
+            - generic [ref=e59]:
+              - img [ref=e61]
+              - heading "Cookbooks" [level=3] [ref=e64]
+          - link "AI Studio" [ref=e65] [cursor=pointer]:
+            - /url: https://mistral.ai/products/la-plateforme
+            - generic [ref=e66]:
+              - img [ref=e68]
+              - heading "AI Studio" [level=3] [ref=e72]
+          - link "Discord" [ref=e73] [cursor=pointer]:
+            - /url: https://discord.gg/mistralai
+            - generic [ref=e74]:
+              - img [ref=e76]
+              - heading "Discord" [level=3] [ref=e79]
+      - contentinfo [ref=e80]:
+        - generic [ref=e81]:
+          - img [ref=e82]
+          - generic [ref=e98]:
+            - img [ref=e100]
+            - generic [ref=e102]:
+              - generic [ref=e103]:
+                - heading "WHY MISTRAL" [level=3] [ref=e104]
+                - generic [ref=e105]:
+                  - link "About us" [ref=e106] [cursor=pointer]:
+                    - /url: https://mistral.ai/about
+                  - link "Our customers" [ref=e107] [cursor=pointer]:
+                    - /url: https://mistral.ai/customers
+                  - link "Careers" [ref=e108] [cursor=pointer]:
+                    - /url: https://mistral.ai/careers
+                  - link "Contact us" [ref=e109] [cursor=pointer]:
+                    - /url: https://mistral.ai/contact
+              - generic [ref=e110]:
+                - heading "EXPLORE" [level=3] [ref=e111]
+                - generic [ref=e112]:
+                  - link "AI Solutions" [ref=e113] [cursor=pointer]:
+                    - /url: https://mistral.ai/solutions
+                  - link "Partners" [ref=e114] [cursor=pointer]:
+                    - /url: https://mistral.ai/partners
+                  - link "Research" [ref=e115] [cursor=pointer]:
+                    - /url: https://mistral.ai/news?category=Research
+              - generic [ref=e116]:
+                - heading "DOCUMENTATION" [level=3] [ref=e117]
+                - generic [ref=e118]:
+                  - link "Documentation" [ref=e119] [cursor=pointer]:
+                    - /url: /
+                  - link "Contributing" [ref=e120] [cursor=pointer]:
+                    - /url: /ambassadors
+                  - link "Cookbooks" [ref=e121] [cursor=pointer]:
+                    - /url: /cookbooks
+              - generic [ref=e122]:
+                - heading "BUILD" [level=3] [ref=e123]
+                - generic [ref=e124]:
+                  - link "AI Studio" [ref=e125] [cursor=pointer]:
+                    - /url: https://mistral.ai/products/la-plateforme
+                  - link "Le Chat" [ref=e126] [cursor=pointer]:
+                    - /url: https://mistral.ai/products/le-chat
+                  - link "Mistral Code" [ref=e127] [cursor=pointer]:
+                    - /url: https://mistral.ai/products/mistral-code
+                  - link "Mistral Compute" [ref=e128] [cursor=pointer]:
+                    - /url: https://mistral.ai/products/mistral-compute
+                  - link "Try the API" [ref=e129] [cursor=pointer]:
+                    - /url: https://docs.mistral.ai/api
+              - generic [ref=e130]:
+                - heading "LEGAL" [level=3] [ref=e131]
+                - generic [ref=e132]:
+                  - link "Terms of service" [ref=e133] [cursor=pointer]:
+                    - /url: https://mistral.ai/terms
+                  - link "Privacy policy" [ref=e134] [cursor=pointer]:
+                    - /url: https://mistral.ai/terms#privacy-policy
+                  - link "Legal notice" [ref=e135] [cursor=pointer]:
+                    - /url: https://mistral.ai/legal
+                  - button "Privacy Choices" [ref=e136]
+                  - link "Brand" [ref=e137] [cursor=pointer]:
+                    - /url: https://mistral.ai/brand
+              - generic [ref=e138]:
+                - heading "COMMUNITY" [level=3] [ref=e139]
+                - generic [ref=e140]:
+                  - link "Discord ↗" [ref=e141] [cursor=pointer]:
+                    - /url: https://discord.gg/mistralai
+                    - text: Discord
+                    - generic [ref=e142]: ↗
+                  - link "X ↗" [ref=e143] [cursor=pointer]:
+                    - /url: https://x.com/mistralai
+                    - text: X
+                    - generic [ref=e144]: ↗
+                  - link "Github ↗" [ref=e145] [cursor=pointer]:
+                    - /url: https://github.com/mistralai
+                    - text: Github
+                    - generic [ref=e146]: ↗
+                  - link "LinkedIn ↗" [ref=e147] [cursor=pointer]:
+                    - /url: https://linkedin.com/company/mistralai
+                    - text: LinkedIn
+                    - generic [ref=e148]: ↗
+                  - link "Ambassador" [ref=e149] [cursor=pointer]:
+                    - /url: /ambassadors
+            - generic [ref=e150]:
+              - paragraph [ref=e151]: Mistral AI © 2026
+              - button "Toggle theme" [ref=e152]:
+                - generic [ref=e153]:
+                  - img
+                - generic [ref=e154]:
+                  - img
+                - generic [ref=e155]: Toggle theme
+          - generic [ref=e156]:
+            - img "Sun" [ref=e158]
+            - generic [ref=e160]:
+              - generic [ref=e162]:
+                - generic [ref=e164]:
+                  - generic [ref=e165]:
+                    - generic [ref=e166]:
+                      - img [ref=e167]
+                      - img [ref=e174]
+                      - img [ref=e181]
+                    - img "Grass" [ref=e188]
+                  - img "Grass" [ref=e189]
+                - generic [ref=e191]:
+                  - img [ref=e192]
+                  - generic [ref=e199]:
+                    - img "Grass" [ref=e200]
+                    - img "Grass" [ref=e201]
+                    - img "Grass" [ref=e202]
+                  - img [ref=e203]
+                  - img "Grass" [ref=e210]
+                - generic [ref=e212]:
+                  - generic [ref=e213]:
+                    - img [ref=e214]
+                    - img [ref=e221]
+                    - img [ref=e228]
+                  - generic [ref=e235]:
+                    - img "Grass" [ref=e236]
+                    - img [ref=e237]
+                - generic [ref=e245]:
+                  - img "Grass" [ref=e246]
+                  - img [ref=e247]
+                  - generic [ref=e254]:
+                    - img "Grass" [ref=e255]
+                    - img "Grass" [ref=e256]
+                    - img "Grass" [ref=e257]
+                  - img [ref=e258]
+                  - img "Grass" [ref=e265]
+                - generic [ref=e267]:
+                  - generic [ref=e268]:
+                    - img [ref=e269]
+                    - img [ref=e276]
+                    - img [ref=e283]
+                  - generic [ref=e290]:
+                    - img "Grass" [ref=e291]
+                    - img "Grass" [ref=e292]
+                    - img "Grass" [ref=e293]
+                  - img [ref=e294]
+              - generic [ref=e302]:
+                - generic [ref=e304]:
+                  - generic [ref=e305]:
+                    - generic [ref=e306]:
+                      - img [ref=e307]
+                      - img [ref=e314]
+                      - img [ref=e321]
+                    - img "Grass" [ref=e328]
+                  - img "Grass" [ref=e329]
+                - generic [ref=e331]:
+                  - img [ref=e332]
+                  - generic [ref=e339]:
+                    - img "Grass" [ref=e340]
+                    - img "Grass" [ref=e341]
+                    - img "Grass" [ref=e342]
+                  - img [ref=e343]
+                  - img "Grass" [ref=e350]
+                - generic [ref=e352]:
+                  - generic [ref=e353]:
+                    - img [ref=e354]
+                    - img [ref=e361]
+                    - img [ref=e368]
+                  - generic [ref=e375]:
+                    - img "Grass" [ref=e376]
+                    - img [ref=e377]
+                - generic [ref=e385]:
+                  - img "Grass" [ref=e386]
+                  - img [ref=e387]
+                  - generic [ref=e394]:
+                    - img "Grass" [ref=e395]
+                    - img "Grass" [ref=e396]
+                    - img "Grass" [ref=e397]
+                  - img [ref=e398]
+                  - img "Grass" [ref=e405]
+                - generic [ref=e407]:
+                  - generic [ref=e408]:
+                    - img [ref=e409]
+                    - img [ref=e416]
+                    - img [ref=e423]
+                  - generic [ref=e430]:
+                    - img "Grass" [ref=e431]
+                    - img "Grass" [ref=e432]
+                    - img "Grass" [ref=e433]
+                  - img [ref=e434]
+            - img "Cat" [ref=e443]
+  - alert [ref=e444]
+  - generic:
+    - generic:
+      - generic:
+        - 'dialog "Consent Management Platform: Personalize Your Options" [ref=e445]':
+          - generic [ref=e446]:
+            - generic [ref=e447]:
+              - generic [ref=e449]:
+                - heading "Hi there! We're the cookies" [level=1] [ref=e452]:
+                  - generic [ref=e453]: Hi there!
+                  - generic [ref=e454]: We're the cookies
+                - paragraph [ref=e456]: We waited to make sure that you were interested in the content of this website before bothering you, but we would love to be your companions during your visit...
+                - paragraph [ref=e458]: To modify your preferences afterwards, click on the 'Cookie Preferences' link located in the page footer.
+                - generic [ref=e459]:
+                  - generic [ref=e460]: Here’s why we use cookies.
+                  - list [ref=e461]:
+                    - listitem "Choose how Google can collect and use your data for a better browsing experience on our site. Your privacy is paramount, and you have full control here." [ref=e462]:
+                      - link "Share analytics, advertising data, user data, and ad personalization data with Google" [ref=e463] [cursor=pointer]:
+                        - /url: "#Decide how Google uses your data"
+                    - listitem "On this website, we use cookies to measure our audience, nurture our relationship with you and, from time to time send you some quality content and some advertisement. You can select here those you allow to stay." [ref=e464]:
+                      - link "Here are our cookies!" [ref=e465] [cursor=pointer]:
+                        - /url: "#Here are our cookies! "
+              - button "Consents certified by Axeptio" [ref=e467]:
+                - generic [ref=e468]: Consents certified by
+                - img "Axeptio" [ref=e472]
+            - generic [ref=e476]:
+              - button "Close without accepting cookies" [ref=e477] [cursor=pointer]: No, thanks
+              - button "I choose the cookies to configure" [ref=e478] [cursor=pointer]: Let me choose
+              - button "Accept all cookies" [ref=e479] [cursor=pointer]: OK!
+          - generic [ref=e480]:
+            - text: Axeptio consent
+            - checkbox [ref=e481]
+          - generic [ref=e482]:
+            - paragraph [ref=e483]: "Consent Management Platform: Personalize Your Options"
+            - paragraph [ref=e484]: Our platform empowers you to tailor and manage your privacy settings, ensuring compliance with regulations. Customize your preferences to control how your information is handled.
+        - button "Close the widget without accepting cookie settings" [ref=e485] [cursor=pointer]:
+          - generic [ref=e486]: Cookies
+```

@@ -1,5 +1,7 @@
 ---
-title: Products
-sidebar_label: Products
 sidebar_position: 1
+sidebar_label: Products
+title: Products
 ---
+
+introduction: Introduction

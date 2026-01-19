@@ -63,12 +63,12 @@ export default function useLocalStorageState<T = undefined>(
   const defaultValue = useMemo(() => {
     const value = options?.defaultValue;
     return typeof value === 'function' ? (value as () => T)() : value;
-  }, options?.dependencies || []);
+  }, [options?.defaultValue]);
 
   const defaultServerValue = useMemo(() => {
     const value = options?.defaultServerValue;
     return typeof value === 'function' ? (value as () => T)() : value;
-  }, options?.dependencies || []);
+  }, [options?.defaultServerValue]);
 
   return useLocalStorage(
     key,
@@ -271,5 +271,5 @@ function parseJSON(value: string): unknown {
 function goodTry<T>(tryFn: () => T): T | undefined {
   try {
     return tryFn();
-  } catch {}
+  } catch { }
 }

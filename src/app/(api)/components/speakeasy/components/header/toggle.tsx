@@ -17,6 +17,7 @@ export default function LightToggle({
     <button
       aria-label="Toggle theme"
       role="switch"
+      aria-checked={theme === 'dark'}
       className={cn(
         'absolute bottom-27.5 right-15.5 w-14 h-8 rounded-t-full rounded-b-sm dark:mix-blend-overlay group flex items-center justify-center',
         'focus-visible:bg-ring dark:focus-visible:bg-foreground focus-visible:ring-transparent focus-visible:outline-none',

@@ -115,13 +115,14 @@ export const ActiveElementHashProvider: React.FC<{
       window.addEventListener('scroll', handleScroll, { passive: true });
     }, 100);
 
+    const visibleSections = visibleSectionsRef.current;
     return () => {
       clearTimeout(timeoutId);
       window.removeEventListener('scroll', handleScroll);
       if (observerRef.current) {
         observerRef.current.disconnect();
       }
-      visibleSectionsRef.current.clear();
+      visibleSections.clear();
     };
   }, [params, activeElementHash]);
 
