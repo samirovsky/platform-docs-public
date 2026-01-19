@@ -222,19 +222,12 @@ export const NAVIGATION_TREE: Record<string, NavigationNode[]> = {
             ],
         },
         {
-            title: 'Guides',
+            title: 'Definitions',
             items: [
-                {
-                    title: 'Definitions',
-                    items: [
-                        { title: 'What is an LLM?', href: '/getting-started/definitions/what-is-an-llm' },
-                        { title: 'Prompting Capabilities', href: '/getting-started/definitions/prompting-techniques' },
-                        { title: 'Glossary', href: '/getting-started/definitions/glossary' },
-                    ],
-                },
-                { title: 'Customization', href: '/getting-started/customization' },
-                { title: 'Clients', href: '/getting-started/clients' },
-                { title: 'Models', href: '/getting-started/models' },
+                    { title: 'What is an LLM?', href: '/getting-started/definitions/what-is-an-llm' },
+                    { title: 'Prompting Capabilities', href: '/getting-started/definitions/prompting-techniques' },
+                    { title: 'Glossary', href: '/getting-started/definitions/glossary' },
+                    
             ],
         },
     ],
