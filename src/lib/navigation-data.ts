@@ -134,7 +134,7 @@ export const NAVIGATION_TREE: Record<string, NavigationNode[]> = {
                 { title: 'Workspace & organization management', href: '/wip?title=Workspace&section=operations' },
                 { title: 'Monitoring', href: '/wip?title=Monitoring&section=operations' },
                 { title: 'Cloud Deployment', href: '/wip?title=Cloud%20Deployment&section=operations' },
-                { title: 'On-prem section (gated or link)', href: '/wip?title=On-prem&section=operations' },
+                { title: 'Reference ↗', href: '/wip?title=On-prem&section=operations' },
             ],
         },
         {
@@ -155,11 +155,11 @@ export const NAVIGATION_TREE: Record<string, NavigationNode[]> = {
         {
             title: 'Technical Reference',
             items: [
-                { title: 'Model Library', href: '/wip?title=Model%20Library&section=resources' },
+                { title: 'Model Library', href: '/getting-started/models' },
                 { title: 'API Reference', href: '/api' },
                 { title: 'Beta Features', href: '/wip?title=Beta%20Features&section=resources' },
                 { title: 'Glossary', href: '/resources/technical-reference/glossary' },
-                { title: 'Limits', href: '/wip?title=Limits&section=resources' },
+                { title: 'Limits', href: '/products/ai-tools/mistral-ai-studio/tier' },
                 { title: 'Changelogs', href: '/resources/technical-reference/changelog' },
                 { title: 'System Status', href: '/wip?title=System%20Status&section=resources' },
             ],
