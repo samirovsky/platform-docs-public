@@ -140,7 +140,7 @@ export const NAVIGATION_TREE: Record<string, NavigationNode[]> = {
         {
             title: 'Security & Governance',
             items: [
-                { title: 'Billing & Usage', href: '/wip?title=Billing&section=operations' },
+                { title: 'Billing & Usage', href: '/operations/security-and-governance/billing-and-usage' },
                 { title: 'Security & Compliance', href: '/operations/security-and-governance' },
             ],
         },
