@@ -20,11 +20,11 @@ export default function WorkInProgress({
             )}
         >
             <Image
-                src="/assets/sprites/cat_sleeping.gif"
+                src="/img/slack_wip.png"
                 alt="Work in Progress"
-                className="relative -mt-4 ml-6"
-                width={180}
-                height={146}
+                className="relative mb-6"
+                width={150}
+                height={150}
             />
             <div className="flex flex-col gap-4">
                 <h1 className="text-4xl sm:text-5xl font-bold text-foreground">

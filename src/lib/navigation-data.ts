@@ -51,7 +51,7 @@ export const NAVIGATION_TREE: Record<string, NavigationNode[]> = {
                 {
                     title: 'Le Chat Pro',
                     items: [
-                        { title: 'Quick Start: Log in at chat.mistral.ai', href: 'https://chat.mistral.ai' },
+                        { title: 'Quick Start', href: 'https://chat.mistral.ai' },
                         {
                             title: "How To's",
                             items: [
@@ -66,7 +66,7 @@ export const NAVIGATION_TREE: Record<string, NavigationNode[]> = {
                 {
                     title: 'Mistral AI Studio',
                     items: [
-                        { title: 'Quick Start: Create account at studio.mistral.ai', href: 'https://studio.mistral.ai' },
+                        { title: 'Quick Start', href: 'https://console.mistral.ai/home' },
                         { title: "How To's: Build agents without code", href: '/wip?title=Build%20Agents' },
                     ],
                 },
@@ -106,7 +106,7 @@ export const NAVIGATION_TREE: Record<string, NavigationNode[]> = {
                 { title: 'Document Intelligence', href: '/platform/developer-platform/document_ai' },
                 { title: 'RAG & Semantic Search', href: '/platform/developer-platform/embeddings' },
                 { title: 'Structured Extraction', href: '/platform/developer-platform/structured_output' },
-                { title: 'Mistral Vibe', href: '/wip?title=Mistral%20Vibe&section=platform' },
+
             ],
         },
         {
@@ -211,6 +211,30 @@ export const NAVIGATION_TREE: Record<string, NavigationNode[]> = {
                 { title: 'Roles & responsibilities', href: '/wip?title=Roles&section=community' },
                 { title: 'Benefits', href: '/wip?title=Benefits&section=community' },
                 { title: 'Program resources', href: '/wip?title=Resources&section=community' },
+            ],
+        },
+    ],
+    'getting-started': [
+        {
+            title: 'Introduction',
+            items: [
+                { title: 'Introduction', href: '/getting-started/introduction' },
+            ],
+        },
+        {
+            title: 'Guides',
+            items: [
+                {
+                    title: 'Definitions',
+                    items: [
+                        { title: 'What is an LLM?', href: '/getting-started/definitions/what-is-an-llm' },
+                        { title: 'Prompting Capabilities', href: '/getting-started/definitions/prompting-techniques' },
+                        { title: 'Glossary', href: '/getting-started/definitions/glossary' },
+                    ],
+                },
+                { title: 'Customization', href: '/getting-started/customization' },
+                { title: 'Clients', href: '/getting-started/clients' },
+                { title: 'Models', href: '/getting-started/models' },
             ],
         },
     ],
