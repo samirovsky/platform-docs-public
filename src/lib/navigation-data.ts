@@ -219,16 +219,26 @@ export const NAVIGATION_TREE: Record<string, NavigationNode[]> = {
             title: 'Introduction',
             items: [
                 { title: 'Introduction', href: '/getting-started/introduction' },
+                {
+                    title: 'Definitions',
+                    items: [
+                        { title: 'What is an LLM?', href: '/getting-started/definitions/what-is-an-llm' },
+                        { title: 'Prompting Capabilities', href: '/getting-started/definitions/prompting-techniques' },
+                        { title: 'Glossary', href: '/getting-started/definitions/glossary' },
+
+                    ]
+                }
             ],
         },
         {
-            title: 'Definitions',
+            title: 'Quickstart',
             items: [
-                    { title: 'What is an LLM?', href: '/getting-started/definitions/what-is-an-llm' },
-                    { title: 'Prompting Capabilities', href: '/getting-started/definitions/prompting-techniques' },
-                    { title: 'Glossary', href: '/getting-started/definitions/glossary' },
-                    
+                { title: 'Developer Quickstart', href: '/getting-started/quickstart/developer' },
+                { title: 'Business Quickstart', href: '/getting-started/quickstart/business' },
+                { title: 'Admin Quickstart', href: '/getting-started/quickstart/admin' },
+                { title: 'On-Prem Quickstart ↗', href: '/getting-started/quickstart/on-prem' },
+                { title: 'Migration Guides', href: '/getting-started/quickstart/migration' },
             ],
-        },
+        }
     ],
 };
