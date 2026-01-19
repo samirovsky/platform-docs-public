@@ -7,12 +7,7 @@ export type NavigationNode = {
 
 export const NAVIGATION_TREE: Record<string, NavigationNode[]> = {
     products: [
-        {
-            title: 'Introduction',
-            items: [
-                { title: 'Introduction', href: '/products/introduction' },
-            ],
-        },
+
         {
             title: 'Language Models',
             items: [
@@ -91,12 +86,7 @@ export const NAVIGATION_TREE: Record<string, NavigationNode[]> = {
         },
     ],
     platform: [
-        {
-            title: 'Introduction',
-            items: [
-                { title: 'Introduction', href: '/platform/introduction' },
-            ],
-        },
+
         {
             title: 'Developer Platform',
             items: [
@@ -121,12 +111,7 @@ export const NAVIGATION_TREE: Record<string, NavigationNode[]> = {
         },
     ],
     operations: [
-        {
-            title: 'Introduction',
-            items: [
-                { title: 'Introduction', href: '/operations/introduction' },
-            ],
-        },
+
         {
             title: 'Deployment & Operations',
             items: [
@@ -146,12 +131,7 @@ export const NAVIGATION_TREE: Record<string, NavigationNode[]> = {
         },
     ],
     resources: [
-        {
-            title: 'Introduction',
-            items: [
-                { title: 'Introduction', href: '/resources/introduction' },
-            ],
-        },
+
         {
             title: 'Technical Reference',
             items: [
@@ -175,12 +155,7 @@ export const NAVIGATION_TREE: Record<string, NavigationNode[]> = {
         },
     ],
     community: [
-        {
-            title: 'Introduction',
-            items: [
-                { title: 'Introduction', href: '/community/introduction' },
-            ],
-        },
+
         {
             title: 'Connect',
             items: [
@@ -216,19 +191,12 @@ export const NAVIGATION_TREE: Record<string, NavigationNode[]> = {
     ],
     'getting-started': [
         {
-            title: 'Introduction',
+            title: 'Definitions',
             items: [
-                { title: 'Introduction', href: '/getting-started/introduction' },
-                {
-                    title: 'Definitions',
-                    items: [
-                        { title: 'What is an LLM?', href: '/getting-started/definitions/what-is-an-llm' },
-                        { title: 'Prompting Capabilities', href: '/getting-started/definitions/prompting-techniques' },
-                        { title: 'Glossary', href: '/getting-started/definitions/glossary' },
-
-                    ]
-                }
-            ],
+                { title: 'What is an LLM?', href: '/getting-started/definitions/what-is-an-llm' },
+                { title: 'Prompting Capabilities', href: '/getting-started/definitions/prompting-techniques' },
+                { title: 'Glossary', href: '/getting-started/definitions/glossary' },
+            ]
         },
         {
             title: 'Quickstart',
