@@ -12,7 +12,7 @@ export default async function WipPage(props: Props) {
     return (
         <WorkInProgress
             title={title}
-            description="This page is currently under construction. Please check back later."
+            description="This page is currently under development."
         />
     );
 }

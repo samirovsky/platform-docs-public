@@ -3,7 +3,7 @@ import Image from 'next/image';
 
 export default function WorkInProgress({
     title = 'Work in Progress',
-    description = 'This content is currently under development.',
+    description = 'This page is currently under development.',
     className,
     children,
 }: {
