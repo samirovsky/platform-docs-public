@@ -367,7 +367,11 @@ async function main(config: CollectorConfig = DEFAULT_CONFIG) {
   }
 
   const results = await Promise.all(collectors);
-  const docs = results.flat();
+  // Deduplicate docs by ID to avoid MiniSearch errors
+  const uniqueDocs = Array.from(
+    new Map(results.flat().map(doc => [doc.id, doc])).values()
+  );
+  const docs = uniqueDocs;
 
   // Separate docs by type for different search configurations
   const docsByType = docs.reduce(

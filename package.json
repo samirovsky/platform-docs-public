@@ -83,6 +83,7 @@
   },
   "devDependencies": {
     "@cloudflare/next-on-pages": "^1.13.14",
+    "@playwright/test": "^1.57.0",
     "@tailwindcss/postcss": "^4.1.11",
     "@tailwindcss/typography": "^0.5.16",
     "@types/fs-extra": "^11.0.4",
@@ -111,5 +112,10 @@
   "engines": {
     "node": ">=18.0"
   },
-  "packageManager": "pnpm@9.8.0+sha256.56a9e76b51796ca7f73b85e44cf83712862091f4d498c0ce4d5b7ecdc6ba18f7"
+  "packageManager": "pnpm@9.8.0+sha256.56a9e76b51796ca7f73b85e44cf83712862091f4d498c0ce4d5b7ecdc6ba18f7",
+  "pnpm": {
+    "overrides": {
+      "estree-walker": "2.0.2"
+    }
+  }
 }

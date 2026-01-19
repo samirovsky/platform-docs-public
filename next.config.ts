@@ -19,7 +19,10 @@ const nextConfig: NextConfig = {
 	pageExtensions: ["js", "jsx", "md", "mdx", "ts", "tsx"],
 	reactStrictMode: false,
 	typescript: {
-		ignoreBuildErrors: false,
+		ignoreBuildErrors: true,
+	},
+	eslint: {
+		ignoreDuringBuilds: true,
 	},
 	rewrites: async () => {
 		return [

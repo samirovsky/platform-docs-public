@@ -6,20 +6,24 @@ import {
 
 export const headerLinks = [
   {
-    label: 'Docs',
-    href: `/`,
+    label: 'Products',
+    href: `/products`,
   },
   {
-    label: 'API',
-    href: `/api`,
+    label: 'Platform',
+    href: `/platform`,
   },
   {
-    label: 'Cookbooks',
-    href: '/cookbooks',
+    label: 'Operations',
+    href: `/operations`,
   },
   {
-    label: 'Ambassadors',
-    href: '/ambassadors',
+    label: 'Resources',
+    href: `/resources`,
+  },
+  {
+    label: 'Community',
+    href: `/community`,
   },
 ];
 

@@ -1,0 +1,19 @@
+---
+id: cloud_overview
+title: Cloud
+slug: overview
+---
+
+# Cloud
+
+Our models are also available on the cloud, allowing you to deploy them on your preferred cloud provider with flexibility and scalability.
+
+<SectionTab as="h1" sectionId="cloud-providers">Cloud Providers</SectionTab>
+
+In particular, Mistral's optimized commercial models are available on:
+- [Azure AI](cloud/azure)
+- [Amazon Bedrock](cloud/amazon_bedrock)
+- [Google Cloud Vertex AI Model Garden](cloud/vertex)
+- [Snowflake Cortex](cloud/sfcortex)
+- [IBM watsonx](cloud/ibm-watsonx)
+- [Outscale](cloud/outscale)
