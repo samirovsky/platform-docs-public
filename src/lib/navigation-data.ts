@@ -160,21 +160,21 @@ export const NAVIGATION_TREE: Record<string, NavigationNode[]> = {
             title: 'Connect',
             items: [
                 { title: 'Discord ↗', href: 'https://discord.com/invite/mistralai' },
-                { title: 'Events & Meetups', href: '/community/connect' },
+                { title: 'Events & Meetups', href: '/wip?title=Events%20%26%20Meetups&section=community' },
             ],
         },
         {
             title: 'Learn & Share',
             items: [
                 { title: 'Videos & YouTube ↗', href: 'https://youtube.com/@MistralAI' },
-                { title: 'Talks & Webinars', href: '/community/learn-and-share' },
+                { title: 'Talks & Webinars', href: '/wip?title=Talks%20%26%20Webinars&section=community' },
             ],
         },
         {
             title: 'Open Source',
             items: [
                 { title: 'Projects ↗', href: 'https://github.com/mistralai' },
-                { title: 'Contribute', href: '/community/open-source' },
+                { title: 'Contribute', href: '/wip?title=Contribute&section=community' },
             ],
         },
         {
