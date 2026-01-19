@@ -20,7 +20,7 @@ export default function WorkInProgress({
             )}
         >
             <Image
-                src="/img/slack_wip.png"
+                src="/assets/sprites/cat-walking-white.gif"
                 alt="Work in Progress"
                 className="relative mb-6"
                 width={150}
