@@ -9,9 +9,9 @@
           - link [ref=e4] [cursor=pointer]:
             - /url: /
             - img [ref=e7]
-          - button "Docs & API" [ref=e9]:
+          - button "Documentation" [ref=e9]:
             - generic [ref=e10]:
-              - generic [ref=e11]: Docs & API
+              - generic [ref=e11]: Documentation
               - img [ref=e12]
       - generic:
         - navigation [ref=e14]:

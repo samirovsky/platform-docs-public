@@ -50,7 +50,7 @@ export const headerDropdownData = [
   },
   {
     id: 'docs-api',
-    label: 'Docs & API',
+    label: 'Documentation',
     href: `/`,
     bg: 'bg-foreground/10 text-foreground',
     section: 'default',

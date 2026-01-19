@@ -22,7 +22,7 @@ interface HeaderDropdownProps {
 
 export const HeaderDropdown = ({
   items,
-  triggerLabel = 'Docs & API',
+  triggerLabel = 'Documentation',
   triggerIcon,
   className,
 }: HeaderDropdownProps) => {
