@@ -16,6 +16,13 @@ import {
   ConnectingCell as DefaultConnectingCell,
 } from './components/cells';
 import { ExpandablePropertyProps } from '@speakeasy-api/docs-md-react';
+
+// Extend the imported type to include the missing properties
+type ExtendedExpandablePropertyProps = ExpandablePropertyProps & {
+  ExpandableCell?: typeof DefaultExpandableCell;
+  NonExpandableCell?: typeof DefaultNonExpandableCell;
+  ConnectingCell?: typeof DefaultConnectingCell;
+};
 import {
   PROPERTY_PATH_SEPARATOR,
   useIsNestedProperty,
@@ -24,12 +31,6 @@ import {
 } from '@/contexts/property-context';
 import * as LinkedHoverSafeArea from '@/components/ui/linked-hover-safe-area';
 import { APICopyButton } from '../../copy-button';
-
-interface CustomExpandablePropertyProps extends ExpandablePropertyProps {
-  ExpandableCell?: React.ComponentType<any>;
-  NonExpandableCell?: React.ComponentType<any>;
-  ConnectingCell?: React.ComponentType<any>;
-}
 
 export function PropertyContents({
   headingId,
@@ -41,7 +42,7 @@ export function PropertyContents({
   ExpandableCell = DefaultExpandableCell,
   NonExpandableCell = DefaultNonExpandableCell,
   ConnectingCell = DefaultConnectingCell,
-}: CustomExpandablePropertyProps) {
+}: ExtendedExpandablePropertyProps) {
   const [highlight, setHighlight] = useState(false);
   const propCtx = usePropertyContext();
 
@@ -81,7 +82,7 @@ export function PropertyContents({
     if (lastPropertyValue === headingId) {
       setHighlight(true);
     }
-  }, []);
+  }, [headingId]);
 
   const titleChild = useUniqueChild(children, 'title');
   const descriptionChildren = useChildren(children, 'description');

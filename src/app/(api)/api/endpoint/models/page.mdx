@@ -3047,7 +3047,8 @@ cURL
 ```curl
 curl https://api.mistral.ai/v1/models/{model_id} \
  -X DELETE \
- -H 'Authorization: Bearer YOUR_APIKEY_HERE'
+ -H 'Authorization: Bearer YOUR_APIKEY_HERE' \
+ -H 'Content-Type: application/json'
 ```
 
 </CodeSample>
@@ -3414,6 +3415,7 @@ cURL
 curl https://api.mistral.ai/v1/fine_tuning/models/{model_id} \
  -X PATCH \
  -H 'Authorization: Bearer YOUR_APIKEY_HERE' \
+ -H 'Content-Type: application/json' \
  -d '{}'
 ```
 
@@ -4835,7 +4837,8 @@ cURL
 ```curl
 curl https://api.mistral.ai/v1/fine_tuning/models/{model_id}/archive \
  -X POST \
- -H 'Authorization: Bearer YOUR_APIKEY_HERE'
+ -H 'Authorization: Bearer YOUR_APIKEY_HERE' \
+ -H 'Content-Type: application/json'
 ```
 
 </CodeSample>
@@ -5160,7 +5163,8 @@ cURL
 ```curl
 curl https://api.mistral.ai/v1/fine_tuning/models/{model_id}/archive \
  -X DELETE \
- -H 'Authorization: Bearer YOUR_APIKEY_HERE'
+ -H 'Authorization: Bearer YOUR_APIKEY_HERE' \
+ -H 'Content-Type: application/json'
 ```
 
 </CodeSample>

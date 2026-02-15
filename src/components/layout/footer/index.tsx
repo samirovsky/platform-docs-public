@@ -50,7 +50,7 @@ const footerSchema: { sections: FooterSection[] } = {
       links: [
         { label: 'Documentation', href: '/' },
         { label: 'Contributing', href: '/ambassadors' },
-        { label: 'Cookbooks', href: '/cookbooks' },
+        { label: 'Cookbooks', href: '/resources/examples/cookbooks' },
       ],
     },
     {

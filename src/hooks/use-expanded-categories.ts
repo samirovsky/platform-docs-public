@@ -81,7 +81,7 @@ export const useExpandedCategories = (
 
   const autoExpandedPaths = React.useMemo(() => {
     return getExpandedPaths(sidebar, pathname, overridedExpandedCategories);
-  }, [sidebar, pathname]);
+  }, [sidebar, pathname, overridedExpandedCategories]);
 
   const [expandedCategories, setExpandedCategories] = React.useState<
     Set<string>

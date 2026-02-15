@@ -4,21 +4,20 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "dev": "NODE_OPTIONS='--max-old-space-size=4096' pnpm cookbook:build && pnpm rawmdx:export && next dev -p 3002 --webpack",
-    "build": "pnpm prebuild && next build --webpack",
+    "dev": " pnpm cookbook:build && pnpm rawmdx:export && next dev",
+    "build": "pnpm prebuild && next build",
     "start": "next start",
-    "lint": "eslint . --ext .js,.jsx,.ts,.tsx --max-warnings=0",
+    "lint": "next lint",
     "type-check": "tsc --noEmit",
     "cf:build": "pnpm dlx @cloudflare/next-on-pages@1",
     "search:build": "tsx src/scripts/build-search-index.ts",
-    "lechat:routes": "tsx src/scripts/generate-lechat-routes.ts",
     "cookbook:build": "tsx src/scripts/build-complete-cookbook.ts",
     "rawmdx:export": "tsx src/scripts/export-raw-mdx.ts",
     "cf:dev": "pnpm cf:build && npx wrangler pages dev --port 3000 --log-level=debug",
     "postinstall": "git submodule update --init --recursive && pnpm -s build-api-docs",
     "copy-assets-file": "tsx src/scripts/copy-assets-file.ts",
     "copy-openapi": "tsx src/scripts/copy-openapi.ts",
-    "prebuild": "pnpm -s cookbook:build && pnpm -s rawmdx:export && pnpm -s copy-openapi && pnpm search:build && pnpm -s copy-assets-file && pnpm -s lechat:routes",
+    "prebuild": "pnpm -s cookbook:build && pnpm -s rawmdx:export && pnpm -s copy-openapi && pnpm search:build && pnpm -s copy-assets-file",
     "build-api-docs": "docs-md"
   },
   "dependencies": {
@@ -59,13 +58,12 @@
     "jotai": "^2.13.1",
     "lucide-react": "^0.536.0",
     "minisearch": "^7.1.2",
-    "next": "^16.0.10",
+    "next": "^15.5.8",
     "next-mdx-remote": "^5.0.0",
     "next-themes": "^0.4.6",
     "nuqs": "^2.4.3",
-    "react": "^19.2.3",
-    "react-dom": "^19.2.3",
-    "react-markdown": "^10.1.0",
+    "react": "^19.2.2",
+    "react-dom": "^19.2.2",
     "react-syntax-highlighter": "^15.6.1",
     "react-use-measure": "^2.1.7",
     "remark-directive": "^4.0.0",
@@ -85,20 +83,20 @@
   },
   "devDependencies": {
     "@cloudflare/next-on-pages": "^1.13.14",
-    "@playwright/test": "^1.56.1",
+    "@playwright/test": "^1.57.0",
     "@tailwindcss/postcss": "^4.1.11",
     "@tailwindcss/typography": "^0.5.16",
     "@types/fs-extra": "^11.0.4",
     "@types/js-yaml": "^4.0.9",
     "@types/mdx": "^2.0.13",
     "@types/node": "^20.0.0",
-    "@types/react": "^19.1.10",
-    "@types/react-dom": "^18.3.0",
+    "@types/react": "^19.2.2",
+    "@types/react-dom": "^19.2.2",
     "@types/react-syntax-highlighter": "^15.5.13",
     "@types/remark-heading-id": "^1.0.0",
     "acorn": "^8.15.0",
-    "eslint": "^9.39.2",
-    "eslint-config-next": "^16.0.10",
+    "eslint": "^8.0.0",
+    "eslint-config-next": "^14.2.0",
     "fast-glob": "^3.3.3",
     "fs-extra": "^11.3.1",
     "gray-matter": "^4.0.3",
@@ -111,16 +109,13 @@
     "typescript": "^5.5.4",
     "unist-util-visit-parents": "^6.0.1"
   },
-  "pnpm": {
-    "overrides": {
-      "estree-walker": "^3.0.3"
-    },
-    "patchedDependencies": {
-      "estree-walker@3.0.3": "patches/estree-walker.patch"
-    }
-  },
   "engines": {
     "node": ">=18.0"
   },
-  "packageManager": "pnpm@9.8.0+sha256.56a9e76b51796ca7f73b85e44cf83712862091f4d498c0ce4d5b7ecdc6ba18f7"
+  "packageManager": "pnpm@9.8.0+sha256.56a9e76b51796ca7f73b85e44cf83712862091f4d498c0ce4d5b7ecdc6ba18f7",
+  "pnpm": {
+    "overrides": {
+      "estree-walker": "2.0.2"
+    }
+  }
 }

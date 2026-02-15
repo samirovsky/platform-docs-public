@@ -105,15 +105,13 @@ const TimelineYearItem = ({
       />
       {yearItem.year}
       <ChevronDown
-        className={`w-3 h-3 transition-transform duration-200 ease-in-out ${
-          isExpanded ? 'rotate-180' : 'rotate-0'
-        }`}
+        className={`w-3 h-3 transition-transform duration-200 ease-in-out ${isExpanded ? 'rotate-180' : 'rotate-0'
+          }`}
       />
     </div>
     <div
-      className={`overflow-hidden transition-opacity duration-300 ease-in-out ${
-        isExpanded ? 'max-h-screen opacity-100' : 'max-h-0 opacity-0'
-      }`}
+      className={`overflow-hidden transition-opacity duration-300 ease-in-out ${isExpanded ? 'max-h-screen opacity-100' : 'max-h-0 opacity-0'
+        }`}
     >
       <ul className="ml-2.5 space-y-1 pt-1">
         {yearItem.months.map((monthItem, monthIndex) => (
@@ -192,7 +190,7 @@ export function TableOfContents({
         filteredToc: [],
         shouldShow: false,
       };
-  }, [tocItems, sidebar, pathname]);
+  }, [tocItems, sidebar, pathname, maxDepth]);
 
   // Track active heading and scroll position
   useEffect(() => {
@@ -277,7 +275,7 @@ export function TableOfContents({
     window.addEventListener('scroll', handleScroll);
     handleScroll();
     return () => window.removeEventListener('scroll', handleScroll);
-  }, [tocData.headingIds, showBackToTop, timelineData]);
+  }, [tocData.headingIds, showBackToTop, timelineData, maxDepth]);
 
   const handleScrollToTop = () => {
     window.scrollTo({ top: 0, behavior: 'smooth' });

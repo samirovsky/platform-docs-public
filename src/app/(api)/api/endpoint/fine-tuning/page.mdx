@@ -2364,6 +2364,7 @@ cURL
 curl https://api.mistral.ai/v1/fine_tuning/jobs \
  -X POST \
  -H 'Authorization: Bearer YOUR_APIKEY_HERE' \
+ -H 'Content-Type: application/json' \
  -d '{
   "hyperparameters": {},
   "model": "ministral-3b-latest"
@@ -8874,7 +8875,8 @@ cURL
 ```curl
 curl https://api.mistral.ai/v1/fine_tuning/jobs/{job_id}/cancel \
  -X POST \
- -H 'Authorization: Bearer YOUR_APIKEY_HERE'
+ -H 'Authorization: Bearer YOUR_APIKEY_HERE' \
+ -H 'Content-Type: application/json'
 ```
 
 </CodeSample>
@@ -11697,7 +11699,8 @@ cURL
 ```curl
 curl https://api.mistral.ai/v1/fine_tuning/jobs/{job_id}/start \
  -X POST \
- -H 'Authorization: Bearer YOUR_APIKEY_HERE'
+ -H 'Authorization: Bearer YOUR_APIKEY_HERE' \
+ -H 'Content-Type: application/json'
 ```
 
 </CodeSample>

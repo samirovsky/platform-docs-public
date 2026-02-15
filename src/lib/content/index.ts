@@ -7,7 +7,7 @@ import {
 import { SidebarItem, TocItem } from '@/schema';
 import { parseFrontmatter } from './parse-metadata';
 import { extractHeadingsFromContent } from './extract-headings';
-import { getModelsBreadcrumb } from '@/app/(docs)/models/[slug]/_get-breacrumb';
+import { getModelsBreadcrumb } from '@/app/(docs)/products/language-models/[slug]/_get-breacrumb';
 
 /**
  * NOTE: Assumptions (tweak to taste):
@@ -45,7 +45,8 @@ export async function getSidebar(
 
     const pageFile = resolvePageFile(subPath);
     const hasPage = Boolean(pageFile);
-    const pageIsMdx = pageFile?.endsWith('.mdx') || pageFile?.endsWith('.md');
+    const pageIsMdx =
+      (pageFile?.endsWith('.mdx') || pageFile?.endsWith('.md')) ?? false;
 
     const metaFile = resolveMetaFile(subPath);
     const hasMetaMd = Boolean(metaFile);
@@ -102,6 +103,7 @@ export async function getSidebar(
         hidden: shouldHideCategory(dirent.name),
         clickable: hasPage || categoryMeta.link !== undefined,
         hasPage,
+        isMarkdownFile: hasPage && pageIsMdx,
       };
 
       items.push(categoryItem);
@@ -133,6 +135,7 @@ export async function getSidebar(
         toc,
         pagination: { prev: undefined, next: undefined },
         clickable: true,
+        isMarkdownFile: pageIsMdx,
       };
       items.push(fileItem);
       continue;
@@ -148,6 +151,7 @@ export async function getSidebar(
         toc: [],
         pagination: { prev: undefined, next: undefined },
         clickable: true,
+        isMarkdownFile: pageIsMdx,
       };
       items.push(fileItem);
       continue;
@@ -246,8 +250,8 @@ function loadFileMetadataAndToc(filePath: string): {
     const toc = skipToc
       ? []
       : extractHeadingsFromContent(markdownContent, {
-          path: filePath,
-        });
+        path: filePath,
+      });
 
     return { metadata, toc };
   } catch (error) {
@@ -435,7 +439,7 @@ function isDynamicRoute(path: string): boolean {
 }
 
 function shouldHideCategory(dirName: string): boolean {
-  const HIDDEN_DIRS = new Set(['models']);
+  const HIDDEN_DIRS = new Set(['ai-models']);
   return HIDDEN_DIRS.has(dirName);
 }
 
@@ -444,7 +448,13 @@ type BreadcrumbProvider = (
 ) => Promise<SidebarItem[]> | SidebarItem[];
 
 // IMPORTANT, ENSURE THIS MATCH WITH THE CORRECT ROUTE
-const MODELS_SLUG_DIR = path.join('src', 'app', '(docs)', 'models');
+const MODELS_SLUG_DIR = path.join(
+  'src',
+  'app',
+  '(docs)',
+  'products',
+  'ai-models'
+);
 const registry: Array<{ matchDirname: string; provider: BreadcrumbProvider }> =
   [
     {

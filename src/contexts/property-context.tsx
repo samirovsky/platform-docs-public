@@ -64,7 +64,7 @@ export function PropertyProvider({
       parent: parentContext || undefined,
       rowContainerRef,
     };
-  }, [parentContext, headingId, slot, typeInfo, typeAnnotations, propertyName]);
+  }, [parentContext, headingId, slot, typeInfo, typeAnnotations]);
 
   return (
     <PropertyContext.Provider value={contextValue}>

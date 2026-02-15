@@ -116,7 +116,7 @@ export function TypeBadge({
     }
 
     return 'secondary';
-  }, [displayStructure]);
+  }, [displayStructure, overrideVariant]);
 
   return (
     <Badge

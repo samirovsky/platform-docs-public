@@ -898,6 +898,7 @@ cURL
 curl https://api.mistral.ai/v1/batch/jobs \
  -X POST \
  -H 'Authorization: Bearer YOUR_APIKEY_HERE' \
+ -H 'Content-Type: application/json' \
  -d '{
   "endpoint": "/v1/chat/completions",
   "input_files": [
@@ -2404,7 +2405,8 @@ cURL
 ```curl
 curl https://api.mistral.ai/v1/batch/jobs/{job_id}/cancel \
  -X POST \
- -H 'Authorization: Bearer YOUR_APIKEY_HERE'
+ -H 'Authorization: Bearer YOUR_APIKEY_HERE' \
+ -H 'Content-Type: application/json'
 ```
 
 </CodeSample>

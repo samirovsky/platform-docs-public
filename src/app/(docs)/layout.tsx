@@ -1,6 +1,7 @@
 import React, { Suspense } from 'react';
 import { getSidebar } from '@/lib/content';
 import { DocsSidebar, SideBarTreeNode } from '@/components/layout/sidebar';
+import { DynamicDocsSidebar } from '@/components/layout/sidebar/dynamic-sidebar';
 import { SidebarProvider, Sidebar } from '@/components/ui/sidebar';
 import PageContent from '@/components/layout/page-content';
 import { DocsBreadcrumb } from '@/components/layout/docs-breadcrumb';
@@ -28,7 +29,7 @@ export default async function SidebarLayout({
   children: React.ReactNode;
 }) {
   const sidebar = await getSidebar('src/app/(docs)');
-  const sidebarTree = sidebarTreeData(sidebar);
+  // const sidebarTree = sidebarTreeData(sidebar);
 
   const asideClassName =
     'hidden xl:flex w-[calc(var(--sidebar-width)-var(--sides))] ml-10 2xl:ml-14 pl-2';
@@ -40,14 +41,9 @@ export default async function SidebarLayout({
           className="h-fold sticky top-header overflow-y-auto scrollbar-none shrink-0"
           collapsible="none"
         >
-          <DocsSidebar
-            sidebar={sidebarTree}
-            expandedCategoriesOptions={{
-              overridedExpandedCategories: {
-                '/': [['getting-started', 'introduction']],
-              },
-            }}
-          />
+          <Suspense>
+            <DynamicDocsSidebar />
+          </Suspense>
         </Sidebar>
         <div className="flex flex-1 gap-8 min-w-0 lg:pr-sides">
           <div className="flex flex-col flex-1 min-w-0">

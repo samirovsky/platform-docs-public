@@ -786,6 +786,7 @@ cURL
 curl https://api.mistral.ai/v1/files \
  -X POST \
  -H 'Authorization: Bearer YOUR_APIKEY_HERE' \
+ -H 'Content-Type: application/json' \
  -d '{
   "file": {
     "content": "ipsum eiusmod",
@@ -2019,7 +2020,8 @@ cURL
 ```curl
 curl https://api.mistral.ai/v1/files/{file_id} \
  -X DELETE \
- -H 'Authorization: Bearer YOUR_APIKEY_HERE'
+ -H 'Authorization: Bearer YOUR_APIKEY_HERE' \
+ -H 'Content-Type: application/json'
 ```
 
 </CodeSample>

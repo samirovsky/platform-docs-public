@@ -67,7 +67,7 @@ function Tabs({ children, className, tabsClassName }: TabsProps) {
     if (newActiveTab !== activeTab) {
       setActiveTab(newActiveTab);
     }
-  }, [selectedLanguage, availableLanguages.join(',')]);
+  }, [selectedLanguage, availableLanguages.join(','), activeTab]); // eslint-disable-line react-hooks/exhaustive-deps
 
   const handleTabChange = (value: string) => {
     setActiveTab(value);

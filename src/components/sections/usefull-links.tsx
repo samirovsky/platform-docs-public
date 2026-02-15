@@ -60,7 +60,7 @@ export const usefullLinks = [
   },
   {
     title: 'Cookbooks',
-    href: '/cookbooks',
+    href: '/resources/examples/cookbooks',
     icon: (
       <PageIcon className="transition-colors duration-100 dark:group-hover:text-black/70" />
     ),

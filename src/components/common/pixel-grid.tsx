@@ -299,7 +299,7 @@ export function PixelGrid({
       }
       window.removeEventListener('resize', handleWindowResize);
     };
-  }, [isVisible, pixelSize]);
+  }, [isVisible, pixelSize, speed, randomness]);
 
   return (
     <div

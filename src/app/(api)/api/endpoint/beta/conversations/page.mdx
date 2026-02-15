@@ -1896,6 +1896,7 @@ cURL
 curl https://api.mistral.ai/v1/conversations \
  -X POST \
  -H 'Authorization: Bearer YOUR_APIKEY_HERE' \
+ -H 'Content-Type: application/json' \
  -d '{
   "inputs": "ipsum eiusmod"
 }'
@@ -9398,6 +9399,7 @@ cURL
 curl https://api.mistral.ai/v1/conversations/{conversation_id} \
  -X POST \
  -H 'Authorization: Bearer YOUR_APIKEY_HERE' \
+ -H 'Content-Type: application/json' \
  -d '{
   "inputs": "ipsum eiusmod"
 }'
@@ -14615,7 +14617,8 @@ cURL
 ```curl
 curl https://api.mistral.ai/v1/conversations/{conversation_id} \
  -X DELETE \
- -H 'Authorization: Bearer YOUR_APIKEY_HERE'
+ -H 'Authorization: Bearer YOUR_APIKEY_HERE' \
+ -H 'Content-Type: application/json'
 ```
 
 </CodeSample>
@@ -19875,6 +19878,7 @@ cURL
 curl https://api.mistral.ai/v1/conversations/{conversation_id}/restart \
  -X POST \
  -H 'Authorization: Bearer YOUR_APIKEY_HERE' \
+ -H 'Content-Type: application/json' \
  -d '{
   "from_entry_id": "ipsum eiusmod",
   "inputs": "consequat do"
@@ -25266,6 +25270,7 @@ cURL
 curl https://api.mistral.ai/v1/conversations#stream \
  -X POST \
  -H 'Authorization: Bearer YOUR_APIKEY_HERE' \
+ -H 'Content-Type: application/json' \
  -d '{
   "inputs": "ipsum eiusmod"
 }'
@@ -31683,6 +31688,7 @@ cURL
 curl https://api.mistral.ai/v1/conversations/{conversation_id}#stream \
  -X POST \
  -H 'Authorization: Bearer YOUR_APIKEY_HERE' \
+ -H 'Content-Type: application/json' \
  -d '{
   "inputs": "ipsum eiusmod"
 }'
@@ -37594,6 +37600,7 @@ cURL
 curl https://api.mistral.ai/v1/conversations/{conversation_id}/restart#stream \
  -X POST \
  -H 'Authorization: Bearer YOUR_APIKEY_HERE' \
+ -H 'Content-Type: application/json' \
  -d '{
   "from_entry_id": "ipsum eiusmod",
   "inputs": "consequat do"

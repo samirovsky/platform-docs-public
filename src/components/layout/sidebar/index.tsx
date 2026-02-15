@@ -119,7 +119,7 @@ export const DocsSidebarProvider = <T extends SideBarTreeNode>({
     [
       expandedCategories,
       isHydrated,
-      expandedCategoriesOptions?.overridedExpandedCategories ?? {},
+      expandedCategoriesOptions?.overridedExpandedCategories,
       renderItem,
       lastActiveItem,
       hashResponsive,
@@ -227,12 +227,12 @@ const SidebarSubCategory = <T extends SideBarTreeNode>({
     ? overridedExpandedCategories[pathname]
     : [getHrefSlugs(pathname)];
 
-  const hasActiveDescendant = currentSlugs.some(currentSlug =>
+  const hasActiveDescendant = !!item.href && currentSlugs.some(currentSlug =>
     isPathContained(getHrefSlugs(item.href!), currentSlug)
   );
 
   const [isExpanded, setIsExpanded] = React.useState(
-    expandedCategories.has(item.href!) ||
+    (!!item.href && expandedCategories.has(item.href!)) ||
     isCategoryActive ||
     hasActiveDescendant
   );
@@ -240,10 +240,10 @@ const SidebarSubCategory = <T extends SideBarTreeNode>({
   React.useEffect(() => {
     const shouldExpand =
       isCategoryActive ||
-      expandedCategories.has(item.href!) ||
-      item.href! === pathname ||
+      (!!item.href && expandedCategories.has(item.href!)) ||
+      item.href === pathname ||
       hasActiveDescendant ||
-      (hashResponsive && pathname.startsWith(item.href!));
+      (!!item.href && hashResponsive && pathname.startsWith(item.href!));
     if (shouldExpand) {
       setIsExpanded(true);
     }
@@ -252,6 +252,9 @@ const SidebarSubCategory = <T extends SideBarTreeNode>({
     hasActiveDescendant,
     expandedCategories,
     pathnameWithoutHash,
+    item.href,
+    pathname,
+    hashResponsive,
   ]);
   const UsedSidebarItem = submenu ? SidebarMenuItem : SidebarMenuSubItem;
   const Content = renderItem ?? (props => props.item.label);
@@ -337,6 +340,23 @@ const DocsSidebarContent = <T extends SideBarTreeNode>({
 }) => {
   const UsedSidebarItem = renderItem ? SidebarItem<T> : SidebarFileItem<T>;
   const [hasScrollDown, setHasScrollDown] = React.useState(false);
+  const pathname = usePathname();
+
+  const filteredSidebar = useMemo(() => {
+    const currentSection = sidebar.find(item => {
+      if (!item.href) return false;
+      if (item.href === '/') {
+        return pathname === '/';
+      }
+      return pathname.startsWith(item.href);
+    });
+
+    if (currentSection && currentSection.children.length > 0) {
+      return currentSection.children as T[];
+    }
+
+    return sidebar;
+  }, [sidebar, pathname]);
 
   React.useEffect(() => {
     const element = document.querySelector(
@@ -369,11 +389,11 @@ const DocsSidebarContent = <T extends SideBarTreeNode>({
   return (
     <>
       <SidebarHeader className="max-lg:hidden">
-        {/* Search moved to Hero */}
+        <SearchInput />
       </SidebarHeader>
       <SidebarContent>
         {children}
-        {sidebar.map((item, index) => {
+        {filteredSidebar.map((item, index) => {
           if (!item.children.length) {
             return (
               <SidebarGroup key={index}>
@@ -517,6 +537,6 @@ const usePathnameWithHash = ({
       return pathname + (activeElementHash ?? hash);
     }
     return pathname;
-  }, [pathname, hash, activeElementHash]);
+  }, [pathname, hash, activeElementHash, hashResponsive]);
   return fullPathname;
 };

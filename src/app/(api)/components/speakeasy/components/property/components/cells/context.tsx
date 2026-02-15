@@ -22,7 +22,7 @@ export const ConnectingCellContext = createContext<{
   setIsHovering: (isHovering: boolean) => void;
 }>({
   isHovering: false,
-  setIsHovering: () => {},
+  setIsHovering: () => { },
 });
 
 export const useConnectingCellContext = () => {
@@ -57,7 +57,8 @@ export const ConnectingCellProvider = ({
   }, []);
 
   useEffect(() => {
-    if (ref.current) {
+    const currentRef = ref.current;
+    if (currentRef) {
       const handleMouseEnter = (e: MouseEvent) => {
         const target = e.currentTarget as HTMLElement;
         globalActiveElement = target;
@@ -66,19 +67,19 @@ export const ConnectingCellProvider = ({
 
       const handleMouseLeave = (e: MouseEvent) => {
         const relatedTarget = e.relatedTarget as HTMLElement;
-        if (!ref.current?.contains(relatedTarget)) {
+        if (!currentRef?.contains(relatedTarget)) {
           globalActiveElement = null;
           notifyProviders();
         }
       };
 
-      ref.current.addEventListener('mouseenter', handleMouseEnter);
-      ref.current.addEventListener('mouseleave', handleMouseLeave);
+      currentRef.addEventListener('mouseenter', handleMouseEnter);
+      currentRef.addEventListener('mouseleave', handleMouseLeave);
 
       return () => {
-        if (ref.current) {
-          ref.current.removeEventListener('mouseenter', handleMouseEnter);
-          ref.current.removeEventListener('mouseleave', handleMouseLeave);
+        if (currentRef) {
+          currentRef.removeEventListener('mouseenter', handleMouseEnter);
+          currentRef.removeEventListener('mouseleave', handleMouseLeave);
         }
       };
     }

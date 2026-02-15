@@ -175,6 +175,7 @@ cURL
 curl https://api.mistral.ai/v1/audio/transcriptions \
  -X POST \
  -H 'Authorization: Bearer YOUR_APIKEY_HERE' \
+ -H 'Content-Type: application/json' \
  -d '{
   "model": "voxtral-mini-latest"
 }'
@@ -1046,6 +1047,7 @@ cURL
 curl https://api.mistral.ai/v1/audio/transcriptions#stream \
  -X POST \
  -H 'Authorization: Bearer YOUR_APIKEY_HERE' \
+ -H 'Content-Type: application/json' \
  -d '{
   "model": "ipsum eiusmod"
 }'

@@ -733,6 +733,7 @@ cURL
 curl https://api.mistral.ai/v1/libraries \
  -X POST \
  -H 'Authorization: Bearer YOUR_APIKEY_HERE' \
+ -H 'Content-Type: application/json' \
  -d '{
   "name": "ipsum eiusmod"
 }'
@@ -1886,6 +1887,7 @@ cURL
 curl https://api.mistral.ai/v1/libraries/{library_id} \
  -X PUT \
  -H 'Authorization: Bearer YOUR_APIKEY_HERE' \
+ -H 'Content-Type: application/json' \
  -d '{}'
 ```
 
@@ -2512,7 +2514,8 @@ cURL
 ```curl
 curl https://api.mistral.ai/v1/libraries/{library_id} \
  -X DELETE \
- -H 'Authorization: Bearer YOUR_APIKEY_HERE'
+ -H 'Authorization: Bearer YOUR_APIKEY_HERE' \
+ -H 'Content-Type: application/json'
 ```
 
 </CodeSample>

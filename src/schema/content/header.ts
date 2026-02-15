@@ -6,20 +6,28 @@ import {
 
 export const headerLinks = [
   {
-    label: 'Docs',
-    href: `/`,
+    label: 'Getting Started',
+    href: `/getting-started`,
   },
   {
-    label: 'API',
-    href: `/api`,
+    label: 'Products',
+    href: `/products`,
   },
   {
-    label: 'Cookbooks',
-    href: '/cookbooks',
+    label: 'Platform',
+    href: `/platform`,
   },
   {
-    label: 'Ambassadors',
-    href: '/ambassadors',
+    label: 'Operations',
+    href: `/operations`,
+  },
+  {
+    label: 'Resources',
+    href: `/resources`,
+  },
+  {
+    label: 'Community',
+    href: `/community`,
   },
 ];
 
@@ -42,7 +50,7 @@ export const headerDropdownData = [
   },
   {
     id: 'docs-api',
-    label: 'Docs & API',
+    label: 'Documentation',
     href: `/`,
     bg: 'bg-foreground/10 text-foreground',
     section: 'default',

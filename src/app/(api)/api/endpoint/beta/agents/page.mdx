@@ -1674,6 +1674,7 @@ cURL
 curl https://api.mistral.ai/v1/agents \
  -X POST \
  -H 'Authorization: Bearer YOUR_APIKEY_HERE' \
+ -H 'Content-Type: application/json' \
  -d '{
   "model": "ipsum eiusmod",
   "name": "consequat do"
@@ -5699,7 +5700,8 @@ cURL
 ```curl
 curl https://api.mistral.ai/v1/agents/{agent_id} \
  -X DELETE \
- -H 'Authorization: Bearer YOUR_APIKEY_HERE'
+ -H 'Authorization: Bearer YOUR_APIKEY_HERE' \
+ -H 'Content-Type: application/json'
 ```
 
 </CodeSample>
@@ -5870,6 +5872,7 @@ cURL
 curl https://api.mistral.ai/v1/agents/{agent_id} \
  -X PATCH \
  -H 'Authorization: Bearer YOUR_APIKEY_HERE' \
+ -H 'Content-Type: application/json' \
  -d '{}'
 ```
 
@@ -8524,7 +8527,8 @@ cURL
 ```curl
 curl https://api.mistral.ai/v1/agents/{agent_id}/version \
  -X PATCH \
- -H 'Authorization: Bearer YOUR_APIKEY_HERE'
+ -H 'Authorization: Bearer YOUR_APIKEY_HERE' \
+ -H 'Content-Type: application/json'
 ```
 
 </CodeSample>

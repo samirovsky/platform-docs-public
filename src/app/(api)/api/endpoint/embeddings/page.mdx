@@ -180,6 +180,7 @@ cURL
 curl https://api.mistral.ai/v1/embeddings \
  -X POST \
  -H 'Authorization: Bearer YOUR_APIKEY_HERE' \
+ -H 'Content-Type: application/json' \
  -d '{
   "input": "ipsum eiusmod",
   "model": "mistral-embed"

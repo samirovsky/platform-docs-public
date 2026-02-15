@@ -7,7 +7,6 @@
 
 import { Children, isValidElement } from 'react';
 import { InternalError } from '../../../util/internalError';
-// eslint-disable-next-line fast-import/no-restricted-imports
 import { ConnectingCell as DefaultConnectingCell } from '../components/cells';
 import { PropertyContents } from '../content';
 import type {
@@ -18,6 +17,11 @@ import type {
   ExpandablePropertyProps,
   ExpandablePropertyTitleProps,
 } from '@speakeasy-api/docs-md-react';
+
+// Extend the imported type to include the missing property
+type ExtendedExpandablePropertyBreakoutsProps = ExpandablePropertyBreakoutsProps & {
+  ConnectingCell?: typeof DefaultConnectingCell;
+};
 import { PropertyProvider } from '@/contexts/property-context';
 import { Prose } from '@/components/common/prose';
 
@@ -81,15 +85,11 @@ export function ExpandablePropertyExamples({
   return <Prose slot={slot} className='prose-p:my-2 [&>[data-type=code]]:mt-0'>{children}</Prose>;
 }
 
-interface BreakoutsProps extends ExpandablePropertyBreakoutsProps {
-  ConnectingCell?: React.ComponentType<any>;
-}
-
 export function ExpandablePropertyBreakouts({
   children,
   slot,
   ConnectingCell = DefaultConnectingCell,
-}: BreakoutsProps) {
+}: ExtendedExpandablePropertyBreakoutsProps) {
   return (
     <div slot={slot} className="flex flex-col">
       {Children.map(children, (child, index) => {

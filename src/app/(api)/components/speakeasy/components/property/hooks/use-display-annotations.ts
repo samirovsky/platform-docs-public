@@ -1,13 +1,14 @@
 import { PropertyAnnotations } from '@/app/(api)/types/shared';
 import { useMemo } from 'react';
 
+const customAnnotations = ['required'];
+
 export function useDisplayAnnotations(
   typeAnnotations: PropertyAnnotations[] | undefined
 ): {
   isRequired: boolean;
   annotations: PropertyAnnotations[];
 } {
-  const customAnnotations = ['required'];
   const displayAnnotations = useMemo(() => {
     return typeAnnotations?.filter(
       annotation => !customAnnotations.includes(annotation.title)
