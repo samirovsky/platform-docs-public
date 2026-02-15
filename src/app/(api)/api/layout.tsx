@@ -80,8 +80,6 @@ export default function DocsLayout({
     </LeChatProvider>
   );
 }
-  );
-}
 
 const flattenSidebar = (sidebar: typeof sidebarMetadata): ApiSidebarItem[] => {
   const stableEndpoints: ApiSidebarItem[] = [];
