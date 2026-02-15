@@ -1,6 +1,7 @@
 import PageContent from '@/components/layout/page-content';
 import { DocsVariantProvider } from '@/contexts/docs-variant';
 
+
 export default function NoSidebarLayout({
   children,
 }: {

@@ -13,6 +13,7 @@ import { Metadata } from 'next';
 import { Prose } from '@/components/common/prose';
 import { SidebarItem } from '@/schema';
 import { DocsVariantProvider } from '@/contexts/docs-variant';
+import { GlobalSearch } from '@/components/layout/global-search';
 
 export const metadata: Metadata = {
   title: {
@@ -54,6 +55,8 @@ export default async function SidebarLayout({
                     'lg:max-w-4xl lg:[&:has(~_[data-table-of-contents])]:max-w-2xl 2xl:[&:has(~_[data-table-of-contents])]:max-w-3xl'
                   )}
                 >
+
+
                   <DocsBreadcrumb sidebar={sidebar} />
 
                   <Prose data-page-content className={cn('flex-1')}>

@@ -445,6 +445,16 @@ function _CookbookAllSection() {
     }
   }, [searchQuery]);
 
+  // Scroll to results when filter is present in URL
+  useEffect(() => {
+    if (useCaseFilter || integrationFilter) {
+      const section = document.getElementById('all-cookbooks');
+      if (section) {
+        section.scrollIntoView({ behavior: 'smooth' });
+      }
+    }
+  }, [useCaseFilter, integrationFilter]);
+
   // Filter and sort cookbooks based on search query and filters
   const filteredCookbooks = filterAndSortCookbooks(
     fullCookbooks,
@@ -529,10 +539,10 @@ export default function CookbookAllSection() {
           <FilterTabsUI
             useCaseFilter={null}
             integrationFilter={null}
-            setUseCaseFilter={() => {}}
-            setIntegrationFilter={() => {}}
+            setUseCaseFilter={() => { }}
+            setIntegrationFilter={() => { }}
             searchQuery={''}
-            setSearchQuery={() => {}}
+            setSearchQuery={() => { }}
             totalCount={fullCookbooks.filter(c => c.displayed).length} // Update total count
           />
           <RenderedFilteredCookbookTable

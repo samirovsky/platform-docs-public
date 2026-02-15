@@ -26,7 +26,6 @@ const nextConfig: NextConfig = {
 	},
 	rewrites: async () => {
 		return [
-
 			{
 				source: "/api",
 				destination: "/api/endpoint/chat",
