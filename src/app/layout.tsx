@@ -6,6 +6,7 @@ import { Providers } from '@/components/providers';
 import localFont from 'next/font/local';
 import PageContent from '@/components/layout/page-content';
 import { GoogleTagManager } from '@next/third-parties/google';
+import ChatAgent from '@/components/chat-agent';
 
 export const metadata: Metadata = {
   title: 'Mistral AI',
@@ -105,6 +106,7 @@ export default function RootLayout({
               <div className="max-w-[1920px] w-full mx-auto">{children}</div>
               <Footer />
             </PageContent>
+            <ChatAgent />
           </div>
         </Providers>
       </body>

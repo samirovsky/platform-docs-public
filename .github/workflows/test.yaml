@@ -1,0 +1,51 @@
+name: Test
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          submodules: true
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Install pnpm
+        uses: pnpm/action-setup@v3
+        with:
+          version: 9
+
+      - name: Install Dependencies
+        run: pnpm install
+
+      - name: Run Linters
+        run: pnpm run lint
+
+      - name: Run Type Check
+        run: pnpm run type-check
+
+      - name: Run Unit Tests
+        run: npx jest
+
+      - name: Build Next.js
+        run: pnpm run build
+
+      - name: Install Playwright Browsers
+        run: npx playwright install --with-deps
+
+      - name: Run Playwright Smoke Tests
+        run: |
+          pnpm run start &
+          # Wait for the app to come up
+          npx -y wait-on http://localhost:3000
+          npx playwright test tests/chat-agent.spec.ts
