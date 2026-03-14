@@ -81,7 +81,7 @@ export default function ChatAgent() {
                 </button>
               </div>
               <p className="text-xs text-zinc-600 dark:text-zinc-400 truncate italic">
-                "{selectedText}"
+                &quot;{selectedText}&quot;
               </p>
             </div>
           )}
