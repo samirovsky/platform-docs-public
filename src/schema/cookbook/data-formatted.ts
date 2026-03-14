@@ -1,16 +1,20 @@
 import { Cookbook, CookbookSaved } from '.';
-// Use raw json from public directory but fallback to empty array if missing during typecheck/initial build
-let completeCookbook: any[] = [];
-try {
-  completeCookbook = require('@/../public/complete-cookbook.json');
-} catch (e) {
-  console.warn("complete-cookbook.json not found. Run 'pnpm run prebuild' to generate it.");
-}
 import {
   FEATURED_COOKBOOK_PATHS,
   FEATURED_USE_CASES,
   FEATURED_INTEGRATIONS,
 } from './data';
+import fs from 'fs';
+import path from 'path';
+
+// Use raw json from public directory but fallback to empty array if missing during typecheck/initial build
+let completeCookbook: any[] = [];
+try {
+  const fileContent = fs.readFileSync(path.join(process.cwd(), 'public/complete-cookbook.json'), 'utf-8');
+  completeCookbook = JSON.parse(fileContent);
+} catch (e) {
+  console.warn("complete-cookbook.json not found. Run 'pnpm run prebuild' to generate it.");
+}
 
 // ------------------------------------------------------------
 // Data processing
