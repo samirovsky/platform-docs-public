@@ -12,11 +12,11 @@ export async function POST(req: Request) {
     systemPrompt += `\n\nContext from documentation:\n"""\n${selectedText}\n"""`;
   }
 
-  const result = streamText({
+  const result = await streamText({
     model: mistral('mistral-large-latest'),
     system: systemPrompt,
     messages,
   });
 
-  return result.toDataStreamResponse();
+  return result.toAIStreamResponse();
 }
